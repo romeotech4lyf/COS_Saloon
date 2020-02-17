@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "534753692872",
+    "firebase_url": "https://cos-saloon.firebaseio.com",
+    "project_id": "cos-saloon",
+    "storage_bucket": "cos-saloon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534753692872:android:4be07d7dbd609e774e69fd",
+        "android_client_info": {
+          "package_name": "com.tech4lyf.cossaloon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534753692872-qmbujmcu3cvafcmlgedc1mvtloed9uv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tech4lyf.cossaloon",
+            "certificate_hash": "31c239fe8184086f353ea6bd7f45a322ea707c8f"
+          }
+        },
+        {
+          "client_id": "534753692872-2t5tinudbc2058b56ibtr3i2mhq31i4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKlCzxP4MgFm3njITFItChgulT58MTmic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534753692872-2t5tinudbc2058b56ibtr3i2mhq31i4i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

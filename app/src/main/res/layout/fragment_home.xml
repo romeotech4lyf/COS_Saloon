@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:touchscreenBlocksFocus="false"
+            app:contentScrim="#FFFFFF"
+            android:background="@color/colorWhite"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+
+                ><ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/admin_dp"
+                android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:text="Last Login : 20-03-2020"
+                    android:visibility="visible"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/last_login_dashboard"
+                    android:textSize="16dp"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_above="@+id/last_login_dashboard"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:text="ADMINISTRATOR"
+                    android:layout_marginBottom="2dp"
+                    android:visibility="visible"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="28dp"
+
+                    />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:id="@+id/dashBoard_profile_image"
+                    android:src="@mipmap/admin_dp"
+                    android:visibility="invisible"/>
+
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/dashBoard_profile_image"
+                    android:layout_centerHorizontal="true"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    android:elevation="12dp"
+                    app:cardCornerRadius="15dp"
+                    android:textAlignment="center"
+                    android:visibility="invisible"
+
+                    >
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:text="ADMINISTRATOR"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:ellipsize="end"
+                    android:textAlignment="center"
+
+                    android:textColor="@color/colorWhite"
+                    />
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        app:cardCornerRadius="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/colorAccent">
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="DASHBOARD ->"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_dashBoard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
