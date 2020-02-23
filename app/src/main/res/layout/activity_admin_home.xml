@@ -1,25 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:layout_height="match_parent">
 
-    <include
-        layout="@layout/app_bar_admin_home"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        >
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@color/colorWhite"
+            android:touchscreenBlocksFocus="false"
+            app:contentScrim="@color/colorAccentLight"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorAccentLight"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/last_login_dashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="22dp"
+                    android:text="Last Login : 20-03-2020"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dp"
+
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/last_login_dashboard"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="ADMINISTRATOR"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="28dp"
+                    android:visibility="invisible"
+
+                    />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/dashBoard_profile_image"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:src="@mipmap/admin_dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"/>
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:layout_below="@id/dashBoard_profile_image"
+                        android:layout_centerHorizontal="true"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="ADMINISTRATOR"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        <!--<include
+            layout="@layout/admin_tool_bar"
+            />-->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginRight="8dp"
+        android:visibility="invisible"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="DASHBOARD ->"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/dashBoard_admin_fragment_container"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_admin_home"
-        app:menu="@menu/activity_admin_home_drawer" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-</androidx.drawerlayout.widget.DrawerLayout>
+        />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

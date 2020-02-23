@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:clickable="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:focusable="true"
+    tools:context=".AdminDashBoardFragments.ManageFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/admin_manage_grid">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashBoard_admin_stores_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/stores"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="AREAS"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentLeft="true"
+                        app:cardBackgroundColor="#00FF00"
+                        app:cardCornerRadius="15dp"
+                        android:id="@+id/admin_manage_add_area">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="ADD"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="70dp"
+                        android:id="@+id/admin_manage_remove_area"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentRight="true"
+                        android:elevation="30dp"
+                        app:cardBackgroundColor="#FF0000"
+                        app:cardCornerRadius="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="REMOVE"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashBoard_admin_employees_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/stores"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/stores"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/admin_manage_add_store"
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="#00FF00"
+                        app:cardCornerRadius="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="ADD"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentRight="true"
+                        android:elevation="30dp"
+                        app:cardBackgroundColor="#FF0000"
+                        app:cardCornerRadius="15dp"
+                        android:id="@+id/admin_manage_remove_store"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="REMOVE"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/employees"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/employee"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentLeft="true"
+                        app:cardBackgroundColor="#00FF00"
+                        app:cardCornerRadius="15dp"
+                        android:id="@+id/admin_manage_add_employee">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="ADD"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/admin_manage_remove_employee"
+                        android:layout_width="70dp"
+
+                      android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentRight="true"
+                        android:elevation="30dp"
+                        app:cardBackgroundColor="#FF0000"
+                        app:cardCornerRadius="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="REMOVE"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/settings"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="PRICES"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_centerInParent="true"
+                        app:cardBackgroundColor="#00FF00"
+                        app:cardCornerRadius="15dp"
+                        android:id="@+id/admin_manage_set_prices"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="SET"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/admin_manage_grid">
+        
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/admin_manage_fragment_container"/>
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/admin_manage_grid"
+    android:layout_centerInParent="true"
+    android:visibility="invisible"
+    >
+
+
+
+    <Spinner
+        android:id="@+id/admin_manage_select_area"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true" />
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Spinner
+        android:id="@+id/admin_manage_select_Store"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true" />
+
+
+</RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

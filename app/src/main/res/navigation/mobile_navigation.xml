@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.tech4lyf.cossaloon.ui.user.home.HomeFragment"
+        android:name="com.tech4lyf.cossaloon.AdminDashBoardFragments.DefaultFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_admin_dashBoard_default." />
 
     <fragment
         android:id="@+id/nav_gallery"

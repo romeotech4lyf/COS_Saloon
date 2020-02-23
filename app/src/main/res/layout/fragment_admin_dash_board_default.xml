@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dashBoard_admin_default_fragment"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@color/colorAccentLight"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/dummy"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashBoard_admin_stores_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:layout_toLeftOf="@id/dummy"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/stores"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/stores"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashBoard_admin_employees_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/dummy"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/employees"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/employee"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+
+                android:id="@+id/dashBoard_admin_manage_card"
+                android:layout_below="@id/dashBoard_admin_stores_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                android:layout_toLeftOf="@id/dummy"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/statistics"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/administration"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashBoard_admin_settings_card"
+                android:layout_below="@id/dashBoard_admin_employees_card"
+                android:layout_toRightOf="@id/dummy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:elevation="20dp"
+                android:foreground="?selectableItemBackground"
+                android:theme="@style/CardView.Light"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true">
+
+
+                <ImageView
+                    android:id="@+id/dashBoard_item_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="42dp"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/settings"
+                    android:tint="@color/colorAccent" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/settings"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:elevation="20dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_below="@id/dashBoard_admin_manage_card"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="10dp"
+
+            app:cardUseCompatPadding="true">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="INCOME"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+            <CalendarView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:forceDarkAllowed="true"
+                android:layout_marginTop="50dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+<RelativeLayout
+    android:layout_below="@id/dashBoard_admin_manage_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dashBoard_admin_income_cards"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginStart="12dp"
+    android:elevation="20dp"
+
+
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dummy_"
+        android:layout_centerInParent="true"/>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_toLeftOf="@id/dummy_"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:elevation="20dp"
+                    android:foreground="?selectableItemBackground"
+                    android:theme="@style/CardView.Light"
+                    app:cardBackgroundColor="@color/colorOffWhite"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginBottom="35dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="40dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="5dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="THIS MONTH"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="10dp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_toRightOf="@id/dummy_"
+                    android:id="@+id/dashBoard_admin_income_daily"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:elevation="20dp"
+                    android:foreground="?selectableItemBackground"
+                    android:theme="@style/CardView.Light"
+                    app:cardBackgroundColor="#227397"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginBottom="35dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="40dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="5dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="TODAY"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10dp" />
+
+                </androidx.cardview.widget.CardView>
+</RelativeLayout>
+
+        </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

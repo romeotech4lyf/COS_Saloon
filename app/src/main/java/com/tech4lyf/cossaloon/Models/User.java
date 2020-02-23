@@ -7,6 +7,7 @@ public class User {
     String isAdmin;
     String name;
 
+
     public User(String key, String username, String password, String name, String isAdmin) {
         this.key = key;
         this.username= username;
@@ -14,6 +15,7 @@ public class User {
         this.isAdmin=isAdmin;
         this.name=name;
     }
+
 
     public User() {
     }
