@@ -3,60 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="match_parent"
-    tools:context=".AdminDashBoardFragments.EmployeeDetailsFragment"
-    android:background="@color/colorAccentLight"
-    >
+    android:background="@color/colorWhite"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AdminDashBoardFragments.EmployeeDetailsFragment">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:orientation="vertical">
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp">
 
 
         <!-- TODO: Update blank fragment layout -->
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_holder_card"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:elevation="20dp"
-            android:id="@+id/admin_employee_details_holder_card"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
             app:cardBackgroundColor="@color/colorOffWhite"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:gravity="center_vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/admin_employee_details_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:src="@mipmap/admin_dp" />
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/admin_employee_details_title"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignTop="@id/admin_employee_details_image"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/admin_employee_details_image"
                     android:gravity="center"
                     android:text="Employee Name"
                     android:textColor="@color/colorAccent"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/admin_employee_details_sub_title"
@@ -64,31 +61,52 @@
                     android:layout_height="20dp"
                     android:layout_below="@id/admin_employee_details_title"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/admin_employee_details_image"
                     android:gravity="center"
                     android:text="Store Name - Area"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/admin_employee_details_monthly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/admin_employee_details_sub_title"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="Today's Jobs : 4    This month's Jobs : 100"
                     android:textColor="@color/colorBlack"
                     android:textSize="10dp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/admin_employee_details_image"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:elevation="30dp"
+            android:src="@mipmap/admin_dp"
+
+            />
+
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_calendar_holding_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:elevation="20dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginEnd="6dp"
             android:layout_below="@id/admin_employee_details_holder_card"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:elevation="20dp"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
 
             app:cardUseCompatPadding="true">
-
-
 
 
             <TextView
@@ -98,54 +116,71 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
-                android:visibility="gone"
                 android:text="INCOME"
                 android:textColor="@color/colorAccent"
                 android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
 
             <CalendarView
+                android:id="@+id/admin_employee_details_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="center"
-                android:forceDarkAllowed="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginTop="50dp"
-                />
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="20dp"
+                android:forceDarkAllowed="true" />
 
         </androidx.cardview.widget.CardView>
-        <RelativeLayout
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:layout_below="@id/admin_employee_details_holder_card"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="INCOME"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:id="@+id/dashBoard_admin_income_cards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dashBoard_admin_income_cards"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_below="@id/admin_employee_details_holder_card"
             android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:elevation="20dp"
 
 
             >
+
             <ImageView
+                android:id="@+id/dummy_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/dummy_"
-                android:layout_centerInParent="true"/>
-
+                android:layout_centerInParent="true" />
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_toLeftOf="@id/dummy_"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_toStartOf="@+id/dummy_"
+                android:layout_toLeftOf="@id/dummy_"
                 android:layout_weight="1"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
@@ -155,6 +190,7 @@
                 app:cardUseCompatPadding="true">
 
                 <TextView
+                    android:id="@+id/admin_employee_details_this_month_income"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginBottom="35dp"
@@ -181,11 +217,15 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_toRightOf="@id/dummy_"
                 android:id="@+id/dashBoard_admin_income_daily"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toEndOf="@+id/dummy_"
+                android:layout_toRightOf="@id/dummy_"
                 android:layout_weight="1"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
@@ -196,6 +236,7 @@
 
 
                 <TextView
+                    android:id="@+id/admin_employee_details_today_income"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginBottom="35dp"
@@ -222,8 +263,132 @@
         </RelativeLayout>
 
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/admin_employee_details_calendar_holding_card"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:elevation="20dp"
+            android:foreground="?selectableItemBackground"
+            app:cardBackgroundColor="#227397"
+            app:cardCornerRadius="15dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_dialog_info" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="42dp"
+                    android:gravity="center"
+                    android:text="Info"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/admin_employee_details_info_expandable_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/admin_employee_details_info"
+            app:el_expanded="false">
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/admin_employee_details_info_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:forceDarkAllowed="true" />
+
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_bills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/admin_employee_details_info_expandable_layout"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:elevation="20dp"
+            android:foreground="?selectableItemBackground"
+            app:cardBackgroundColor="#227397"
+            app:cardCornerRadius="15dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_dialog_info" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="42dp"
+                    android:gravity="center"
+                    android:text="Bills"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/admin_employee_details_bills_expandable_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/admin_employee_details_bills"
+            app:el_expanded="false">
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/admin_employee_details_bills_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:forceDarkAllowed="true" />
+
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
 
     </RelativeLayout>
 
 
 </androidx.core.widget.NestedScrollView>
+

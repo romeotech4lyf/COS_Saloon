@@ -16,7 +16,7 @@
     <string name="menu_send">Send</string>
     <string name="title_activity_admin_home">AdminHome</string>
     <string name="title_activity_user_home">UserHome</string>
-    <string name="stores">STORES</string>
+    <string name="store">STORES</string>
     <string name="employee">EMPLOYEES</string>
     <string name="administration">MANAGE</string>
     <string name="settings">SETTINGS</string>

@@ -35,37 +35,8 @@
                     android:src="@color/colorAccentLight"
                     android:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/last_login_dashboard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="22dp"
-                    android:text="Last Login : 20-03-2020"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16dp"
 
-                    android:visibility="invisible" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/last_login_dashboard"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="ADMINISTRATOR"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="28dp"
-                    android:visibility="invisible"
-
-                    />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/dashBoard_profile_image"
@@ -108,30 +79,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-
-        android:layout_marginRight="8dp"
-        android:visibility="invisible"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="10dp">
-
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="DASHBOARD ->"
-            android:textColor="@color/colorWhite"
-            android:textSize="10dp" />
-    </com.google.android.material.card.MaterialCardView>
 
 
     <androidx.fragment.app.FragmentContainerView

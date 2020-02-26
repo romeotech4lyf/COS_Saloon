@@ -34,7 +34,7 @@ import com.tech4lyf.cossaloon.AdminManageFragments.SetPricesFragment;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.Models.Area;
 import com.tech4lyf.cossaloon.Models.Employee;
-import com.tech4lyf.cossaloon.Models.Stores;
+import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 
 import java.util.ArrayList;
@@ -44,15 +44,15 @@ import java.util.ArrayList;
  */
 public class ManageFragment extends Fragment implements View.OnClickListener {
 
-    Spinner spinnerSelectStore;
-    Spinner spinnerSelectArea;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReferenceStores;
-    DatabaseReference databaseReferenceAreas;
-    DatabaseReference databaseReferenceEmployees;
-    ArrayAdapter arrayAdapterStores;
-    ArrayAdapter arrayAdapterAreas;
-    String selectedAreaName;
+    private Spinner spinnerSelectStore;
+    private Spinner spinnerSelectArea;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReferenceStores;
+    private DatabaseReference databaseReferenceAreas;
+    private DatabaseReference databaseReferenceEmployees;
+    private ArrayAdapter arrayAdapterStores;
+    private ArrayAdapter arrayAdapterAreas;
+    private String selectedAreaName;
     private CardView addStore;
     private CardView addArea;
     private CardView addEmployee;
@@ -61,9 +61,10 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
     private CardView removeArea;
     private CardView setPrices;
     private View root;
-    private ArrayList<String> storeIdList = new ArrayList<>();
-    private ArrayList<String> storeAreaList = new ArrayList<>();
-    private ArrayList<String> storeNameList = new ArrayList<>();
+    private ArrayList<String> employeeStoreIdList = new ArrayList<>();
+    private ArrayList<String> storeAreaIdList = new ArrayList<>();
+    private ArrayList<String> storeAreaNameList = new ArrayList<>();
+    private ArrayList<String> employeeStoreNameList = new ArrayList<>();
     private ArrayList<String> areaIdList = new ArrayList<>();
     private ArrayList<String> areaNameList = new ArrayList<>();
     private boolean isStoreIdSynchronized = false;
@@ -96,7 +97,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         FirebaseApp.initializeApp(this.getActivity());
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReferenceStores = firebaseDatabase.getReference("Stores");
+        databaseReferenceStores = firebaseDatabase.getReference("Store");
         databaseReferenceAreas = firebaseDatabase.getReference("Areas");
         databaseReferenceEmployees = firebaseDatabase.getReference("Employees");
 
@@ -111,7 +112,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
 
         //
         spinnerSelectStore = root.findViewById(R.id.admin_manage_select_Store);
-        arrayAdapterStores = new ArrayAdapter(ChangeOfStyle.getContext(), android.R.layout.simple_spinner_item, storeNameList);
+        arrayAdapterStores = new ArrayAdapter(ChangeOfStyle.getContext(), android.R.layout.simple_spinner_item, employeeStoreNameList);
         arrayAdapterStores.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSelectStore.setAdapter(arrayAdapterStores);
         spinnerSelectStore.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -155,6 +156,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
 
             }
         });
+
 
         addStore.setOnClickListener(this);
         addEmployee.setOnClickListener(this);
@@ -232,21 +234,21 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
                 if (dataSnapshot != null) {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot store_ : dataSnapshot.getChildren()) {
-                            Stores store = store_.getValue(Stores.class);
+                            Store store = store_.getValue(Store.class);
 
                             if (store != null) {
                                 String storeId = store.getId();
                                 String storeName = store.getName();
                                 String storeAreaName = store.getAreaName();
-                                if (storeId != null && storeName != null &&storeAreaName!= null) {
-                                    storeIdList.add(storeId);
-                                    storeNameList.add(storeName);
-                                    storeAreaList.add(storeName);
+                                if (storeId != null && storeName != null && storeAreaName != null) {
+                                    employeeStoreIdList.add(storeId);
+                                    employeeStoreNameList.add(storeName);
+                                    storeAreaIdList.add(storeName);
                                     arrayAdapterStores.notifyDataSetChanged();
                                     isStoreIdSynchronized = true;
                                 }
-                                //    storeNameList.add(store_.getstoreName);
-                                Log.d(storeIdList.toString(), " storeIds");
+                                //    employeeStoreNameList.add(store_.getstoreName);
+                                Log.d(employeeStoreIdList.toString(), " storeIds");
 
 
                             }
@@ -363,18 +365,22 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
     private void fireBaseStoreListener(DataSnapshot dataSnapshot) {
         if (dataSnapshot != null) {
             if (dataSnapshot.exists()) {
-                Stores store = dataSnapshot.getValue(Stores.class);
+                Store store = dataSnapshot.getValue(Store.class);
 
                 if (store != null) {
                     String storeId = store.getId();
                     String storeName = store.getName();
                     if (storeId != null && storeName != null) {
-                        storeIdList.add(storeId);
-                        storeNameList.add(storeName);
-                        arrayAdapterStores.notifyDataSetChanged();
-                        isStoreIdSynchronized = true;
+                        if (areaIdList.size() > 0 && areaNameList.contains(selectedAreaName)) {
+                            if (store.getAreaId() == areaIdList.get(areaNameList.indexOf(selectedAreaName))) {
+                                employeeStoreIdList.add(storeId);
+                                employeeStoreNameList.add(storeName);
+                                arrayAdapterStores.notifyDataSetChanged();
+                                isStoreIdSynchronized = true;
+                            }
+                        }
                     }
-                    Log.d(storeIdList.toString(), " storeIds");
+                    Log.d(employeeStoreIdList.toString(), " storeIds");
 
 
                 }
@@ -388,7 +394,6 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         if (dataSnapshot != null) {
             if (dataSnapshot.exists()) {
                 Area area = dataSnapshot.getValue(Area.class);
-
                 if (area != null) {
                     String areaId = area.getId();
                     String areaName = area.getName();
@@ -427,7 +432,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         if (isStoreIdSynchronized) {
             Toast.makeText(getActivity().getBaseContext(), "EmployeeAdded", Toast.LENGTH_SHORT).show();
             String key = databaseReferenceEmployees.push().getKey();
-            databaseReferenceEmployees.child(key).setValue(new Employee(key,enterEmployeeName + ++y, storeIdList.get(storeNameList.indexOf(selectedStoreName)), selectedStoreName+" - "+areaNameList.get(storeNameList.indexOf(selectedStoreName)),"18-1-2020"));
+            databaseReferenceEmployees.child(key).setValue(new Employee(key, enterEmployeeName + ++y, employeeStoreIdList.get(employeeStoreNameList.indexOf(selectedStoreName)), selectedStoreName + " - " + areaNameList.get(employeeStoreNameList.indexOf(selectedStoreName)), areaIdList.get(areaNameList.indexOf(selectedAreaName)), "areaName", "9191919191", "18-1-2020"));
         }
     }
 
@@ -438,7 +443,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         if (isStoreIdSynchronized) {
             Toast.makeText(getActivity().getBaseContext(), "storeAdded", Toast.LENGTH_SHORT).show();
             String key = databaseReferenceStores.push().getKey();
-            databaseReferenceStores.child(key).setValue(new Stores(key, ++x + enterStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, 400, 20000));
+            databaseReferenceStores.child(key).setValue(new Store(key, ++x + enterStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, "address", 400, 20000));
 
         }
 

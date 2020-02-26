@@ -1,7 +1,6 @@
 package com.tech4lyf.cossaloon.AdminDashBoardFragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +53,9 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.dashBoard_admin_stores_card:
-                Listeners.triggerOnClickDashBoardItemListener(R.string.stores);
+                Listeners.triggerOnClickDashBoardItemListener(R.string.store);
                 break;
 
             case R.id.dashBoard_admin_employees_card:
@@ -72,6 +72,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
 
             default:
                 break;
+
 
         }
 

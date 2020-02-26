@@ -1,21 +1,42 @@
 package com.tech4lyf.cossaloon;
 
+import com.tech4lyf.cossaloon.Models.Employee;
+import com.tech4lyf.cossaloon.Models.Store;
+
 import java.util.ArrayList;
 
 public class Listeners {
-    public interface OnClickRecyclerItemListener{
-         void onClick(String id, Context.OBJECT_TYPE object_type);
-    }
-    private static ArrayList<OnClickRecyclerItemListener> onClickRecyclerItemListeners = new ArrayList<>();
-    public static void triggerOnClickRecyclerItemListener(String id, Context.OBJECT_TYPE objectType){
+    private static ArrayList<OnClickStoreListListener> onClickStoreListListeners = new ArrayList<>();
+    private static ArrayList<OnClickEmployeeListListener> onClickEmployeeListListeners = new ArrayList<>();
 
-        for(OnClickRecyclerItemListener onClickRecyclerItemListener : onClickRecyclerItemListeners){
-            onClickRecyclerItemListener.onClick(id,objectType);
+    public static void triggerOnClickStoreListListener(Store store) {
+
+        for (OnClickStoreListListener onClickStoreListListener : onClickStoreListListeners) {
+            onClickStoreListListener.onClick(store);
         }
     }
 
-    public static void  setOnClickRecyclerItemListener (OnClickRecyclerItemListener onClickRecyclerItemListener){
-        onClickRecyclerItemListeners.add(onClickRecyclerItemListener);
+    public static void setOnClickStoreListListener(OnClickStoreListListener onClickStoreListListener) {
+        onClickStoreListListeners.add(onClickStoreListListener);
+    }
+
+    public static void triggerOnClickEmployeeListListener(Employee employee) {
+
+        for (OnClickEmployeeListListener onClickEmployeeListListener : onClickEmployeeListListeners) {
+            onClickEmployeeListListener.onClick(employee);
+        }
+    }
+
+    public static void setOnClickEmployeeListListener(OnClickEmployeeListListener onClickEmployeeListListener) {
+        onClickEmployeeListListeners.add(onClickEmployeeListListener);
+    }
+
+    public interface OnClickStoreListListener {
+        void onClick(Store store);
+    }
+
+    public interface OnClickEmployeeListListener {
+        void onClick(Employee employee);
     }
 
 
@@ -33,13 +54,11 @@ public class Listeners {
         onClickDashBoardItemListeners.add(onClickDashBoardItemListener);
     }
 
-
-
-
-
     public interface OnBackPressedListener{
         void onBackPressed(Context.OBJECT_TYPE objectType);
     }
+
+
     private static ArrayList<OnBackPressedListener> OnBackPressedListeners = new ArrayList<>();
     public static void triggerOnBackPressedListener(Context.OBJECT_TYPE objectType){
 

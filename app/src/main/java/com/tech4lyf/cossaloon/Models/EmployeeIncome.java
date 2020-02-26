@@ -5,8 +5,14 @@ public class EmployeeIncome {
     private String date;
     private Integer income;
 
-    public EmployeeIncome(){
+    public EmployeeIncome() {
 
+    }
+
+    public EmployeeIncome(String employeeId, String date, Integer income) {
+        this.employeeId = employeeId;
+        this.date = date;
+        this.income = income;
     }
 
     public String getDate() {
@@ -33,9 +39,4 @@ public class EmployeeIncome {
         this.income = income;
     }
 
-    public EmployeeIncome (String employeeId, String date, Integer income) {
-        this.employeeId = employeeId;
-        this.date = date;
-        this.income = income;
-    }
 }

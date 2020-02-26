@@ -10,9 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/CardView.Light"
-        android:layout_margin="8dp"
+        android:layout_margin="2dp"
         app:cardCornerRadius="20dp"
         android:elevation="20dp"
+        app:cardUseCompatPadding="true"
         android:foreground="?selectableItemBackground"
         app:cardBackgroundColor="@color/colorWhite"
         >

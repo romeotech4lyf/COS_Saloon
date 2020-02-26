@@ -9,4 +9,6 @@
     <color name="colorAccentDark">#227397</color>
     <color name="colorOffWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorTransparentWhite">#80FFFFFF</color>
+    <color name="colorTransparentBlack">#75000000</color>
 </resources>

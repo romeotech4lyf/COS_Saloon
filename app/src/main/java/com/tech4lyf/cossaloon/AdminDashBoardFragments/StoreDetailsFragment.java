@@ -1,18 +1,18 @@
  package com.tech4lyf.cossaloon.AdminDashBoardFragments;
 
 
-import android.os.Bundle;
+ import android.os.Bundle;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.R;
+ import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
+ import com.tech4lyf.cossaloon.Models.Store;
+ import com.tech4lyf.cossaloon.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,16 +20,18 @@ import com.tech4lyf.cossaloon.R;
 public class StoreDetailsFragment extends Fragment {
 
     private View root;
-    private String id;
+    private Store store;
+
+    public StoreDetailsFragment(Store store) {
+        this.store = store;
+
+    }
 
 
     public StoreDetailsFragment() {
         // Required empty public constructor
     }
 
-    public  StoreDetailsFragment(String id){
-        this.id = id;
-    }
 
 
     @Override
