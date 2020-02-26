@@ -150,7 +150,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/store"
+                    android:text="@string/stores"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent"
                     android:textSize="16dp" />
@@ -250,7 +250,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/employee"
+                    android:text="@string/employees"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent"
                     android:textSize="16dp" />

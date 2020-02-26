@@ -1,4 +1,4 @@
- package com.tech4lyf.cossaloon.AdminDashBoardFragments;
+package com.tech4lyf.cossaloon.AdminDetailsFragments;
 
 
  import android.os.Bundle;

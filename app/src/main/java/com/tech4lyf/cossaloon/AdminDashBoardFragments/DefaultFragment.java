@@ -55,19 +55,19 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.dashBoard_admin_stores_card:
-                Listeners.triggerOnClickDashBoardItemListener(R.string.store);
+                Listeners.triggerOnClickDashBoardItemListener(R.string.stores);
                 break;
 
             case R.id.dashBoard_admin_employees_card:
-                Listeners.triggerOnClickDashBoardItemListener(R.string.employee);
+                Listeners.triggerOnClickDashBoardItemListener(R.string.employees);
                 break;
 
             case R.id.dashBoard_admin_manage_card:
-                Listeners.triggerOnClickDashBoardItemListener(R.string.administration);
+                Listeners.triggerOnClickDashBoardItemListener(R.string.services);
                 break;
 
             case R.id.dashBoard_admin_settings_card:
-                Listeners.triggerOnClickDashBoardItemListener(R.string.settings);
+                Listeners.triggerOnClickDashBoardItemListener(R.string.areas);
                 break;
 
             default:

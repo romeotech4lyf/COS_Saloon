@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tech4lyf.cossaloon.AdminDashBoardFragments.AreasFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.DefaultFragment;
-import com.tech4lyf.cossaloon.AdminDashBoardFragments.EmployeeDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.EmployeesFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.ManageFragment;
-import com.tech4lyf.cossaloon.AdminDashBoardFragments.StoreDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.StoresFragment;
+import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailsFragment;
+import com.tech4lyf.cossaloon.AdminDetailsFragments.StoreDetailsFragment;
 import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Employee;
@@ -93,18 +94,23 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     public void onClick(final int stringId) {
 
         switch (stringId) {
-            case R.string.store:
+            case R.string.stores:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
                 break;
 
-            case R.string.administration:
+            case R.string.services:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ManageFragment(), "MANAGE").commit();
                 break;
 
 
-            case R.string.employee:
+            case R.string.employees:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
                 break;
+
+            case R.string.areas:
+                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "EMPLOYEE").commit();
+
+
 
 
             default:

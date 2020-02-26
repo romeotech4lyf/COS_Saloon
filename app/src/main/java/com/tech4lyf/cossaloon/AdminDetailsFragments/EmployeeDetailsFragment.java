@@ -1,4 +1,4 @@
-package com.tech4lyf.cossaloon.AdminDashBoardFragments;
+package com.tech4lyf.cossaloon.AdminDetailsFragments;
 
 
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailBillsFragment;
-import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailInfoFragment;
+import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailBillsFragment;
+import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailInfoFragment;
 import com.tech4lyf.cossaloon.Models.Bill;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
@@ -69,7 +69,6 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
         AdminHomeActivity.level = 2;
 
         employeeName = root.findViewById(R.id.admin_employee_details_title);
-        storeName = root.findViewById(R.id.admin_employee_details_sub_title);
         info = root.findViewById(R.id.admin_employee_details_info);
         bills = root.findViewById(R.id.admin_employee_details_bills);
         expandableLayoutInfo = root.findViewById(R.id.admin_employee_details_info_expandable_layout);
@@ -81,7 +80,6 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
 
 
         employeeName.setText(employee.getName());
-        storeName.setText(employee.getStoreName());
         test();
 
     }
