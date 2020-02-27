@@ -58,7 +58,7 @@ public class EmployeeDetailBillsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.bills_recyclerView);
         recyclerViewAdapterBills = new RecyclerViewAdapterBills(billList);
         recyclerView.setAdapter(recyclerViewAdapterBills);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         databaseReferenceBills = FirebaseDatabase.getInstance().getReference("Incomes").child(year).child(month).child(date);
 
 

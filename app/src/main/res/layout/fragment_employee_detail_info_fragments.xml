@@ -8,8 +8,8 @@
     android:layout_marginLeft="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginRight="8dp"
-    android:elevation="20dp"
-    app:cardBackgroundColor="@color/colorAccent"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="@color/colorWhite"
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true">
 
@@ -301,8 +301,9 @@
                 android:layout_gravity="center"
                 android:padding="12dp"
                 android:src="@drawable/ic_edit_black_24dp"
-
+                android:id="@+id/admin_employee_details_info_edit"
                 />
+
         </androidx.cardview.widget.CardView>
 
 
@@ -441,6 +442,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:padding="12dp"
+                android:id="@+id/admin_employee_details_info_dp_edit"
                 android:src="@drawable/ic_edit_black_24dp"
 
                 />
@@ -465,6 +467,7 @@
                 android:layout_gravity="center"
                 android:padding="12dp"
                 android:src="@drawable/ic_edit_black_24dp"
+                android:id="@+id/admin_employee_details_info_kyc_edit"
 
                 />
         </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.tech4lyf.cossaloon.Activities;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.AreasFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.DefaultFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.EmployeesFragment;
@@ -26,6 +29,8 @@ import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
+
+import java.util.ArrayList;
 
 public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener {
 
@@ -65,24 +70,11 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
       });*/
     private Context.OBJECT_TYPE objectType;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_home);
-        Toolbar toolbar = findViewById(R.id.toolbar_admin);
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
-        FirebaseApp.initializeApp(this);
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Bills");
-        setSupportActionBar(toolbar);
-        Listeners.setOnClickDashBoardItemListener(this);
-        Listeners.setOnClickEmployeeListListener(this);
-        Listeners.setOnClickStoreListListener(this);
-        Listeners.setOnBackPressedListener(this);
-
-
-    }
+    private static final String[] permissions = new String[]{
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_MEDIA_LOCATION,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,6 +110,45 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         }
 
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        checkPermissions();
+        setContentView(R.layout.activity_admin_home);
+        Toolbar toolbar = findViewById(R.id.toolbar_admin);
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Bills");
+        setSupportActionBar(toolbar);
+        Listeners.setOnClickDashBoardItemListener(this);
+        Listeners.setOnClickEmployeeListListener(this);
+        Listeners.setOnClickStoreListListener(this);
+        Listeners.setOnBackPressedListener(this);
+
+
+    }
+
+    void checkPermissions() {
+        final TedPermission tedPermission = new TedPermission(getBaseContext());
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                tedPermission.setDeniedMessage("Permissions Needed");
+
+            }
+        };
+        tedPermission.setPermissionListener(permissionListener).setDeniedMessage("Must Accept Permissions").setPermissions(permissions).check();
+
+    }
+
 
     @Override
     public void onBackPressed() {

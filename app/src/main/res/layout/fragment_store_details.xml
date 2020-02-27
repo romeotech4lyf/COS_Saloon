@@ -8,7 +8,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.StoreDetailsFragment">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,8 +16,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp">
 
-
-        <!-- TODO: Update blank fragment layout -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_holder_card"
@@ -95,7 +92,6 @@
 
             />
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_calendar_holding_card"
             android:layout_width="match_parent"
@@ -152,7 +148,6 @@
             android:textColor="@color/colorAccent"
             android:textSize="20dp"
             android:textStyle="bold" />
-
 
         <RelativeLayout
             android:id="@+id/dashBoard_admin_income_cards"
@@ -265,7 +260,6 @@
 
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_info"
@@ -391,7 +385,6 @@
 
         </net.cachapa.expandablelayout.ExpandableLayout>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_delete"
             android:layout_width="match_parent"
@@ -435,9 +428,7 @@
 
         </androidx.cardview.widget.CardView>
 
-
     </RelativeLayout>
-
 
 </androidx.core.widget.NestedScrollView>
 

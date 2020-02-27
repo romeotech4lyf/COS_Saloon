@@ -9,13 +9,14 @@ public class Bill {
     private String employeeId;
     private String time;
     private String date;
+    private String areaName;
     private ArrayList<String> listItems;
     private ArrayList<Integer> listItemPrices;
     private Integer totalPrice;
     private String employeeName;
     private String storeName;
 
-    public Bill(String id, String areaId, String storeId, String storeName, String employeeId, String employeeName, String time, String date, ArrayList<String> listItems, ArrayList<Integer> listItemPrices, Integer totalPrice) {
+    public Bill(String id, String areaId, String areaName, String storeId, String storeName, String employeeId, String employeeName, String time, String date, ArrayList<String> listItems, ArrayList<Integer> listItemPrices, Integer totalPrice) {
         this.id = id;
         this.areaId = areaId;
         this.storeId = storeId;
@@ -24,9 +25,18 @@ public class Bill {
         this.employeeName = employeeName;
         this.time = time;
         this.date = date;
+        this.areaName = areaName;
         this.listItems = listItems;
         this.listItemPrices = listItemPrices;
         this.totalPrice = totalPrice;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public Bill() {

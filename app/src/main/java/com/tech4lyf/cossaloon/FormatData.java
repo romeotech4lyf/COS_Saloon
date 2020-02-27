@@ -3,17 +3,6 @@ package com.tech4lyf.cossaloon;
 import java.util.ArrayList;
 
 public class FormatData {
-    public static Integer decodeIncome(String encodedIncome) {
-
-        StringBuilder temp = new StringBuilder(encodedIncome);
-        return Integer.valueOf(temp.substring(temp.indexOf("&&") + 2));
-
-    }
-
-    public static String encodeIncome(String date, Integer income) {
-
-        return date + "&&" + income;
-    }
 
     public static String setBillItemNames(final ArrayList<String> listItemNameList) {
 

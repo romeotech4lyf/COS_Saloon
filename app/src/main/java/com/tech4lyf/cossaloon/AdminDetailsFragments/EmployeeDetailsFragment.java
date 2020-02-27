@@ -2,9 +2,11 @@ package com.tech4lyf.cossaloon.AdminDetailsFragments;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,15 +19,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailBillsFragment;
 import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailInfoFragment;
+import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Models.Bill;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,14 +37,17 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
 
     ArrayList<String> listItems = new ArrayList<>();
     ArrayList<Integer> listItemPrices = new ArrayList<>();
+    String selectedDate;
+    String selectedMonth;
+    String selectedYear;
     private View root;
     private DatabaseReference databaseReferenceEmployees;
     private TextView employeeName;
     private TextView storeName;
-    private DatabaseReference databaseReferenceIncomes;
     private CardView bills;
     private CardView info;
     private Employee employee;
+    private CalendarView calendar;
     private ExpandableLayout expandableLayoutInfo;
     private ExpandableLayout expandableLayoutBills;
 
@@ -51,7 +57,6 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
 
     public EmployeeDetailsFragment(Employee employee) {
         this.employee = employee;
-
 
     }
 
@@ -73,6 +78,13 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
         bills = root.findViewById(R.id.admin_employee_details_bills);
         expandableLayoutInfo = root.findViewById(R.id.admin_employee_details_info_expandable_layout);
         expandableLayoutBills = root.findViewById(R.id.admin_employee_details_bills_expandable_layout);
+        calendar = root.findViewById(R.id.admin_employee_details_calendar);
+
+        selectedDate = new SimpleDateFormat("dd").format(new Date(calendar.getDate()));
+        selectedMonth = new SimpleDateFormat("mm").format(new Date(calendar.getDate()));
+        selectedYear = new SimpleDateFormat("yyyy").format(new Date(calendar.getDate()));
+
+        Log.d(selectedDate, "date");
 
 
         info.setOnClickListener(this);
@@ -85,27 +97,25 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
     }
 
     private void test() {
-        databaseReferenceIncomes = FirebaseDatabase.getInstance().getReference().child("Incomes");
+        DatabaseReference databaseReferenceIncomes = FirebaseDatabase.getInstance().getReference().child("Incomes");
 
-        Calendar calendar = Calendar.getInstance();
-        String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
-        String date = String.valueOf(calendar.get(Calendar.DATE));
-        String time = null;
+
         listItems.add("cutting");
         listItems.add("shaving");
         listItemPrices.add(120);
         listItemPrices.add(40);
 
+        String date = new SimpleDateFormat("dd").format(new Date().getTime());
+        String month = new SimpleDateFormat("mm").format(new Date().getTime());
+        String year = new SimpleDateFormat("yyyy").format(new Date().getTime());
+        String time = new SimpleDateFormat("hh:mm:ss").format(new Date().getTime());
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("HH - MM - SS");
+        Integer total = FormatData.getTotal(listItemPrices);
 
-            time = calendar.getTime().toString();
-        }
+
         String key = databaseReferenceIncomes.push().getKey();
 
-        databaseReferenceIncomes.child(year).child(month).child(date).child(key).setValue(new Bill(key, employee.getAreaId(), employee.getStoreId(), "storeName", employee.getId(), "employeeName", date, time, listItems, listItemPrices, 160));
+        databaseReferenceIncomes.child(year).child(month).child(date).child(key).setValue(new Bill(key, employee.getAreaId(), employee.getAreaName(), employee.getStoreId(), employee.getStoreName(), employee.getId(), employee.getName(), date, time, listItems, listItemPrices, total));
 
     }
 

@@ -1,6 +1,5 @@
 package com.tech4lyf.cossaloon.AdminDashBoardFragments;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,8 +63,6 @@ public class EmployeesFragment extends Fragment  {
         databaseReferenceEmployees = firebaseDatabase.getReference("Employees");
 
         recyclerView = view.findViewById(R.id.recycler_view_admin_employees);
-        ArrayList<Integer> imageList = new ArrayList<>();
-
 
         recyclerViewAdapterEmployees = new RecyclerViewAdapterEmployees(employeeList);
         recyclerView.setAdapter(recyclerViewAdapterEmployees);
