@@ -17,17 +17,13 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
 public class RecyclerViewAdapterEmployees extends RecyclerView.Adapter<RecyclerViewAdapterEmployees.ViewHolder> {
-
 
     private ArrayList<Employee> employeeList;
 
     public RecyclerViewAdapterEmployees(ArrayList<Employee> employeeList) {
         this.employeeList = employeeList;
-
     }
-
 
     @NonNull
     @Override
@@ -80,5 +76,6 @@ public class RecyclerViewAdapterEmployees extends RecyclerView.Adapter<RecyclerV
         }
 
     }
+
 
 }

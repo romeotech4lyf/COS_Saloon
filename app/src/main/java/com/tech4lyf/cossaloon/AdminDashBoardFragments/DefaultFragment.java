@@ -42,7 +42,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
         stores = root.findViewById(R.id.dashBoard_admin_stores_card);
         employees = root.findViewById(R.id.dashBoard_admin_employees_card);
         manage = root.findViewById(R.id.dashBoard_admin_manage_card);
-        settings = root.findViewById(R.id.dashBoard_admin_settings_card);
+        settings = root.findViewById(R.id.dashBoard_admin_areas_card);
 
         stores.setOnClickListener(this);
         employees.setOnClickListener(this);
@@ -66,7 +66,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
                 Listeners.triggerOnClickDashBoardItemListener(R.string.services);
                 break;
 
-            case R.id.dashBoard_admin_settings_card:
+            case R.id.dashBoard_admin_areas_card:
                 Listeners.triggerOnClickDashBoardItemListener(R.string.areas);
                 break;
 

@@ -11,8 +11,9 @@ public class Employee {
     private String areaId;
     private String phoneNumber;
     private String areaName;
+    private String password;
 
-    public Employee(String id, String name, String storeId, String storeName, String areaId, String areaName, String phoneNumber, String joiningDate) {
+    public Employee(String id, String name, String password, String storeId, String storeName, String areaId, String areaName, String phoneNumber, String joiningDate) {
 
         this.id = id;
         this.storeName = storeName;
@@ -22,10 +23,19 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.areaId = areaId;
         this.storeId = storeId;
+        this.password = password;
     }
 
     public Employee() {
         //Required Empty Constructor
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAreaName() {

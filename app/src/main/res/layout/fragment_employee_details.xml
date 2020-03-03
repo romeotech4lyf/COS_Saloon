@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.EmployeeDetailsFragment">
 
@@ -21,9 +21,11 @@
             android:id="@+id/admin_employee_details_holder_card"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
@@ -46,11 +48,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Employee Name"
                     android:textColor="@color/colorAccent"
                     android:textSize="20dp"
-                    android:layout_marginBottom="8dp"
                     android:textStyle="bold" />
 
 
@@ -64,14 +66,15 @@
                     android:text="Today's Jobs : 4 "
                     android:textColor="@color/colorBlack"
                     android:textSize="10dp" />
+
                 <TextView
                     android:id="@+id/admin_employee_details_jobs_this_month"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_below="@id/admin_employee_details_title"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@id/admin_employee_details_jobs_today"
                     android:layout_toRightOf="@id/admin_employee_details_jobs_today"
-                    android:layout_marginLeft="10dp"
                     android:gravity="center_horizontal|top"
                     android:text="Today's Jobs : 4 "
                     android:textColor="@color/colorBlack"
@@ -83,8 +86,8 @@
             android:id="@+id/admin_employee_details_image"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:elevation="30dp"
             android:src="@mipmap/admin_dp"
@@ -262,195 +265,197 @@
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/admin_employee_details_calendar_holding_card"
-            android:layout_marginTop="10dp"
+            android:id="@+id/admin_employee_details_details_bills_holding_card"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:elevation="40dp"
+            android:foreground="?selectableItemBackground"
+            app:cardBackgroundColor="@color/colorAccentLight"
+            app:cardCornerRadius="15dp"
+            app:cardUseCompatPadding="true">
 
-            android:background="@color/colorAccentLight"
-            android:orientation="vertical"
-
-            >
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/admin_employee_details_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:elevation="40dp"
-                    android:foreground="?selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="25dp"
-                    app:cardUseCompatPadding="true">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentStart="true"
-                            android:padding="8dp"
-                            android:scaleType="fitCenter"
-                            android:src="@android:drawable/ic_dialog_info"
-                            android:tint="@color/colorAccent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="52dp"
-                            android:gravity="center"
-                            android:text="Info"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="16dp" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <net.cachapa.expandablelayout.ExpandableLayout
-                    android:id="@+id/admin_employee_details_info_expandable_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    app:el_expanded="false">
-
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/admin_employee_details_info_fragment_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:forceDarkAllowed="true" />
-
-                </net.cachapa.expandablelayout.ExpandableLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/admin_employee_details_bills"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:elevation="20dp"
-                    android:foreground="?selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="25dp"
-                    app:cardUseCompatPadding="true">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentStart="true"
-                            android:padding="8dp"
-                            android:scaleType="fitCenter"
-                            android:tint="@color/colorAccent"
-                            android:src="@android:drawable/ic_dialog_info" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="52dp"
-                            android:gravity="center"
-                            android:text="Bills"
-                            android:textColor="@color/colorAccent"
-
-                            android:textSize="16dp" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <net.cachapa.expandablelayout.ExpandableLayout
-                    android:id="@+id/admin_employee_details_bills_expandable_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/admin_employee_details_bills"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginRight="10dp"
-                    app:el_expanded="false">
-
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/admin_employee_details_bills_fragment_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:forceDarkAllowed="true" />
-
-                </net.cachapa.expandablelayout.ExpandableLayout>
-            </RelativeLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/admin_employee_details_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-
-                android:layout_marginBottom="10dp"
-                android:elevation="20dp"
-                android:foreground="?selectableItemBackground"
-                app:cardBackgroundColor="#ff0000"
-                app:cardCornerRadius="25dp"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="50dp"
-                        android:padding="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@android:drawable/ic_dialog_info" />
+                    <RelativeLayout
+                        android:id="@+id/admin_employee_details_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/admin_employee_details_info_dummy_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="8dp"
+                            android:scaleType="fitCenter"
+                            android:padding="10dp"
+                            android:src="@android:drawable/ic_dialog_info"
+                            android:tint="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/admin_employee_details_info_dummy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toRightOf="@id/admin_employee_details_info_dummy_image"
+                            android:gravity="center"
+                            android:text="Employee Details"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16dp" />
+
+                    </RelativeLayout>
+
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/admin_employee_details_info_expandable_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/admin_employee_details_info"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:el_expanded="false">
+
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/admin_employee_details_info_fragment_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:forceDarkAllowed="true" />
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
 
 
                 </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:src="@color/colorTransparentWhite" />
 
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                    android:id="@+id/admin_employee_details_bills"
+                    android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/admin_employee_details_bills_dummy_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="8dp"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@android:drawable/ic_dialog_info"
+                            android:tint="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/admin_employee_details_bills_dummy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toRightOf="@+id/admin_employee_details_bills_dummy_image"
+                            android:gravity="center"
+                            android:text="Day's Bills"
+                            android:textColor="@color/colorWhite"
+
+                            android:textSize="16dp" />
+                    </RelativeLayout>
+
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/admin_employee_details_bills_expandable_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/admin_employee_details_bills"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:el_expanded="false">
+
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/admin_employee_details_bills_fragment_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:forceDarkAllowed="true" />
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/admin_employee_details_details_bills_holding_card"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="20dp"
+            android:foreground="?selectableItemBackground"
+            app:cardBackgroundColor="#ff0000"
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_delete"
+                    android:tint="@color/colorWhite" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>

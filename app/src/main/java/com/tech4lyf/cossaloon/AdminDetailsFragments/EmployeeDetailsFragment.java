@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailBillsFragment;
 import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailInfoFragment;
-import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Models.Bill;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
@@ -44,8 +43,8 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
     private DatabaseReference databaseReferenceEmployees;
     private TextView employeeName;
     private TextView storeName;
-    private CardView bills;
-    private CardView info;
+    private RelativeLayout bills;
+    private RelativeLayout info;
     private Employee employee;
     private CalendarView calendar;
     private ExpandableLayout expandableLayoutInfo;
@@ -73,6 +72,7 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
         super.onViewCreated(view, savedInstanceState);
         AdminHomeActivity.level = 2;
 
+
         employeeName = root.findViewById(R.id.admin_employee_details_title);
         info = root.findViewById(R.id.admin_employee_details_info);
         bills = root.findViewById(R.id.admin_employee_details_bills);
@@ -80,8 +80,9 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
         expandableLayoutBills = root.findViewById(R.id.admin_employee_details_bills_expandable_layout);
         calendar = root.findViewById(R.id.admin_employee_details_calendar);
 
+
         selectedDate = new SimpleDateFormat("dd").format(new Date(calendar.getDate()));
-        selectedMonth = new SimpleDateFormat("mm").format(new Date(calendar.getDate()));
+        selectedMonth = new SimpleDateFormat("MM").format(new Date(calendar.getDate()));
         selectedYear = new SimpleDateFormat("yyyy").format(new Date(calendar.getDate()));
 
         Log.d(selectedDate, "date");
@@ -102,20 +103,21 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
 
         listItems.add("cutting");
         listItems.add("shaving");
+        listItems.add("dyeing");
         listItemPrices.add(120);
         listItemPrices.add(40);
+        listItemPrices.add(30);
 
         String date = new SimpleDateFormat("dd").format(new Date().getTime());
-        String month = new SimpleDateFormat("mm").format(new Date().getTime());
+        String month = new SimpleDateFormat("MM").format(new Date().getTime());
         String year = new SimpleDateFormat("yyyy").format(new Date().getTime());
         String time = new SimpleDateFormat("hh:mm:ss").format(new Date().getTime());
 
-        Integer total = FormatData.getTotal(listItemPrices);
 
 
         String key = databaseReferenceIncomes.push().getKey();
 
-        databaseReferenceIncomes.child(year).child(month).child(date).child(key).setValue(new Bill(key, employee.getAreaId(), employee.getAreaName(), employee.getStoreId(), employee.getStoreName(), employee.getId(), employee.getName(), date, time, listItems, listItemPrices, total));
+        databaseReferenceIncomes.child(year).child(month).child(date).child(key).setValue(new Bill(key, employee.getAreaId(), employee.getAreaName(), employee.getStoreId(), employee.getStoreName(), employee.getId(), employee.getName(), date, time, listItems, listItemPrices));
 
     }
 

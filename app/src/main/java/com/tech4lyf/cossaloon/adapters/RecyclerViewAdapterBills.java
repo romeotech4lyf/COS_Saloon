@@ -15,6 +15,7 @@ import com.tech4lyf.cossaloon.R;
 
 import java.util.ArrayList;
 
+
 public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewAdapterBills.ViewHolder> {
 
     private ArrayList<Bill> billList;
@@ -31,21 +32,23 @@ public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewA
         this.billList = billList;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_recycler_view_bills, parent, false));
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Bill bill = billList.get(position);
         holder.employeeName.setText(bill.getEmployeeName());
+        holder.areaName.setText(bill.getStoreName());
+        holder.storeName.setText(bill.getStoreName());
         holder.itemName.setText(FormatData.setBillItemNames(bill.getListItems()));
         holder.itemPrice.setText(FormatData.setBillItemPrices(bill.getListItemPrices()));
-//        holder.total.setText(FormatData.getTotal(bill.getListItemPrices()));
+        holder.total.setText(bill.getTotalPrice());
+        holder.time.setText(bill.getTotalPrice());
+        holder.date.setText(bill.getTotalPrice());
     }
 
     @Override
@@ -59,6 +62,10 @@ public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewA
         TextView itemPrice;
         TextView total;
         TextView employeeName;
+        TextView areaName;
+        TextView storeName;
+        TextView time;
+        TextView date;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +75,10 @@ public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewA
             itemPrice = itemView.findViewById(R.id.recycler_view_bill_item_price);
             total = itemView.findViewById(R.id.recycler_view_bill_total_price);
             employeeName = itemView.findViewById(R.id.recycler_view_bill_employee_name);
+            areaName = itemView.findViewById(R.id.recycler_view_bill_area_name);
+            storeName = itemView.findViewById(R.id.recycler_view_bill_store_name);
+            time = itemView.findViewById(R.id.recycler_view_bill_time);
+            date = itemView.findViewById(R.id.recycler_view_bill_date);
         }
     }
 }

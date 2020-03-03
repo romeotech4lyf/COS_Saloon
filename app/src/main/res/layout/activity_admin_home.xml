@@ -4,12 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/admin_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="top" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-
+        android:layout_height="wrap_content">
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -35,50 +38,114 @@
                     android:src="@color/colorAccentLight"
                     android:visibility="visible" />
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/dashBoard_admin_stores_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="125dp"
+                    android:layout_marginEnd="50dp"
+                    android:elevation="20dp"
+                    android:foreground="?selectableItemBackground"
+                    android:theme="@style/CardView.Light"
+                    app:cardBackgroundColor="@color/colorOffWhite"
+                    app:cardCornerRadius="15dp"
+                    app:cardUseCompatPadding="true">
 
+                    <TextView
+                        android:id="@+id/dashBoard_day_jobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:elevation="60dp"
+                        android:gravity="start"
+                        android:text="10"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toLeftOf="@id/dashBoard_profile_image"
+                        android:elevation="60dp"
+                        android:gravity="center"
+                        android:text="Day's Jobs"
+                        android:textColor="@color/colorSeventyFivePercentBlack"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/dashBoard_month_jobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:elevation="60dp"
+                        android:gravity="center"
+                        android:text="100"
+
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toLeftOf="@id/dashBoard_profile_image"
+                        android:elevation="60dp"
+                        android:text="Month's Jobs"
+                        android:textColor="@color/colorSeventyFivePercentBlack"
+                        android:textSize="10dp" />
+
+
+                </androidx.cardview.widget.CardView>
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/dashBoard_profile_image"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:src="@mipmap/admin_dp"
-                    android:layout_gravity="center"
-                    android:visibility="visible"
-                    android:layout_marginBottom="5dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:elevation="50dp"
+                    android:src="@mipmap/admin_dp"
+                    android:visibility="visible" />
 
 
-
-
-
-
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:textSize="14dp"
-                        android:textStyle="bold"
-                        android:layout_below="@id/dashBoard_profile_image"
-                        android:layout_centerHorizontal="true"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:text="ADMINISTRATOR"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dashBoard_profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:elevation="60dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="ADMINISTRATOR"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-        <!--<include
-            layout="@layout/admin_tool_bar"
-            />-->
+
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
 
     <androidx.fragment.app.FragmentContainerView

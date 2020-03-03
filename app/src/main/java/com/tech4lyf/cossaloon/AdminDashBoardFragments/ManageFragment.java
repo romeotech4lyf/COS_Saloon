@@ -97,7 +97,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         FirebaseApp.initializeApp(this.getActivity());
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReferenceStores = firebaseDatabase.getReference("Store");
+        databaseReferenceStores = firebaseDatabase.getReference("Stores");
         databaseReferenceAreas = firebaseDatabase.getReference("Areas");
         databaseReferenceEmployees = firebaseDatabase.getReference("Employees");
 
@@ -398,8 +398,10 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
                     String areaId = area.getId();
                     String areaName = area.getName();
                     if (areaId != null && areaName != null) {
-                        areaIdList.add(areaId);
-                        areaNameList.add(areaName);
+                        if (!areaIdList.contains(areaId))
+                            areaIdList.add(areaId);
+                        if (!areaNameList.contains(areaName))
+                            areaNameList.add(areaName);
                         arrayAdapterAreas.notifyDataSetChanged();
                         isStoreIdSynchronized = true;
                     }
@@ -426,13 +428,15 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
 
     private void addEmployee() {
 
+        String password = "employee@123";
+
         getChildFragmentManager().beginTransaction().replace(R.id.admin_manage_fragment_container, new AddEmployeeFragment()).commit();
 
 
         if (isStoreIdSynchronized) {
             Toast.makeText(getActivity().getBaseContext(), "EmployeeAdded", Toast.LENGTH_SHORT).show();
             String key = databaseReferenceEmployees.push().getKey();
-            databaseReferenceEmployees.child(key).setValue(new Employee(key, enterEmployeeName + ++y, employeeStoreIdList.get(employeeStoreNameList.indexOf(selectedStoreName)), selectedStoreName + " - " + areaNameList.get(employeeStoreNameList.indexOf(selectedStoreName)), areaIdList.get(areaNameList.indexOf(selectedAreaName)), "areaName", "9191919191", "18-1-2020"));
+            databaseReferenceEmployees.child(key).setValue(new Employee(key, enterEmployeeName + ++y, password, "0", selectedStoreName + " - " + areaNameList.get(0), areaIdList.get(0), "areaName", "9191919191", "18-1-2020"));
         }
     }
 
@@ -443,7 +447,7 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         if (isStoreIdSynchronized) {
             Toast.makeText(getActivity().getBaseContext(), "storeAdded", Toast.LENGTH_SHORT).show();
             String key = databaseReferenceStores.push().getKey();
-            databaseReferenceStores.child(key).setValue(new Store(key, ++x + enterStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, "address", 400, 20000));
+            databaseReferenceStores.child(key).setValue(new Store(key, ++x + enterStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, 400, 20000));
 
         }
 

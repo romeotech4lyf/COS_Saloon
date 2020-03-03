@@ -18,8 +18,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
 
         >
 
@@ -68,11 +66,12 @@
             android:gravity="center"
             android:layout_toStartOf="@id/dummy"
             android:layout_toLeftOf="@id/dummy"
+            android:background="@color/colorAccent"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:scaleType="centerCrop"
             android:text="Total"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -103,7 +102,7 @@
             android:paddingTop="3dp"
             android:text="Employee name"
             android:textColor="@color/colorAccent"
-            android:textSize="10dp"
+            android:textSize="16dp"
             android:paddingBottom="3dp"
             android:textStyle="bold" />
 
@@ -111,56 +110,54 @@
             android:id="@+id/recycler_view_bill_area_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recycler_view_bill_store_name"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_below="@id/recycler_view_bill_total_name"
+
             android:layout_gravity="center"
             android:ellipsize="end"
-            android:layout_toEndOf="@id/dummy"
             android:layout_toRightOf="@id/dummy"
-            android:gravity="end"
+            android:layout_toEndOf="@id/dummy"
+            android:gravity="center"
             android:maxLines="1"
+            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="Area Name"
-            android:textColor="@color/colorTransparentBlack"
-            android:textSize="10dp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp" />
 
 
         <TextView
             android:id="@+id/recycler_view_bill_store_name"
             android:layout_width="match_parent"
             android:layout_below="@id/recycler_view_bill_total_name"
-            android:layout_marginEnd="8dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
             android:ellipsize="end"
-            android:layout_toEndOf="@id/dummy"
-            android:layout_toRightOf="@id/dummy"
-            android:gravity="end"
-            android:maxLines="1"
+            android:layout_toStartOf="@id/dummy"
+            android:layout_toLeftOf="@id/dummy"
+            android:gravity="center"
             android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:maxLines="1"
             android:text="Store name"
-            android:textColor="@color/colorTransparentBlack"
-            android:textSize="10dp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/recycler_view_bill_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recycler_view_bill_time"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_below="@id/recycler_view_bill_area_name"
+            android:layout_toEndOf="@id/dummy"
+            android:layout_toRightOf="@id/dummy"
+
             android:layout_gravity="center"
+            android:background="@color/colorAccent"
             android:ellipsize="end"
-            android:layout_toStartOf="@id/dummy"
-            android:layout_toLeftOf="@id/dummy"
-            android:gravity="start"
-            android:maxLines="1"
+            android:gravity="center"
             android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:maxLines="1"
             android:text="20-02-2020"
-            android:textColor="@color/colorTransparentBlack"
+            android:textColor="@color/colorTransparentWhite"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -169,18 +166,19 @@
             android:id="@+id/recycler_view_bill_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recycler_view_bill_total_name"
+            android:layout_below="@id/recycler_view_bill_area_name"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+
+            android:paddingTop="5dp"
             android:ellipsize="end"
             android:layout_toStartOf="@id/dummy"
             android:layout_toLeftOf="@id/dummy"
-            android:gravity="start"
+            android:paddingBottom="5dp"
             android:maxLines="1"
-            android:paddingTop="5dp"
             android:text="10:08:54"
-            android:textColor="@color/colorTransparentBlack"
+            android:textColor="@color/colorTransparentWhite"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -193,7 +191,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@color/colorTransparentBlack" />
+            android:background="@color/colorSeventyFivePercentBlack" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

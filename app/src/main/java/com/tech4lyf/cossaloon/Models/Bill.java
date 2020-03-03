@@ -16,7 +16,7 @@ public class Bill {
     private String employeeName;
     private String storeName;
 
-    public Bill(String id, String areaId, String areaName, String storeId, String storeName, String employeeId, String employeeName, String time, String date, ArrayList<String> listItems, ArrayList<Integer> listItemPrices, Integer totalPrice) {
+    public Bill(String id, String areaId, String areaName, String storeId, String storeName, String employeeId, String employeeName, String time, String date, ArrayList<String> listItems, ArrayList<Integer> listItemPrices) {
         this.id = id;
         this.areaId = areaId;
         this.storeId = storeId;
@@ -28,7 +28,18 @@ public class Bill {
         this.areaName = areaName;
         this.listItems = listItems;
         this.listItemPrices = listItemPrices;
-        this.totalPrice = totalPrice;
+        this.totalPrice = getTotal(listItemPrices);
+    }
+
+    public static Integer getTotal(ArrayList<Integer> items) {
+
+        Integer total = 0;
+
+        for (Integer item : items) {
+            total += item;
+        }
+        return total;
+
     }
 
     public String getAreaName() {

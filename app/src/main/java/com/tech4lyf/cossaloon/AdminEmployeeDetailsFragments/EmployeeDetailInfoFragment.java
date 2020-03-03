@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +35,7 @@ public class EmployeeDetailInfoFragment extends Fragment implements View.OnClick
     ImageView kyc;
     ImageView dp;
     Employee employee;
-    ImageView dpEdit;
+    CardView dpEdit;
     ImageView kycEdit;
     FirebaseStorage storageDp;
     private int getImage = 1423;
@@ -65,7 +66,7 @@ public class EmployeeDetailInfoFragment extends Fragment implements View.OnClick
         kyc = root.findViewById(R.id.admin_employee_details_info_kyc);
         dp = root.findViewById(R.id.admin_employee_details_info_dp);
         dpEdit = root.findViewById(R.id.admin_employee_details_info_dp_edit);
-        kycEdit = root.findViewById(R.id.admin_employee_details_info_kyc_edit);
+        //  kycEdit = root.findViewById(R.id.admin_employee_details_info_kyc_edit);
         storageDp = FirebaseStorage.getInstance();
 
 
@@ -76,8 +77,8 @@ public class EmployeeDetailInfoFragment extends Fragment implements View.OnClick
 
 
         //
-        dpEdit.setOnClickListener(this);
-        kycEdit.setOnClickListener(this);
+        // dpEdit.setOnClickListener(this);
+        // kycEdit.setOnClickListener(this);
 
 
     }
@@ -99,7 +100,7 @@ public class EmployeeDetailInfoFragment extends Fragment implements View.OnClick
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     Uri uriImage = data.getData();
-                    storageReferenceDp = storageDp.getReference().child(employee.getId() + uriImage.getLastPathSegment());
+                    storageReferenceDp = storageDp.getReference().child(employee.getId());
                     storageReferenceDp.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

@@ -94,16 +94,12 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ManageFragment(), "MANAGE").commit();
                 break;
 
-
             case R.string.employees:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
                 break;
 
             case R.string.areas:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "EMPLOYEE").commit();
-
-
-
 
             default:
                 break;
@@ -182,7 +178,6 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 break;
         }
 
-
     }
 
     @Override
@@ -190,7 +185,6 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         this.objectType = Context.OBJECT_TYPE.STORE;
 
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
-
 
     }
 

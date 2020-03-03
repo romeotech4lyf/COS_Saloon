@@ -7,19 +7,17 @@ public class Store {
     private String id;
     private String name;
     private String areaId;
-    private String address;
 
     public Store() {
 
     }
 
-    public Store(String id, String name, String areaId, String areaName, String address, Integer incomeToday, Integer incomeMonthly) {
+    public Store(String id, String name, String areaId, String areaName, Integer incomeToday, Integer incomeMonthly) {
 
         this.name = name;
         this.areaName = areaName;
         this.incomeToday = incomeToday;
         this.areaId = areaId;
-        this.address = address;
         this.incomeMonthly = incomeMonthly;
         this.id = id;
     }

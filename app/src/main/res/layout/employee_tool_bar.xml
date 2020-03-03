@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_admin"
     android:layout_width="match_parent"
-    android:layout_alignParentTop="true"
     android:layout_height="40dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:layout_alignParentTop="true"
     android:background="@color/colorAccentLight"
-    app:titleTextColor="@color/colorWhite"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-    >
+    app:titleTextColor="@color/colorWhite">
 
 
 </androidx.appcompat.widget.Toolbar>

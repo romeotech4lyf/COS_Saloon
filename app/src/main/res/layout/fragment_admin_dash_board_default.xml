@@ -9,8 +9,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
-        <RelativeLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -18,6 +17,17 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="MANAGE"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,17 +38,15 @@
                 android:id="@+id/dashBoard_admin_stores_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/dummy"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/dummy"
                 android:layout_marginBottom="2dp"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -73,17 +81,15 @@
                 android:id="@+id/dashBoard_admin_employees_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/dummy"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="2dp"
+                android:layout_below="@id/dashBoard_admin_areas_card"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_toStartOf="@id/dummy"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -123,17 +129,15 @@
                 android:layout_below="@id/dashBoard_admin_stores_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginEnd="8dp"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                android:layout_toEndOf="@id/dummy"
                 app:cardCornerRadius="10dp"
-                android:layout_toLeftOf="@id/dummy"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardUseCompatPadding="true">
 
                 <ImageView
@@ -165,21 +169,19 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/dashBoard_admin_settings_card"
-                android:layout_below="@id/dashBoard_admin_employees_card"
-                android:layout_toRightOf="@id/dummy"
+                android:id="@+id/dashBoard_admin_areas_card"
+                android:layout_marginStart="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toStartOf="@id/dummy"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
                 android:visibility="visible"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 

@@ -19,7 +19,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         android:name=".ChangeOfStyle">
         <activity
-            android:name=".Activities.UserHomeActivity"
+            android:name=".Activities.EmployeeHomeActivity"
             android:label="@string/title_activity_user_home"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity

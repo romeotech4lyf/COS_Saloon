@@ -7,12 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -20,139 +20,173 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tech4lyf.cossaloon.Models.User;
+import com.tech4lyf.cossaloon.Models.Administrator;
+import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String myPreferences = "Sessions";
-    public static final String userName = "userName";
-    public static final String key = "key";
-    public static final String name = "name";
-    public static final String isAdmin = "isAdmin";
-    public static final String loginStatus_ = "loginStatus";
-    public static final String passWord = "passWord";
-    MaterialCardView btnLogin;
-    TextInputEditText editUserName, editPassword;
+    TextView signIn;
+    TextInputEditText editPhoneNumber;
+    TextInputEditText editPassword;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceAdminPhoneNumber;
+    DatabaseReference databaseReferenceAdminPassword;
+    DatabaseReference databaseReferenceEmployees;
     boolean loginStatus;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
-    Date date;
-    String date_;
-    String prev_date_;
-    private String userName_, passWord_;
+    String dateToday;
+    String previousDate;
+    private Boolean isAdministrator;
+    private String enteredPhoneNumber;
+    private String enteredPassword;
+    private String savedPhoneNumber;
+    private String savedPassword;
+    private Boolean isAdministratorPasswordCorrect;
+    private ProgressDialog dialog;
+    private DatabaseReference databaseReferenceAdministrators;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
-        this.finish();
+        //  startActivity(new Intent(LoginActivity.this, EmployeeHomeActivity.class));
+        //  this.finish();
+
+
 
         FirebaseApp.initializeApp(this);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("Users");
-      //  test();
+        databaseReferenceAdministrators = firebaseDatabase.getReference().child("Administrators");
+        databaseReferenceAdminPassword = firebaseDatabase.getReference().child("AdminPassword");
+        databaseReferenceEmployees = firebaseDatabase.getReference().child("Employees");
+        //  test();
 
-        editUserName = findViewById(R.id.editUserName);
-        editPassword = findViewById(R.id.editPassWord);
+        String key = databaseReferenceAdministrators.push().getKey();
 
-        btnLogin = findViewById(R.id.buttonLogin);
+        //      databaseReferenceAdministrators.child(key).setValue(new Administrator("8989898989","admin@123"));
 
-        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+
+        //
+        editPhoneNumber = findViewById(R.id.edit_phone_number);
+        editPassword = findViewById(R.id.edit_password);
+        signIn = findViewById(R.id.sign_in);
+
+
+        //
+        sharedpreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
 
 
-        date = Calendar.getInstance().getTime();
-        prev_date_ = sharedpreferences.getString("lastLoginDate", null);
-        date_ = new SimpleDateFormat("dd-MM-yyyy").format(date);
+        //
+        previousDate = sharedpreferences.getString("lastLoginDate", null);
+        dateToday = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
 
-        if (prev_date_ != null) {
-            if (prev_date_.equals(date_)) {
-                userName_ = sharedpreferences.getString(userName, null);
-                passWord_ = sharedpreferences.getString(passWord, null);
-                Log.d("date", date_);
-                if (userName_ != null && passWord_ != null)
-                    login(userName_, passWord_);
+
+        if (previousDate != null) {
+            if (previousDate.equals(dateToday) || sharedpreferences.getString("isAdministrator", "false").equals("true")) {
+                savedPhoneNumber = sharedpreferences.getString("phoneNumber", null);
+                savedPassword = sharedpreferences.getString("password", null);
+                Log.d("date", dateToday);
+                if (savedPhoneNumber != null && savedPassword != null)
+                    login(savedPhoneNumber, savedPassword);
             }
 
         }
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                enteredPhoneNumber = String.valueOf(editPhoneNumber.getText());
+                enteredPassword = editPassword.getText().toString();
 
-                userName_ = editUserName.getText().toString();
-                passWord_ = editPassword.getText().toString();
-
-
-                login(userName_, passWord_);
-
+                login(enteredPhoneNumber, enteredPassword);
 
             }
         });
     }
 
-    private void test() {
-        String key = databaseReference.push().getKey();
-        databaseReference.child(key).setValue(new User(key,"testAdmin","Admin@2020","Phoenix","true"));
-    }
-
-
-    boolean login(final String username, final String password) {
-        editor.putString("lastLoginDate", date_).apply();
-        final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+    void login(final String phoneNumber, final String password) {
+        editor.putString("lastLoginDate", dateToday).apply();
+        dialog = new ProgressDialog(LoginActivity.this);
         dialog.setMessage("Logging you in");
         dialog.setCancelable(true);
         dialog.show();
 
-        databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+        tryAdminLogin(phoneNumber, password);
+
+
+    }
+
+    private void tryAdminLogin(final String phoneNumber, final String password) {
+        databaseReferenceAdministrators.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot administrator_ : dataSnapshot.getChildren()) {
+                        Administrator administrator = administrator_.getValue(Administrator.class);
+                        if (administrator != null) {
+                            if (administrator.getPassword().equals(password) && administrator.getPhoneNumber().equals(phoneNumber)) {
+                                dialog.dismiss();
+                                Toast.makeText(LoginActivity.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
+                                editor.putString("phoneNumber", phoneNumber).commit();
+                                editor.putString("password", password).commit();
+                                editor.putString("isAdministrator", "true").commit();
+                                startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
+                                LoginActivity.this.finish();
+
+                            }
+                        }
+                    }
+                    tryEmployeeLogin(phoneNumber, password);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void tryEmployeeLogin(final String phoneNumber, final String password) {
+        databaseReferenceEmployees.orderByChild("phoneNumber").equalTo(phoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                loginStatus = false;
                 if (dataSnapshot != null) {
                     if (dataSnapshot.exists()) {
-                        // dataSnapshot is the "issue" node with all children with id 0
-                        for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            // do something with the individual "issues"
-                            User usersBean = user.getValue(User.class);
-                            if (usersBean != null) {
-                                if (usersBean.getPassword().equals(password)) {
+                        for (DataSnapshot employee_ : dataSnapshot.getChildren()) {
+                            Employee employee = employee_.getValue(Employee.class);
+                            if (employee != null) {
+                                if (employee.getPassword().equals(password)) {
                                     dialog.dismiss();
-                                    Toast.makeText(LoginActivity.this, "LoginActivity Success! for user " + usersBean.getName(), Toast.LENGTH_SHORT).show();
-                                    editor.putString(userName, usersBean.getUsername());
-                                    editor.putString(key, usersBean.getKey());
-                                    editor.putString(name, usersBean.getName());
-                                    editor.putString(isAdmin, usersBean.getIsAdmin());
-                                    editor.putString(loginStatus_, "true");
-                                    editor.putString(passWord, usersBean.getPassword());
-                                    editor.commit();
-
-                                    if (usersBean.getIsAdmin().equals("true")) {
-                                        Intent actDashboard = new Intent(LoginActivity.this, AdminHomeActivity.class);
-                                        startActivity(actDashboard);
-                                    } else {
-                                        Intent actDashboard = new Intent(LoginActivity.this, UserHomeActivity.class);
-                                        startActivity(actDashboard);
-                                    }
+                                    Toast.makeText(LoginActivity.this, "Welcome " + employee.getName(), Toast.LENGTH_SHORT).show();
+                                    editor.putString("phoneNumber", phoneNumber).commit();
+                                    editor.putString("password", password).commit();
+                                    editor.putString("isAdministrator", "false").commit();
+                                    startActivity(new Intent(LoginActivity.this, EmployeeHomeActivity.class).putExtra("employeeId", employee.getId()));
+                                    LoginActivity.this.finish();
 
 
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Password is wrong", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
+
+                        Toast.makeText(getApplicationContext(), "Wrong Password!", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
+
                     } else {
-                        Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
 
                     }
                 }
@@ -160,10 +194,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginActivity.this, "LoginActivity failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
             }
         });
-        return false;
+
     }
 
 

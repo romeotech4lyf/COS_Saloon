@@ -26,8 +26,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
+
 public class EmployeeDetailBillsFragment extends Fragment {
-    DatabaseReference databaseReferenceBills;
+    private DatabaseReference databaseReferenceBills;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerViewAdapterBills recyclerViewAdapterBills;
