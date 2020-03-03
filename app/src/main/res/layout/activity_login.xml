@@ -73,7 +73,7 @@
                 android:background="@color/colorWhite"
                 android:backgroundTint="@color/colorWhite"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorAccent"
+                app:passwordToggleTint="@color/colorPrimary"
 
 
                 >
@@ -140,7 +140,7 @@
         android:layout_marginBottom="18dp"
         android:elevation="80dp"
         android:theme="@style/CardView.Light"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="30dp"
         app:cardUseCompatPadding="true">
 

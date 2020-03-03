@@ -52,7 +52,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Area Name"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="INCOME"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -149,7 +149,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -200,7 +200,7 @@
                     android:layout_marginBottom="35dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="40dp" />
 
 
@@ -214,7 +214,7 @@
                     android:maxLines="1"
                     android:text="THIS MONTH"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="10dp" />
 
 
@@ -234,7 +234,7 @@
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -280,7 +280,7 @@
             android:layout_weight="1"
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="15dp"
             app:cardUseCompatPadding="true">
 
@@ -341,7 +341,7 @@
             android:layout_weight="1"
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="15dp"
             app:cardUseCompatPadding="true">
 

@@ -436,7 +436,6 @@ public class ManageFragment extends Fragment implements View.OnClickListener {
         if (isStoreIdSynchronized) {
             Toast.makeText(getActivity().getBaseContext(), "EmployeeAdded", Toast.LENGTH_SHORT).show();
             String key = databaseReferenceEmployees.push().getKey();
-            databaseReferenceEmployees.child(key).setValue(new Employee(key, enterEmployeeName + ++y, password, "0", selectedStoreName + " - " + areaNameList.get(0), areaIdList.get(0), "areaName", "9191919191", "18-1-2020"));
         }
     }
 

@@ -46,7 +46,7 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/stores"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:maxLines="1"
                     android:text="AREAS"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp" />
 
                 <RelativeLayout
@@ -138,7 +138,7 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/stores"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:maxLines="1"
                     android:text="@string/stores"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp" />
 
                 <RelativeLayout
@@ -238,7 +238,7 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/employees"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -252,7 +252,7 @@
                     android:maxLines="1"
                     android:text="@string/employees"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp" />
 
                 <RelativeLayout
@@ -331,7 +331,7 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/settings"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -345,7 +345,7 @@
                     android:maxLines="1"
                     android:text="PRICES"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp" />
 
                 <RelativeLayout

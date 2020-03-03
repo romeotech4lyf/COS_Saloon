@@ -12,8 +12,10 @@ public class Employee {
     private String phoneNumber;
     private String areaName;
     private String password;
+    private String dPUriString;
+    private String kYCUriString;
 
-    public Employee(String id, String name, String password, String storeId, String storeName, String areaId, String areaName, String phoneNumber, String joiningDate) {
+    public Employee(String id, String name, String password, String storeId, String storeName, String areaId, String areaName, String phoneNumber, String joiningDate, String dPUriString, String kYCUriString) {
 
         this.id = id;
         this.storeName = storeName;
@@ -24,10 +26,28 @@ public class Employee {
         this.areaId = areaId;
         this.storeId = storeId;
         this.password = password;
+        this.dPUriString = dPUriString;
+        this.kYCUriString = kYCUriString;
     }
 
     public Employee() {
         //Required Empty Constructor
+    }
+
+    public String getdPUriString() {
+        return dPUriString;
+    }
+
+    public void setdPUriString(String dPUriString) {
+        this.dPUriString = dPUriString;
+    }
+
+    public String getkYCUriString() {
+        return kYCUriString;
+    }
+
+    public void setkYCUriString(String kYCUriString) {
+        this.kYCUriString = kYCUriString;
     }
 
     public String getPassword() {

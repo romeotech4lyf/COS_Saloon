@@ -20,7 +20,7 @@
             android:layout_height="260dp"
             android:background="@color/colorWhite"
             android:touchscreenBlocksFocus="false"
-            app:contentScrim="@color/colorAccentLight"
+            app:contentScrim="@color/colorPrimaryLight"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <RelativeLayout
@@ -28,14 +28,13 @@
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
 
-
                 >
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/colorAccentLight"
+                    android:src="@color/colorPrimaryLight"
                     android:visibility="visible" />
 
                 <androidx.cardview.widget.CardView
@@ -49,7 +48,7 @@
                     android:elevation="20dp"
                     android:foreground="?selectableItemBackground"
                     android:theme="@style/CardView.Light"
-                    app:cardBackgroundColor="@color/colorOffWhite"
+                    app:cardBackgroundColor="@color/colorWhite"
                     app:cardCornerRadius="15dp"
                     app:cardUseCompatPadding="true">
 
@@ -63,7 +62,7 @@
                         android:elevation="60dp"
                         android:gravity="start"
                         android:text="10"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -91,7 +90,7 @@
                         android:gravity="center"
                         android:text="100"
 
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 

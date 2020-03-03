@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-    android:background="@color/colorAccentLight"
+    android:background="@color/colorPrimaryLight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -57,7 +57,7 @@
                     android:padding="16dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/stores"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:maxLines="1"
                     android:text="@string/stores"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
                     android:padding="16dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/employees"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -113,7 +113,7 @@
                     android:maxLines="1"
                     android:text="@string/employees"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -147,7 +147,7 @@
                     android:padding="16dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/statistics"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -160,7 +160,7 @@
                     android:maxLines="1"
                     android:text="@string/services"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
 
                     android:textStyle="bold" />
@@ -194,7 +194,7 @@
                     android:padding="16dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/settings"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@color/colorPrimary" />
 
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:maxLines="1"
                     android:text="Areas"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -238,23 +238,11 @@
             android:layout_below="@id/dashBoard_admin_manage_card"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
-
             app:cardUseCompatPadding="true">
 
 
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:text="INCOME"
-            android:textColor="@color/colorAccent"
-            android:textSize="16dp"
-            android:textStyle="bold" />
 
 
             <CalendarView
@@ -326,7 +314,7 @@
                         android:maxLines="1"
                         android:text="THIS MONTH"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorSeventyFivePercentBlack"
                         android:textSize="10dp" />
 
 
@@ -341,8 +329,7 @@
                     android:layout_weight="1"
                     android:elevation="20dp"
                     android:foreground="?selectableItemBackground"
-                    android:theme="@style/CardView.Light"
-                    app:cardBackgroundColor="#227397"
+                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardUseCompatPadding="true">
 
@@ -367,7 +354,7 @@
                         android:maxLines="1"
                         android:text="TODAY"
                         android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorOffWhite"
                         android:textSize="10dp" />
 
                 </androidx.cardview.widget.CardView>

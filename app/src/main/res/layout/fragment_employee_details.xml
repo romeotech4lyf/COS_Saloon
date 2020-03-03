@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorOffWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.EmployeeDetailsFragment">
 
@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorOffWhite">
 
 
         <!-- TODO: Update blank fragment layout -->
@@ -30,7 +30,7 @@
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorOffWhite"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -51,7 +51,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Employee Name"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="INCOME"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -131,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
+                android:background="@color/colorWhite"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="50dp"
@@ -148,7 +149,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -188,7 +189,7 @@
                 android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -199,7 +200,7 @@
                     android:layout_marginBottom="35dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="40dp" />
 
 
@@ -213,7 +214,7 @@
                     android:maxLines="1"
                     android:text="THIS MONTH"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="10dp" />
 
 
@@ -233,7 +234,7 @@
                 android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -276,7 +277,7 @@
             android:layout_marginRight="8dp"
             android:elevation="40dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="@color/colorAccentLight"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="15dp"
             app:cardUseCompatPadding="true">
 
@@ -304,7 +305,7 @@
                             android:scaleType="fitCenter"
                             android:padding="10dp"
                             android:src="@android:drawable/ic_dialog_info"
-                            android:tint="@color/colorWhite" />
+                            android:tint="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/admin_employee_details_info_dummy_text"
@@ -317,7 +318,7 @@
                             android:layout_toRightOf="@id/admin_employee_details_info_dummy_image"
                             android:gravity="center"
                             android:text="Employee Details"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorAccent"
                             android:textSize="16dp" />
 
                     </RelativeLayout>
@@ -373,7 +374,7 @@
                             android:padding="10dp"
                             android:scaleType="fitCenter"
                             android:src="@android:drawable/ic_dialog_info"
-                            android:tint="@color/colorWhite" />
+                            android:tint="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/admin_employee_details_bills_dummy_text"
@@ -386,7 +387,7 @@
                             android:layout_toRightOf="@+id/admin_employee_details_bills_dummy_image"
                             android:gravity="center"
                             android:text="Day's Bills"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorAccent"
 
                             android:textSize="16dp" />
                     </RelativeLayout>

@@ -48,7 +48,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:text="Store Name"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:layout_marginBottom="8dp"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -117,7 +117,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="INCOME"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -145,7 +145,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -195,7 +195,7 @@
                     android:layout_marginBottom="35dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="40dp" />
 
 
@@ -209,7 +209,7 @@
                     android:maxLines="1"
                     android:text="THIS MONTH"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="10dp" />
 
 

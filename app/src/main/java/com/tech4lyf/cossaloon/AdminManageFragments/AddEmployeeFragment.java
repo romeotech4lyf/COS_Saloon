@@ -2,6 +2,7 @@ package com.tech4lyf.cossaloon.AdminManageFragments;
 
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,6 +40,8 @@ import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -97,6 +103,10 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         databaseReferenceAreas = firebaseDatabase.getReference("Areas");
         databaseReferenceEmployees = firebaseDatabase.getReference("Employees");
         key = databaseReferenceEmployees.push().getKey();
+        storageReferenceDP = storage.getReference().child(key + "-dp");
+        storageReferenceKYC = storage.getReference().child(key + "-kyc");
+
+
 
         areaIdList.add(0, "Select Area");
         areaNameList.add(0, "Select Area");
@@ -115,10 +125,12 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         cancel = root.findViewById(R.id.admin_add_employee_cancel);
         uploadDP = root.findViewById(R.id.admin_add_employee_upload_dp);
         uploadKYC = root.findViewById(R.id.admin_add_employee_upload_kyc);
+        dP = root.findViewById(R.id.admin_add_employee_dp);
+        kYC = root.findViewById(R.id.admin_add_employee_kyc);
+
 
         //
         fillSpinners();
-        getInput();
 
         //
         add.setOnClickListener(this);
@@ -221,6 +233,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         enteredName = enterName.getText().toString();
         enteredPassword = enterPassword.getText().toString();
         enteredPhoneNumber = enterPhoneNumber.getText().toString();
+        Log.d(enteredName+enteredPassword,enteredPhoneNumber);
 
     }
 
@@ -274,24 +287,31 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.admin_add_employee_ok:
-                if (enteredPhoneNumber != null && enteredPassword != null && enteredName != null) {
-                    if (!selectedAreaName.equals("Select Area") && !selectedStoreName.equals("Select Area First") && !selectedStoreName.equals("Select Store")) {
-                        databaseReferenceEmployees.child(key).setValue(new Employee(key, enteredName, enteredPassword, storeIdList.get(storeNameList.indexOf(selectedStoreName)), selectedStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, enteredPhoneNumber, FormatData.getCurrentDeviceFullDate())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                getInput();
+                if (enteredPhoneNumber != null && enteredPassword != null && enteredName != null && !selectedAreaName.equals("Select Area") && !selectedStoreName.equals("Select Area First") && !selectedStoreName.equals("Select Store") ) {
+                    String dpURIString = dPUri==null?null:dPUri.toString();
+                    String kYCURIString =kYCUri==null?null: kYCUri.toString();
+                        databaseReferenceEmployees.child(key).setValue(new Employee(key, enteredName, enteredPassword, storeIdList.get(storeNameList.indexOf(selectedStoreName)), selectedStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, enteredPhoneNumber, FormatData.getCurrentDeviceFullDate(),dpURIString,kYCURIString)).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                Toast.makeText(getContext(), "Employee Added Successfully", Toast.LENGTH_SHORT).show();
+                                AddEmployeeFragment.this.getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
 
+                                Toast.makeText(getContext(), "Task Failed!!", Toast.LENGTH_SHORT).show();
 
                             }
                         });
-                    }
+
                 }
-                Toast.makeText(this.getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(this.getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
+
+                }
                 break;
 
             case R.id.admin_add_employee_upload_dp:
@@ -304,6 +324,10 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
         }
     }
+    private ImageView dP;
+    private ImageView kYC;
+    private Uri dPUri;
+    private Uri kYCUri;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -313,10 +337,18 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         Uri uriImage = data.getData();
-                        storageReferenceDP = storage.getReference().child(key + "-dp");
                         storageReferenceDP.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                storageReferenceDP.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        dPUri = uri;
+                                        Glide.with(getContext()).load(uri).into(dP);
+
+                                    }
+                                });
+
                                 Toast.makeText(getContext(), "DP Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -337,11 +369,19 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                     if (data != null) {
                         Uri uriImage = data.getData();
                         if (uriImage != null) {
-                            storageReferenceKYC = storage.getReference().child(key + "-kyc");
                             storageReferenceKYC.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     Toast.makeText(getContext(), "KYC Uploaded", Toast.LENGTH_SHORT).show();
+                                    storageReferenceKYC.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            kYCUri = uri;
+                                            Glide.with(getContext()).load(uri).into(kYC);
+
+                                        }
+                                    });
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -358,5 +398,8 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                 }
         }
     }
+
+    File localFile = null;
+
 
 }
