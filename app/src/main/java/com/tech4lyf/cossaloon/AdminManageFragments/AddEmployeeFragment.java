@@ -1,6 +1,8 @@
 package com.tech4lyf.cossaloon.AdminManageFragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Models.Area;
@@ -33,8 +38,12 @@ import com.tech4lyf.cossaloon.R;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 public class AddEmployeeFragment extends Fragment implements View.OnClickListener {
 
+    private final int getKYC = 123;
+    private final int getDP = 122;
     View root;
     String selectedStoreName = null;
     String selectedAreaName = null;
@@ -59,12 +68,14 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     private DatabaseReference databaseReferenceStores;
     private DatabaseReference databaseReferenceAreas;
     private DatabaseReference databaseReferenceEmployees;
+    private String key;
+    private FirebaseStorage storage;
+    private StorageReference storageReferenceDP;
+    private StorageReference storageReferenceKYC;
 
     public AddEmployeeFragment() {
         // Required empty public constructor
     }
-
-    private String key;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +91,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         super.onViewCreated(view, savedInstanceState);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         databaseReferenceStores = firebaseDatabase.getReference("Stores");
         databaseReferenceAreas = firebaseDatabase.getReference("Areas");
@@ -151,7 +163,6 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         });
 
     }
-
 
     private void fillSpinners() {
 
@@ -259,7 +270,6 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -283,6 +293,70 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                 }
                 Toast.makeText(this.getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.admin_add_employee_upload_dp:
+                startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), getDP);
+                break;
+            case R.id.admin_add_employee_upload_kyc:
+                startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), getKYC);
+                break;
+
+
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case getDP:
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        Uri uriImage = data.getData();
+                        storageReferenceDP = storage.getReference().child(key + "-dp");
+                        storageReferenceDP.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Toast.makeText(getContext(), "DP Uploaded", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "DP Uploading Failed", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        });
+                    }
+                }
+                break;
+
+            case getKYC:
+                if (resultCode == RESULT_OK) {
+
+                    if (data != null) {
+                        Uri uriImage = data.getData();
+                        if (uriImage != null) {
+                            storageReferenceKYC = storage.getReference().child(key + "-kyc");
+                            storageReferenceKYC.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Toast.makeText(getContext(), "KYC Uploaded", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "KYC Uploading Failed", Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            });
+                        }
+                    }
+
+
+                }
+        }
+    }
+
 }
