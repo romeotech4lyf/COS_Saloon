@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentLight"
+    android:background="@color/colorPrimary"
     tools:context="com.tech4lyf.cossaloon.Activities.LoginActivity">
 
     <ImageView
@@ -52,7 +52,7 @@
         android:layout_marginBottom="50dp"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/colorWhite"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -140,7 +140,7 @@
         android:layout_marginBottom="18dp"
         android:elevation="80dp"
         android:theme="@style/CardView.Light"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="30dp"
         app:cardUseCompatPadding="true">
 

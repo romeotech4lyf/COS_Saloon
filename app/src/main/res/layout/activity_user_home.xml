@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/employee_tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="top" />
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +23,7 @@
             android:layout_height="260dp"
             android:background="@color/colorWhite"
             android:touchscreenBlocksFocus="false"
-            app:contentScrim="@color/colorAccentLight"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <RelativeLayout
@@ -35,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/colorAccentLight"
+                    android:src="@color/colorPrimary"
                     android:visibility="visible" />
 
 
@@ -77,7 +80,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/dashBoard_employee_fragment_container"
         android:layout_width="match_parent"
-        android:background="@color/colorAccentLight"
+        android:background="@color/colorPrimary"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
@@ -87,10 +90,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
-
         android:background="@color/colorWhite"
         app:elevation="20dp"
         app:menu="@menu/activity_user_home_drawer" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>

@@ -36,19 +36,20 @@ public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_recycler_view_bills, parent, false));
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Bill bill = billList.get(position);
         holder.employeeName.setText(bill.getEmployeeName());
-        holder.areaName.setText(bill.getStoreName());
+        holder.areaName.setText(bill.getAreaName());
         holder.storeName.setText(bill.getStoreName());
         holder.itemName.setText(FormatData.setBillItemNames(bill.getListItems()));
         holder.itemPrice.setText(FormatData.setBillItemPrices(bill.getListItemPrices()));
-        holder.total.setText(bill.getTotalPrice());
-        holder.time.setText(bill.getTotalPrice());
-        holder.date.setText(bill.getTotalPrice());
+        holder.date.setText(bill.getDate());
+        holder.time.setText(bill.getTime());
+        holder.total.setText(String.valueOf(bill.getTotalPrice()));
     }
 
     @Override

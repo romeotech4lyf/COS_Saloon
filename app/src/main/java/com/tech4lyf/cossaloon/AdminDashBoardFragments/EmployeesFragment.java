@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
+import com.tech4lyf.cossaloon.Context;
+import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
@@ -47,6 +50,9 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_employees, container, false);
+        AdminHomeActivity.objectType = Context.OBJECT_TYPE.EMPLOYEE;
+        AdminHomeActivity.level = 1;
+
         return view;
 
     }
@@ -71,13 +77,14 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
         recyclerViewAdapterEmployees = new RecyclerViewAdapterEmployees(employeeList);
         recyclerView.setAdapter(recyclerViewAdapterEmployees);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        AdminHomeActivity.level = 1;
 
 
         addEmployee.setOnClickListener(this);
 
+        fireBaseListener();
 
-        databaseReferenceEmployees.orderByChild("name").addListenerForSingleValueEvent(new ValueEventListener() {
+
+     /*   databaseReferenceEmployees.orderByChild("name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -101,8 +108,71 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
 
             }
         });
+*/
 
 
+
+    }
+
+    private void fireBaseListener() {
+        // String key = databaseReferenceEmployees.push().getKey();
+
+        //   databaseReferenceEmployees.child(key).setValue(new Employee(key, "Shaving", 40));
+
+
+        databaseReferenceEmployees.orderByChild("name").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if (dataSnapshot.exists()) {
+                    Employee employee = dataSnapshot.getValue(Employee.class);
+                    if (employee != null) {
+                        synchronized (employeeList){
+                            if (!employeeList.contains(employee))  {
+                                employeeList.add(employee);
+                                recyclerViewAdapterEmployees.setEmployeeList(employeeList);
+                                recyclerViewAdapterEmployees.notifyDataSetChanged();
+                            }
+
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Employee employee = dataSnapshot.getValue(Employee.class);
+                    if (employee != null) {
+                        synchronized (employeeList){
+                            employeeList.remove(employee);
+                            recyclerViewAdapterEmployees.setEmployeeList(employeeList);
+                            recyclerViewAdapterEmployees.notifyDataSetChanged();
+
+                        }
+                    }
+
+                }
+            }
+
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }

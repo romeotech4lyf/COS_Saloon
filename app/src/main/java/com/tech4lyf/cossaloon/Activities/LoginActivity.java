@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
         FirebaseApp.initializeApp(this);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -87,18 +88,20 @@ public class LoginActivity extends AppCompatActivity {
         previousDate = sharedpreferences.getString("lastLoginDate", null);
         dateToday = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
 
+        if(!(getIntent().getBooleanExtra("isReturning",true))) {
 
-        if (previousDate != null) {
-            if (previousDate.equals(dateToday) || sharedpreferences.getString("isAdministrator", "false").equals("true")) {
-                savedPhoneNumber = sharedpreferences.getString("phoneNumber", null);
-                savedPassword = sharedpreferences.getString("password", null);
-                Log.d("date", dateToday);
-                if (savedPhoneNumber != null && savedPassword != null)
-                    login(savedPhoneNumber, savedPassword);
+
+            if (previousDate != null) {
+                if (previousDate.equals(dateToday) || sharedpreferences.getString("isAdministrator", "false").equals("true")) {
+                    savedPhoneNumber = sharedpreferences.getString("phoneNumber", null);
+                    savedPassword = sharedpreferences.getString("password", null);
+                    Log.d("date", dateToday);
+                    if (savedPhoneNumber != null && savedPassword != null)
+                        login(savedPhoneNumber, savedPassword);
+                }
+
             }
-
         }
-
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 enteredPhoneNumber = String.valueOf(editPhoneNumber.getText());
                 enteredPassword = editPassword.getText().toString();
-
                 login(enteredPhoneNumber, enteredPassword);
 
             }
@@ -144,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         }
-                    }
+                     }
                     tryEmployeeLogin(phoneNumber, password);
                 }
 
@@ -173,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("phoneNumber", phoneNumber).commit();
                                     editor.putString("password", password).commit();
                                     editor.putString("isAdministrator", "false").commit();
-                                    startActivity(new Intent(LoginActivity.this, EmployeeHomeActivity.class).putExtra("employeeId", employee.getId()));
+                                    startActivity(new Intent(LoginActivity.this, EmployeeHomeActivity.class).putExtra("Employee", employee));
                                     LoginActivity.this.finish();
 
 
@@ -184,11 +186,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Wrong Password!", Toast.LENGTH_LONG).show();
                         dialog.cancel();
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_LONG).show();
-                        dialog.cancel();
-
                     }
+
+
                 }
             }
 

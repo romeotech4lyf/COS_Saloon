@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tech4lyf.cossaloon.Context;
+import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Service;
 import com.tech4lyf.cossaloon.R;
 
@@ -25,6 +27,14 @@ public class RecyclerViewAdapterBillItems extends RecyclerView.Adapter<RecyclerV
 
     }
 
+    public ArrayList<Service> getServiceList() {
+        return serviceList;
+    }
+
+    public void setServiceList(ArrayList<Service> serviceList) {
+        this.serviceList = serviceList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,16 +43,41 @@ public class RecyclerViewAdapterBillItems extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final Service service = serviceList.get(position);
         Log.d(String.valueOf(serviceList.size()), "size");
-        holder.name.setText(serviceList.get(position).getName());
-        holder.price.setText(String.valueOf(serviceList.get(position).getPrice()));
+        holder.name.setText(service.getName());
+        holder.price.setText(String.valueOf(service.getPrice()));
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.checkBox.setChecked(!holder.checkBox.isChecked());
+                if (holder.checkBox.isChecked()) {
+                    Listeners.triggerOnClickBillItemListener(service, Context.FLAG.DELETE);
+                    holder.checkBox.setChecked(false);
+
+                } else {
+                    holder.checkBox.setChecked(true);
+                    Listeners.triggerOnClickBillItemListener(service, Context.FLAG.ADD);
+
+                }
+
             }
         });
+       /* holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.checkBox.isChecked()) {
+                    Listeners.triggerOnClickBillItemListener(service, Context.FLAG.DELETE);
+                    holder.checkBox.setChecked(false);
 
+                } else {
+                    holder.checkBox.setChecked(true);
+                    Listeners.triggerOnClickBillItemListener(service, Context.FLAG.ADD);
+
+                }
+
+            }
+        });
+*/
     }
 
     @Override

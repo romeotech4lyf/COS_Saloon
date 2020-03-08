@@ -71,5 +71,18 @@ public class FormatData {
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
     }
 
+    public static String getCurrentDeviceFullTime() {
+        return new SimpleDateFormat("hh:mm:ss").format(new Date().getTime());
+    }
+
+    public static  String setJobsCountToday(Integer today ){
+        return "Today's Jobs : "+today + " ";
+    }
+
+    public static String setJobsCountThisMonth(Integer thisMonth){
+       return  "This Month's Jobs : "+thisMonth+ " ";
+
+    }
+
 
 }

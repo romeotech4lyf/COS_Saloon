@@ -1,29 +1,38 @@
 package com.tech4lyf.cossaloon.Activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.AreasFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.DefaultFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.EmployeesFragment;
-import com.tech4lyf.cossaloon.AdminDashBoardFragments.ManageFragment;
+import com.tech4lyf.cossaloon.AdminDashBoardFragments.ServicesFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.StoresFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.StoreDetailsFragment;
+import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
 import com.tech4lyf.cossaloon.Context;
+import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Store;
@@ -32,74 +41,63 @@ import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
 
 import java.util.ArrayList;
 
-public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener {
-
-    public static int level = 0;
-    private AppBarConfiguration mAppBarConfiguration;
-    private RecyclerViewAdapterEmployees recyclerViewAdapterEmployees;
-    private DatabaseReference databaseReference;
-    private RecyclerView recyclerView;
-    private TextView textView;
-    private FragmentManager fragmentManager;
-    private String id;
-
-
-    /*  databaseReference.orderByChild("date").addListenerForSingleValueEvent(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              if (dataSnapshot != null) {
-                  if (dataSnapshot.exists()) {
-                      for (DataSnapshot bill_ : dataSnapshot.getChildren()) {
-                          if (bill_ != null) {
-                              Bill bill = bill_.getValue(Bill.class);
-                              if (bill != null) {
-
-                              }
-
-                          }
-                      }
-                  }
-              }
-
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError databaseError) {
-
-          }
-      });*/
-    private Context.OBJECT_TYPE objectType;
+public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener, View.OnClickListener {
 
     private static final String[] permissions = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_MEDIA_LOCATION,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    public static int level = 0;
+    public static Context.OBJECT_TYPE objectType = Context.OBJECT_TYPE.NULL;
+    private TextView jobsToday;
+    private TextView jobsThisMonth;
+    private AppBarConfiguration mAppBarConfiguration;
+    private RecyclerViewAdapterEmployees recyclerViewAdapterEmployees;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.admin_home, menu);
-        return true;
-    }
+    private FragmentManager fragmentManager;
+    private FloatingActionButton floatingActionButton;
+    private String id;
+    private Integer jobsTodayCount = 0;
+    private Integer jobsThisMonthCount = 0;
+    private DatabaseReference databaseReferenceJobsToday;
+    private DatabaseReference databaseReferenceJobsThisMonth;
+    private String currentDate;
+    private String currentMonth;
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onClick(final int stringId) {
 
         switch (stringId) {
             case R.string.stores:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
+                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                floatingActionButton.setVisibility(View.VISIBLE);
+                objectType = Context.OBJECT_TYPE.STORE;
+
                 break;
 
             case R.string.services:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ManageFragment(), "MANAGE").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICE").commit();
+                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                floatingActionButton.setVisibility(View.VISIBLE);
+                objectType = Context.OBJECT_TYPE.SERVICE;
+
                 break;
 
             case R.string.employees:
                 getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
+                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                floatingActionButton.setVisibility(View.VISIBLE);
+                objectType = Context.OBJECT_TYPE.EMPLOYEE;
                 break;
 
             case R.string.areas:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "EMPLOYEE").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREA").commit();
+                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                floatingActionButton.setVisibility(View.VISIBLE);
+                objectType = Context.OBJECT_TYPE.AREA;
 
             default:
                 break;
@@ -113,18 +111,70 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         checkPermissions();
         setContentView(R.layout.activity_admin_home);
         Toolbar toolbar = findViewById(R.id.toolbar_admin);
+        floatingActionButton = findViewById(R.id.admin_add_fab);
+        jobsThisMonth = findViewById(R.id.dashBoard_month_jobs);
+        jobsToday = findViewById(R.id.dashBoard_day_jobs);
         fragmentManager = getSupportFragmentManager();
+        objectType = Context.OBJECT_TYPE.NULL;
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
         FirebaseApp.initializeApp(this);
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Bills");
         setSupportActionBar(toolbar);
+        floatingActionButton.setImageResource(R.mipmap.statistics);
+
+
+        currentDate = FormatData.getCurrentDeviceDate();
+        currentMonth = FormatData.getCurrentDeviceMonth();
+
+        databaseReferenceJobsToday = FirebaseDatabase.getInstance().getReference().child("Jobs").child("Today" + currentDate);
+        databaseReferenceJobsThisMonth = FirebaseDatabase.getInstance().getReference().child("Jobs").child("ThisMonth" + currentMonth);
+
+        fireBaseListener();
+
+
+        floatingActionButton.setOnClickListener(this);
         Listeners.setOnClickDashBoardItemListener(this);
         Listeners.setOnClickEmployeeListListener(this);
         Listeners.setOnClickStoreListListener(this);
         Listeners.setOnBackPressedListener(this);
 
 
+    }
+
+    private void fireBaseListener() {
+        databaseReferenceJobsToday.child("Combined").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    jobsTodayCount = dataSnapshot.getValue(Integer.class);
+
+                } else
+                    jobsTodayCount = 0;
+                jobsToday.setText(String.valueOf(jobsTodayCount));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReferenceJobsThisMonth.child("Combined").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    jobsThisMonthCount = dataSnapshot.getValue(Integer.class);
+
+                } else
+                    jobsThisMonthCount = 0;
+                jobsThisMonth.setText(String.valueOf(jobsThisMonthCount));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     void checkPermissions() {
@@ -146,26 +196,42 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     }
 
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onBackPressed() {
 
         AdminHomeActivity.level -= 1;
 
         if (AdminHomeActivity.level < 0)
-            super.onBackPressed();
+            android.os.Process.killProcess(android.os.Process.myPid());
         else if ((AdminHomeActivity.level == 0)) {
+            destroyFragments();
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
+            floatingActionButton.setImageResource(R.mipmap.statistics);
+            objectType = Context.OBJECT_TYPE.NULL;
         } else if (AdminHomeActivity.level == 1) {
             if (objectType != null) {
+                floatingActionButton.setVisibility(View.VISIBLE);
                 Listeners.triggerOnBackPressedListener(objectType);
             }
         }
 
+
+    }
+
+
+    void destroyFragments() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
     }
 
 
     @Override
     public void onBackPressed(Context.OBJECT_TYPE objectType) {
+        destroyFragments();
+
+
 
         switch (objectType) {
             case EMPLOYEE:
@@ -174,26 +240,79 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             case STORE:
                 fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
                 break;
+            case AREA:
+                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREAS").commit();
+                break;
+            case SERVICE:
+                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICES").commit();
+                break;
             default:
                 break;
         }
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Store store) {
-        this.objectType = Context.OBJECT_TYPE.STORE;
+        objectType = Context.OBJECT_TYPE.STORE;
 
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
+        floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Employee employee) {
 
-        this.objectType = Context.OBJECT_TYPE.EMPLOYEE;
+        objectType = Context.OBJECT_TYPE.EMPLOYEE;
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeeDetailsFragment(employee), "EMPLOYEE DETAILS").commit();
+        floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.admin_add_fab:
+
+                switch (level) {
+
+                    case 1:
+                        switch (objectType) {
+                            case EMPLOYEE:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                break;
+                            case AREA:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                break;
+                            case STORE:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                break;
+                            case NULL:
+                                startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class).putExtra("isReturning", true));
+                                this.finish();
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case 0:
+                        startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class).putExtra("isReturning", true));
+                        this.finish();
+                        break;
+
+                    default:
+                        break;
+
+
+                }
+
+            default:
+                break;
+        }
+
+    }
 }
+

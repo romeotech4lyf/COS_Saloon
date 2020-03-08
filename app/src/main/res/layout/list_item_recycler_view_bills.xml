@@ -9,7 +9,7 @@
     android:elevation="30dp"
     android:foreground="?selectableItemBackground"
     android:theme="@style/CardView.Light"
-    app:cardBackgroundColor="@color/colorWhite"
+    app:cardBackgroundColor="@color/colorOffWhite"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true"
 
@@ -35,7 +35,6 @@
             android:layout_toStartOf="@id/dummy"
             android:layout_toLeftOf="@id/dummy"
             android:gravity="center"
-            android:inputType="textMultiLine"
             android:text="\nCutting\n\nShaving\n\nDyeing\n"
             android:textColor="@color/colorBlack"
             android:textSize="10dp" />
@@ -51,7 +50,6 @@
             android:layout_toEndOf="@id/dummy"
             android:layout_toRightOf="@id/dummy"
             android:gravity="center"
-            android:inputType="textMultiLine"
             android:text="\n120\n\n40\n\n30\n"
             android:textColor="@color/colorPrimary"
             android:textSize="10dp"

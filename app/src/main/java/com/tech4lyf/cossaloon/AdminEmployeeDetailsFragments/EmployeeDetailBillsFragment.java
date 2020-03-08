@@ -13,15 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Models.Bill;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterBills;
 
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -53,36 +56,46 @@ public class EmployeeDetailBillsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Calendar calendar = Calendar.getInstance();
-        String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
-        String date = String.valueOf(calendar.get(Calendar.DATE));
+        String currentYear = FormatData.getCurrentDeviceYear();
+        String currentMonth = FormatData.getCurrentDeviceMonth();
+        String currentDate = FormatData.getCurrentDeviceDate();
         recyclerView = view.findViewById(R.id.bills_recyclerView);
         recyclerViewAdapterBills = new RecyclerViewAdapterBills(billList);
         recyclerView.setAdapter(recyclerViewAdapterBills);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        databaseReferenceBills = FirebaseDatabase.getInstance().getReference("Incomes").child(year).child(month).child(date);
+        databaseReferenceBills = FirebaseDatabase.getInstance().getReference().child("Bills").child(currentYear).child(currentMonth).child(currentDate);
 
 
-        databaseReferenceBills.orderByChild("employeeName").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceBills.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot bill_ : dataSnapshot.getChildren()) {
-                        Bill bill = bill_.getValue(Bill.class);
-                        if (bill != null) {
-                            Log.d(employeeId, bill.getEmployeeId());
-                            if (employeeId.equals(bill.getEmployeeId())) {
-                                billList.add(bill);
-                                recyclerViewAdapterBills.setBillList(billList);
-                                recyclerViewAdapterBills.notifyDataSetChanged();
-                            }
-                        }
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()){
+                    Bill bill = dataSnapshot.getValue(Bill.class);
+                    if(bill!=null){
+                        if(bill.getEmployeeId().equals(employeeId)){
+
+                    billList.add(bill);
+                    recyclerViewAdapterBills.setBillList(billList);
+                    recyclerViewAdapterBills.notifyDataSetChanged();
+                }}}
 
 
-                    }
-                }
             }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

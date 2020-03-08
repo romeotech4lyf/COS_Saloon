@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_alignParentTop="true"
-    android:background="@color/colorAccentLight"
+    android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
     app:titleTextColor="@color/colorWhite">

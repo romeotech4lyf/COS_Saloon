@@ -2,7 +2,6 @@ package com.tech4lyf.cossaloon.AdminManageFragments;
 
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,10 +28,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Models.Area;
@@ -41,7 +40,6 @@ import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -60,6 +58,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     CardView cancel;
     CardView uploadDP;
     CardView uploadKYC;
+    File localFile = null;
     private EditText enterName;
     private EditText enterPhoneNumber;
     private EditText enterPassword;
@@ -78,6 +77,10 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     private FirebaseStorage storage;
     private StorageReference storageReferenceDP;
     private StorageReference storageReferenceKYC;
+    private ImageView dP;
+    private ImageView kYC;
+    private Uri dPUri;
+    private Uri kYCUri;
 
     public AddEmployeeFragment() {
         // Required empty public constructor
@@ -107,7 +110,6 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         storageReferenceKYC = storage.getReference().child(key + "-kyc");
 
 
-
         areaIdList.add(0, "Select Area");
         areaNameList.add(0, "Select Area");
         storeNameList.add(0, "Select Area First");
@@ -127,6 +129,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         uploadKYC = root.findViewById(R.id.admin_add_employee_upload_kyc);
         dP = root.findViewById(R.id.admin_add_employee_dp);
         kYC = root.findViewById(R.id.admin_add_employee_kyc);
+        AdminHomeActivity.level = 2;
 
 
         //
@@ -233,7 +236,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         enteredName = enterName.getText().toString();
         enteredPassword = enterPassword.getText().toString();
         enteredPhoneNumber = enterPhoneNumber.getText().toString();
-        Log.d(enteredName+enteredPassword,enteredPhoneNumber);
+        Log.d(enteredName + enteredPassword, enteredPhoneNumber);
 
     }
 
@@ -288,27 +291,27 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         switch (v.getId()) {
             case R.id.admin_add_employee_ok:
                 getInput();
-                if (enteredPhoneNumber != null && enteredPassword != null && enteredName != null && !selectedAreaName.equals("Select Area") && !selectedStoreName.equals("Select Area First") && !selectedStoreName.equals("Select Store") ) {
-                    String dpURIString = dPUri==null?null:dPUri.toString();
-                    String kYCURIString =kYCUri==null?null: kYCUri.toString();
-                        databaseReferenceEmployees.child(key).setValue(new Employee(key, enteredName, enteredPassword, storeIdList.get(storeNameList.indexOf(selectedStoreName)), selectedStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, enteredPhoneNumber, FormatData.getCurrentDeviceFullDate(),dpURIString,kYCURIString)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getContext(), "Employee Added Successfully", Toast.LENGTH_SHORT).show();
-                                AddEmployeeFragment.this.getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
+                if (!(enteredPhoneNumber.length() < 10) && !(enteredPassword.length() < 8) && !(enteredName.length() < 1)
+                        && !selectedAreaName.equals("Select Area") && !selectedStoreName.equals("Select Area First") && !selectedStoreName.equals("Select Store")) {
+                    String dpURIString = dPUri == null ? null : dPUri.toString();
+                    String kYCURIString = kYCUri == null ? null : kYCUri.toString();
+                    databaseReferenceEmployees.child(key).setValue(new Employee(key, enteredName, enteredPassword, storeIdList.get(storeNameList.indexOf(selectedStoreName)), selectedStoreName, areaIdList.get(areaNameList.indexOf(selectedAreaName)), selectedAreaName, enteredPhoneNumber, FormatData.getCurrentDeviceFullDate(), dpURIString, kYCURIString)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getContext(), "Employee Added Successfully", Toast.LENGTH_SHORT).show();
+                            AddEmployeeFragment.this.getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
 
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                                Toast.makeText(getContext(), "Task Failed!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Task Failed!!", Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+                        }
+                    });
 
-                }
-                else{
+                } else {
                     Toast.makeText(this.getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -321,13 +324,12 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                 startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), getKYC);
                 break;
 
+            case R.id.admin_add_employee_cancel:
+                AdminHomeActivity.level=1;
+                getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
 
         }
     }
-    private ImageView dP;
-    private ImageView kYC;
-    private Uri dPUri;
-    private Uri kYCUri;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -398,8 +400,6 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                 }
         }
     }
-
-    File localFile = null;
 
 
 }

@@ -9,27 +9,14 @@
     android:background="@color/colorOffWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/admin_employees_store_area_name"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryLight"
-        android:ellipsize="end"
-        android:gravity="center_horizontal|center_vertical"
-        android:maxLines="1"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:text="Store - Area"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_admin_employees"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorOffWhite"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -41,6 +28,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
+        android:visibility="gone"
         android:elevation="50dp"
         android:src="@android:drawable/ic_input_add" />
 

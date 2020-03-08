@@ -32,7 +32,7 @@ public class RecyclerViewAdapterStores extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_recycler_view_dash_board, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_recycler_view_employees, parent, false));
     }
 
     public void setStoreList(ArrayList<Store> storeList) {
@@ -72,9 +72,9 @@ public class RecyclerViewAdapterStores extends RecyclerView.Adapter<RecyclerView
             super(itemView);
 
             parent = itemView.findViewById(R.id.parent_recycler_view);
-            image = itemView.findViewById(R.id.admin_recyclerView_item_image);
-            title = itemView.findViewById(R.id.admin_recyclerView_item_title);
-            subTitle = itemView.findViewById(R.id.admin_recyclerView_item_sub_title);
+            image = itemView.findViewById(R.id.admin_recyclerView_employee_image);
+            title = itemView.findViewById(R.id.admin_recyclerView_employee_name);
+            subTitle = itemView.findViewById(R.id.admin_recyclerView_store_name);
 
 
         }

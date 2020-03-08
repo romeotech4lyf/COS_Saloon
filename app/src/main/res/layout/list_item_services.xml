@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/admin_services_recycler_view_parent"
+    android:background="@color/colorOffWhite"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/admin_services_recycler_view_parent_for_expanding"
+        android:background="@color/colorOffWhite"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/dummy"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <TextView
+            android:id="@+id/admin_services_service_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/dummy"
+            android:layout_alignParentStart="true"
+            android:checkMark="@color/colorAccentLight"
+            android:checked="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Item Name"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/admin_services_service_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/dummy"
+            android:checkMark="@color/colorAccentLight"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="100"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+
+
+    </RelativeLayout>
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_services_expandable_layout"
+        app:el_expanded="false">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:weightSum="3"
+        android:orientation="vertical">
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edit Name"
+            android:id="@+id/admin_services_service_edit_item_name"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:inputType="text"
+            android:background="@color/colorOffWhite"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorBlack"/>
+
+        <EditText
+            android:id="@+id/admin_services_service_edit_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorOffWhite"
+            android:gravity="center"
+            android:hint="Edit Price"
+            android:inputType="number"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_services_service_enter_item"
+            android:text="Enter"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:background="@color/colorAccent"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_services_service_delete_item"
+            android:text="Delete"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:background="@color/colorAccent"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
+
+
+
+    </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+
+
+</LinearLayout>

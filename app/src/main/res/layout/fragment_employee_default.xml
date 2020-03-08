@@ -1,36 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccentLight"
-    tools:context=".Activities.EmployeeDefaultFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dashBoard_admin_stores_card"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="10dp"
+    android:layout_toLeftOf="@id/dummy"
+    android:elevation="20dp"
+    android:foreground="?selectableItemBackground"
+    android:theme="@style/CardView.Light"
+    app:cardBackgroundColor="@color/colorWhite"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="20dp"
-        android:layout_toLeftOf="@id/dummy"
-        android:elevation="20dp"
-        android:foreground="?selectableItemBackground"
-        android:theme="@style/CardView.Light"
-        app:cardBackgroundColor="@color/colorOffWhite"
-        app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employee_put_bill_recycler_view"
+            android:id="@+id/employee_default_put_bill_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:id="@+id/employee_default_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:checkMark="@color/colorAccentLight"
+            android:checked="true"
+            android:ellipsize="end"
+            android:paddingTop="5dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:layout_gravity="center|bottom"
+            android:gravity="center_horizontal|bottom"
+            android:text="190"
+            android:textColor="@color/colorAccent"
+            android:textSize="48dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_gravity="center|top"
+            android:gravity="center_horizontal|top"
+            android:paddingBottom="5dp"
+            android:text="TOTAL"
+            android:textColor="@color/colorSeventyFivePercentBlack"
+            android:textSize="16dp" />
+
+    </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/employee_dashBoard_default_enter_bill"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toLeftOf="@id/dummy"
+            android:elevation="50dp"
+            android:foreground="?selectableItemBackground"
+            android:theme="@style/CardView.Light"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="24dp"
+            app:cardUseCompatPadding="true"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ENTER"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
 </androidx.core.widget.NestedScrollView>
+

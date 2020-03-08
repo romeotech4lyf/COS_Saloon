@@ -1,6 +1,12 @@
 package com.tech4lyf.cossaloon.Models;
 
-public class Employee {
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
 
 
     private String joiningDate;
@@ -121,6 +127,10 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
+
+
+
+
 
 
 }
