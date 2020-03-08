@@ -12,14 +12,12 @@ import com.tech4lyf.cossaloon.R;
 
 public class EmployeeHomeActivity extends AppCompatActivity {
 
-    private FragmentContainerView fragmentContainerView;
-    Employee employee;
+    private Employee employee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
-        fragmentContainerView = findViewById(R.id.dashBoard_employee_fragment_container);
         employee = (Employee) getIntent().getSerializableExtra("Employee");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_employee_fragment_container, new EmployeeDefaultFragment(employee), "EMPLOYEE BILL").commit();
@@ -33,8 +31,5 @@ public class EmployeeHomeActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        android.os.Process.killProcess(android.os.Process.myPid());
-    }
+
 }

@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
+import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterStores;
@@ -54,6 +55,7 @@ public class StoresFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycler_view_admin_stores);
+        AdminHomeActivity.objectType = Context.OBJECT_TYPE.STORE;
 
         recyclerViewAdapterStores = new RecyclerViewAdapterStores(storeList);
         recyclerView.setAdapter(recyclerViewAdapterStores);

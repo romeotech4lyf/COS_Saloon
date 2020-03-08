@@ -72,14 +72,12 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
         databaseReferenceEmployees = firebaseDatabase.getReference("Employees");
 
         recyclerView = view.findViewById(R.id.recycler_view_admin_employees);
-        addEmployee = view.findViewById(R.id.recycler_view_admin_add_employee);
 
         recyclerViewAdapterEmployees = new RecyclerViewAdapterEmployees(employeeList);
         recyclerView.setAdapter(recyclerViewAdapterEmployees);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
 
-        addEmployee.setOnClickListener(this);
 
         fireBaseListener();
 
@@ -152,9 +150,7 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.recycler_view_admin_add_employee:
-                getChildFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
-                break;
+
             default:
                 break;
         }

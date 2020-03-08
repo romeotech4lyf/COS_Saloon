@@ -2,23 +2,29 @@ package com.tech4lyf.cossaloon.Models;
 
 public class Store {
     private String areaName;
-    private Integer incomeToday;
-    private Integer incomeMonthly;
     private String id;
     private String name;
     private String areaId;
+    private String addedDate;
 
     public Store() {
 
     }
 
-    public Store(String id, String name, String areaId, String areaName, Integer incomeToday, Integer incomeMonthly) {
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public Store(String id, String name, String areaId, String areaName , String addedDate) {
 
         this.name = name;
         this.areaName = areaName;
-        this.incomeToday = incomeToday;
         this.areaId = areaId;
-        this.incomeMonthly = incomeMonthly;
+        this.addedDate = addedDate;
         this.id = id;
     }
 
@@ -30,21 +36,6 @@ public class Store {
         this.areaName = areaName;
     }
 
-    public Integer getIncomeToday() {
-        return incomeToday;
-    }
-
-    public void setIncomeToday(Integer incomeToday) {
-        this.incomeToday = incomeToday;
-    }
-
-    public Integer getIncomeMonthly() {
-        return incomeMonthly;
-    }
-
-    public void setIncomeMonthly(Integer incomeMonthly) {
-        this.incomeMonthly = incomeMonthly;
-    }
 
     public String getId() {
         return id;

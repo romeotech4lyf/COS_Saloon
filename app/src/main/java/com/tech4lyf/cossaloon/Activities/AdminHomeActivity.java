@@ -32,6 +32,7 @@ import com.tech4lyf.cossaloon.AdminDetailsFragments.AreaDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.StoreDetailsFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
+import com.tech4lyf.cossaloon.AdminManageFragments.AddStoreFragment;
 import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
@@ -206,7 +207,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         AdminHomeActivity.level -= 1;
 
         if (AdminHomeActivity.level < 0)
-            android.os.Process.killProcess(android.os.Process.myPid());
+            super.onBackPressed();
+            //android.os.Process.killProcess(android.os.Process.myPid());
         else if ((AdminHomeActivity.level == 0)) {
             destroyFragments();
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
@@ -259,7 +261,6 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @Override
     public void onClick(Store store) {
         objectType = Context.OBJECT_TYPE.STORE;
-
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
         floatingActionButton.setVisibility(View.INVISIBLE);
 
@@ -291,7 +292,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                                 getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
                                 break;
                             case STORE:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_stores_fragment_container, new AddStoreFragment()).commit();
                                 break;
                             case NULL:
                                 startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class).putExtra("isReturning", true));

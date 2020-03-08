@@ -2,6 +2,7 @@ package com.tech4lyf.cossaloon.Activities;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -349,6 +350,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                             receivedTotalDailyStore = dataSnapshot.getValue(Integer.class);
                                         } else
                                             receivedTotalDailyStore = 0;
+                                        Log.d(String.valueOf(billTotalPrice2),String.valueOf(billTotalPrice1));
 
                                         totalDailyStore = receivedTotalDailyStore + billTotalPrice2;
                                         billTotalPrice2 = 0;
