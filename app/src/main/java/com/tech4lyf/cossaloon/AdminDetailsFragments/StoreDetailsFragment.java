@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,20 +23,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.AdminStoreDetailsFragments.StoreDetailBillsFragment;
-import com.tech4lyf.cossaloon.AdminStoreDetailsFragments.StoreDetailInfoFragment;
+import com.tech4lyf.cossaloon.AdminDetailBillsFragment.StoreDetailBillsFragment;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
-import com.tech4lyf.cossaloon.Models.Bill;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

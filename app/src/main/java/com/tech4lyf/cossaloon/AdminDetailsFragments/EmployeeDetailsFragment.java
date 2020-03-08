@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailBillsFragment;
+import com.tech4lyf.cossaloon.AdminDetailBillsFragment.EmployeeDetailBillsFragment;
 import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailInfoFragment;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;

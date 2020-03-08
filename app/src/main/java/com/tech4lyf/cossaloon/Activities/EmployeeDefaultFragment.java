@@ -161,7 +161,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                 = billTotalPrice8 = billTotalPrice9 = billTotalPrice10 = billTotalPrice11 = billTotalPrice12 = bill.getTotalPrice();
 
 
-        addToCount1 =addToCount2 = 1;
+        addToCount1 =addToCount2 = addToCount3 =addToCount4 =addToCount5=addToCount6=addToCount7=addToCount8 =1;
 
 
         databaseReferenceBills.child(currentYear).child(currentMonth).child(currentDate).child(key).setValue(bill)

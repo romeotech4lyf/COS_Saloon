@@ -1,4 +1,4 @@
-package com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments;
+package com.tech4lyf.cossaloon.AdminDetailBillsFragment;
 
 
 import android.os.Bundle;

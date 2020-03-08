@@ -121,7 +121,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
         FirebaseApp.initializeApp(this);
         setSupportActionBar(toolbar);
-        floatingActionButton.setImageResource(R.mipmap.statistics);
+        floatingActionButton.setImageResource(R.mipmap.logout);
 
 
         currentDate = FormatData.getCurrentDeviceDate();
@@ -210,7 +210,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         else if ((AdminHomeActivity.level == 0)) {
             destroyFragments();
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
-            floatingActionButton.setImageResource(R.mipmap.statistics);
+            floatingActionButton.setImageResource(R.mipmap.logout);
             objectType = Context.OBJECT_TYPE.NULL;
         } else if (AdminHomeActivity.level == 1) {
             if (objectType != null) {

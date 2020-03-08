@@ -51,7 +51,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Store Name"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -148,7 +148,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -307,8 +307,8 @@
                             android:layout_marginStart="8dp"
                             android:scaleType="fitCenter"
                             android:padding="10dp"
-                            android:src="@android:drawable/ic_dialog_info"
-                            android:tint="@color/colorPrimary" />
+                            android:src="@mipmap/info"
+                            android:tint="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/admin_store_details_info_dummy_text"
@@ -321,7 +321,7 @@
                             android:layout_toRightOf="@id/admin_store_details_info_dummy_image"
                             android:gravity="center"
                             android:text="Store Details"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorAccent"
                             android:textSize="16dp" />
 
                     </RelativeLayout>
@@ -412,8 +412,8 @@
                             android:layout_marginStart="8dp"
                             android:padding="10dp"
                             android:scaleType="fitCenter"
-                            android:src="@android:drawable/ic_dialog_info"
-                            android:tint="@color/colorPrimary" />
+                            android:src="@mipmap/bill"
+                            android:tint="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/admin_store_details_bills_dummy_text"
@@ -426,8 +426,7 @@
                             android:layout_toRightOf="@+id/admin_store_details_bills_dummy_image"
                             android:gravity="center"
                             android:text="Day's Bills"
-                            android:textColor="@color/colorPrimary"
-
+                            android:textColor="@color/colorAccent"
                             android:textSize="16dp" />
                     </RelativeLayout>
 
@@ -474,7 +473,7 @@
             android:layout_marginBottom="10dp"
             android:elevation="100dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="#ff0000"
             app:cardCornerRadius="25dp"
             app:cardUseCompatPadding="true">
 
@@ -482,19 +481,10 @@
 
                 android:id="@+id/admin_store_details_delete_"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <ImageView
-                    android:id="@+id/admin_store_details_delete_dummy_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="8dp"
-                    android:scaleType="fitCenter"
-                    android:padding="10dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:tint="@color/colorWhite" />
+
 
                 <TextView
                     android:id="@+id/admin_store_details_delete_dummy_text"
@@ -503,10 +493,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="2dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_toRightOf="@id/admin_store_details_delete_dummy_image"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Delete"
+                    android:text="Remove Store"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dp" />
 
