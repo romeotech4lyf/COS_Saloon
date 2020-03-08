@@ -84,40 +84,11 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
         fireBaseListener();
 
 
-     /*   databaseReferenceEmployees.orderByChild("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot employee_ : dataSnapshot.getChildren()) {
-                        Employee employee = employee_.getValue(Employee.class);
-                        if (employee != null) {
-                            employeeList.add(employee);
-                            recyclerViewAdapterEmployees.setEmployeeList(employeeList);
-                            recyclerViewAdapterEmployees.notifyDataSetChanged();
-                        }
-
-                    }
-
-                }
-            }
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-*/
-
 
 
     }
 
     private void fireBaseListener() {
-        // String key = databaseReferenceEmployees.push().getKey();
-
-        //   databaseReferenceEmployees.child(key).setValue(new Employee(key, "Shaving", 40));
 
 
         databaseReferenceEmployees.orderByChild("name").addChildEventListener(new ChildEventListener() {

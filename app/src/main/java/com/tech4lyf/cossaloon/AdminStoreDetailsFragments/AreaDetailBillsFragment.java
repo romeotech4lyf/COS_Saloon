@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.tech4lyf.cossaloon.R;
@@ -15,30 +13,23 @@ import com.tech4lyf.cossaloon.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StoreDetailBillsFragment extends Fragment {
+public class AreaDetailBillsFragment extends Fragment {
     private View root;
-    private String storeId;
+    private String areaId;
 
-
-    public StoreDetailBillsFragment() {
+    public AreaDetailBillsFragment() {
         // Required empty public constructor
     }
-public StoreDetailBillsFragment(String storeId) {
-        this.storeId = storeId;
-    }
+
+    public AreaDetailBillsFragment(String areaId) {
+this.areaId = areaId   ; }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return root =inflater.inflate(R.layout.fragment_blank, container, false);
+        return root = inflater.inflate(R.layout.fragment_area_detail_bills, container, false);
     }
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
 }

@@ -4,31 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorOffWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.StoreDetailsFragment">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp">
+        android:background="@color/colorOffWhite">
 
+
+        <!-- TODO: Update blank fragment layout -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_holder_card"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorOffWhite"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -46,10 +48,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Store Name"
                     android:textColor="@color/colorPrimary"
-                    android:layout_marginBottom="8dp"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -74,7 +76,7 @@
                     android:layout_toEndOf="@id/admin_store_details_jobs_today"
                     android:layout_toRightOf="@id/admin_store_details_jobs_today"
                     android:gravity="center_horizontal|top"
-                    android:text="Today's Jobs : 4 "
+                    android:text="This Months's Jobs : 4 "
                     android:textColor="@color/colorBlack"
                     android:textSize="10dp" />
             </RelativeLayout>
@@ -84,13 +86,13 @@
             android:id="@+id/admin_store_details_image"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:elevation="30dp"
             android:src="@mipmap/admin_dp"
-
             />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_calendar_holding_card"
@@ -128,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
+                android:background="@color/colorWhite"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="50dp"
@@ -149,16 +152,17 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
+
         <RelativeLayout
             android:id="@+id/dashBoard_admin_income_cards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/admin_store_details_holder_card"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:elevation="20dp"
 
 
@@ -181,21 +185,23 @@
                 android:layout_toStartOf="@+id/dummy_"
                 android:layout_toLeftOf="@id/dummy_"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorOffWhite"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
                 <TextView
-                    android:id="@+id/admin_store_details_this_month_income"
+                    android:id="@+id/admin_store_details_income_monthly"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="35dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
                     android:textSize="40dp" />
 
 
@@ -203,13 +209,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="THIS MONTH"
+                    android:text="MONTHLY"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSeventyFivePercentBlack"
                     android:textSize="10dp" />
 
 
@@ -226,21 +232,23 @@
                 android:layout_toEndOf="@+id/dummy_"
                 android:layout_toRightOf="@id/dummy_"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="#227397"
+                app:cardBackgroundColor="@color/colorAccent"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
 
                 <TextView
-                    android:id="@+id/admin_store_details_today_income"
+                    android:id="@+id/admin_store_details_income_daily"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="35dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
+                    android:textStyle="bold"
                     android:textColor="@color/colorWhite"
                     android:textSize="40dp" />
 
@@ -249,11 +257,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="TODAY"
+                    android:text="DAILY"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="10dp" />
@@ -262,173 +270,252 @@
         </RelativeLayout>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/admin_store_details_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/admin_store_details_calendar_holding_card"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/admin_store_details_details_bills_holding_card"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:elevation="20dp"
+            android:elevation="40dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="#227397"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="15dp"
             app:cardUseCompatPadding="true">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/admin_store_details_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/admin_store_details_info_dummy_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="8dp"
+                            android:scaleType="fitCenter"
+                            android:padding="10dp"
+                            android:src="@android:drawable/ic_dialog_info"
+                            android:tint="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/admin_store_details_info_dummy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toRightOf="@id/admin_store_details_info_dummy_image"
+                            android:gravity="center"
+                            android:text="Store Details"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16dp" />
+
+                    </RelativeLayout>
+
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/admin_store_details_info_expandable_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/admin_store_details_info"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:el_expanded="true">
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:weightSum="3"
+                            android:orientation="vertical">
+
+
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Edit Name"
+                                android:id="@+id/admin_store_details_edit_name"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="16dp"
+                                android:inputType="text"
+                                android:background="@color/colorOffWhite"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/colorBlack"/>
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/admin_services_service_enter_item"
+                                android:text="Enter"
+                                android:gravity="center"
+                                android:paddingTop="10dp"
+                                android:background="@color/colorAccent"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorWhite"/>
+
+
+
+
+                        </LinearLayout>
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+
+
+                </RelativeLayout>
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:padding="8dp"
-                    android:scaleType="fitCenter"
-                    android:src="@android:drawable/ic_dialog_info" />
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:src="@color/colorTransparentWhite" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="42dp"
-                    android:gravity="center"
-                    android:text="Info"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16dp" />
 
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/admin_store_details_bills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/admin_store_details_bills_dummy_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="8dp"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@android:drawable/ic_dialog_info"
+                            android:tint="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/admin_store_details_bills_dummy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toRightOf="@+id/admin_store_details_bills_dummy_image"
+                            android:gravity="center"
+                            android:text="Day's Bills"
+                            android:textColor="@color/colorPrimary"
+
+                            android:textSize="16dp" />
+                    </RelativeLayout>
+
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/admin_store_details_bills_expandable_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/admin_store_details_bills"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:el_expanded="false">
+
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/admin_store_details_bills_fragment_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:forceDarkAllowed="true" />
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+                </RelativeLayout>
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <net.cachapa.expandablelayout.ExpandableLayout
-            android:id="@+id/admin_store_details_info_expandable_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/admin_store_details_info"
-            app:el_expanded="false">
-
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/admin_store_details_info_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:forceDarkAllowed="true" />
-
-        </net.cachapa.expandablelayout.ExpandableLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/admin_store_details_bills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/admin_store_details_info_expandable_layout"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:elevation="20dp"
-            android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="#227397"
-            app:cardCornerRadius="15dp"
-            app:cardUseCompatPadding="true">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:padding="8dp"
-                    android:scaleType="fitCenter"
-                    android:src="@android:drawable/ic_dialog_info" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="42dp"
-                    android:gravity="center"
-                    android:text="Bills"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16dp" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <net.cachapa.expandablelayout.ExpandableLayout
-            android:id="@+id/admin_store_details_bills_expandable_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/admin_store_details_bills"
-            android:layout_centerHorizontal="true"
-            app:el_expanded="false">
-
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/admin_store_details_bills_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:forceDarkAllowed="true" />
-
-        </net.cachapa.expandablelayout.ExpandableLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/admin_store_details_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/admin_store_details_bills_expandable_layout"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
+            android:layout_below="@id/admin_store_details_details_bills_holding_card"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:elevation="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="100dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="#ff0000"
-            app:cardCornerRadius="15dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="25dp"
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center">
+
+                android:id="@+id/admin_store_details_delete_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/admin_store_details_delete_dummy_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentStart="true"
-                    android:padding="8dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
                     android:scaleType="fitCenter"
-                    android:src="@android:drawable/ic_dialog_info" />
+                    android:padding="10dp"
+                    android:src="@android:drawable/ic_dialog_info"
+                    android:tint="@color/colorWhite" />
 
                 <TextView
+                    android:id="@+id/admin_store_details_delete_dummy_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="42dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toRightOf="@id/admin_store_details_delete_dummy_image"
                     android:gravity="center"
                     android:text="Delete"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dp" />
 
             </RelativeLayout>
-
         </androidx.cardview.widget.CardView>
 
+
     </RelativeLayout>
+
 
 </androidx.core.widget.NestedScrollView>
 

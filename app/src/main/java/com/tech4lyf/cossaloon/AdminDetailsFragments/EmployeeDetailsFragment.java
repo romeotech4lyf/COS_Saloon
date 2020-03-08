@@ -324,7 +324,7 @@ public class EmployeeDetailsFragment extends Fragment implements View.OnClickLis
         databaseReferenceEmployees.child(employee.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(ChangeOfStyle.getContext(),"Employee Removed Succesfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChangeOfStyle.getContext(),"Employee Removed Successfully",Toast.LENGTH_SHORT).show();
                 Listeners.triggerOnClickDashBoardItemListener(R.string.employees);
 
             }

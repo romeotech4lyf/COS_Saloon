@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
+import com.tech4lyf.cossaloon.Models.Area;
 import com.tech4lyf.cossaloon.Models.Area;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterAreas;
@@ -50,7 +52,7 @@ public class AreasFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_areas, container, false);
         return view;
     }
-
+    DatabaseReference databaseReferenceAreas;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -61,16 +63,23 @@ public class AreasFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapterAreas);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         AdminHomeActivity.level = 1;
-        DatabaseReference databaseReferenceAreas = FirebaseDatabase.getInstance().getReference().child("Areas");
-        databaseReferenceAreas.orderByChild("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        databaseReferenceAreas = FirebaseDatabase.getInstance().getReference().child("Areas");
 
-                if (dataSnapshot != null) {
-                    if (dataSnapshot.exists()) {
-                        for (DataSnapshot area_ : dataSnapshot.getChildren()) {
-                            if (area_ != null) {
-                                Area area = area_.getValue(Area.class);
+        fireBaseListener();
+
+    }
+
+    private void fireBaseListener() {
+
+
+        databaseReferenceAreas.orderByChild("name").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if (dataSnapshot.exists()) {
+                    Area area = dataSnapshot.getValue(Area.class);
+                    if (area != null) {
+                        synchronized (areaList){
+                            if (!areaList.contains(area))  {
                                 areaList.add(area);
                                 recyclerViewAdapterAreas.setAreaList(areaList);
                                 recyclerViewAdapterAreas.notifyDataSetChanged();
@@ -80,6 +89,35 @@ public class AreasFragment extends Fragment {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Area area = dataSnapshot.getValue(Area.class);
+                    if (area != null) {
+                        synchronized (areaList){
+                            areaList.remove(area);
+                            recyclerViewAdapterAreas.setAreaList(areaList);
+                            recyclerViewAdapterAreas.notifyDataSetChanged();
+
+                        }
+                    }
+
+                }
+            }
+
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
             }
 
             @Override

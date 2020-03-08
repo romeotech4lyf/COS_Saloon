@@ -26,9 +26,7 @@ import java.util.ArrayList;
 
 public class StoresFragment extends Fragment {
 
-    ArrayList<String> titleList = new ArrayList<>();
-    ArrayList<String> subTitleList = new ArrayList<>();
-    ArrayList<Integer> imageList = new ArrayList<>();
+
     ArrayList<Store> storeList = new ArrayList<>();
     RecyclerViewAdapterStores recyclerViewAdapterStores;
     private View view;

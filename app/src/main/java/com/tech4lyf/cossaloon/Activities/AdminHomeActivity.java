@@ -28,12 +28,14 @@ import com.tech4lyf.cossaloon.AdminDashBoardFragments.DefaultFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.EmployeesFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.ServicesFragment;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.StoresFragment;
+import com.tech4lyf.cossaloon.AdminDetailsFragments.AreaDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.StoreDetailsFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
 import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
+import com.tech4lyf.cossaloon.Models.Area;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
@@ -41,7 +43,7 @@ import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
 
 import java.util.ArrayList;
 
-public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener, View.OnClickListener {
+public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener, View.OnClickListener, Listeners.OnClickAreaListListener {
 
     private static final String[] permissions = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -135,6 +137,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         Listeners.setOnClickDashBoardItemListener(this);
         Listeners.setOnClickEmployeeListListener(this);
         Listeners.setOnClickStoreListListener(this);
+        Listeners.setOnClickAreaListListener(this);
         Listeners.setOnBackPressedListener(this);
 
 
@@ -312,6 +315,15 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             default:
                 break;
         }
+
+    }
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onClick(Area area) {
+        objectType = Context.OBJECT_TYPE.AREA;
+        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreaDetailsFragment(area), "AREA DETAILS").commit();
+        floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
 }
