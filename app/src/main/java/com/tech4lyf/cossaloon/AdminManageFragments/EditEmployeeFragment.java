@@ -89,7 +89,8 @@ public class EditEmployeeFragment extends Fragment implements View.OnClickListen
                     databaseReferenceEmployees.child(employee.getId()).child("phoneNumber").setValue(enteredPhoneNumber);
 
                     Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
-                    EditEmployeeFragment.this.getParentFragmentManager().beginTransaction().remove(EditEmployeeFragment.this).commit();
+                    if (!getParentFragmentManager().isDestroyed())
+                        getParentFragmentManager().beginTransaction().remove(EditEmployeeFragment.this).commit();
 
                 } else {
                     Toast.makeText(this.getContext(), "Enter Fields Properly!!", Toast.LENGTH_SHORT).show();
@@ -98,7 +99,8 @@ public class EditEmployeeFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.admin_edit_employee_cancel:
-                getParentFragmentManager().beginTransaction().remove(EditEmployeeFragment.this).commit();
+                if (!getParentFragmentManager().isDestroyed())
+                    getParentFragmentManager().beginTransaction().remove(EditEmployeeFragment.this).commit();
 
             default:
                 break;

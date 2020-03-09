@@ -1,4 +1,4 @@
-package com.tech4lyf.cossaloon.AdminDetailsFragments;
+package com.tech4lyf.cossaloon.Activities;
 
 
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,30 +16,34 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.AdminDetailBillsFragment.AreaDetailBillsFragment;
+import com.tech4lyf.cossaloon.AdminDetailBillsFragment.EmployeeDetailBillsFragment;
+import com.tech4lyf.cossaloon.AdminEmployeeDetailsFragments.EmployeeDetailInfoFragment;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
-import com.tech4lyf.cossaloon.Models.Area;
+import com.tech4lyf.cossaloon.Models.Bill;
+import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AreaDetailsFragment extends Fragment implements View.OnClickListener {
+public class EmployeeInfoFragment extends Fragment implements View.OnClickListener {
 
     ArrayList<String> listItems = new ArrayList<>();
     ArrayList<Integer> listItemPrices = new ArrayList<>();
@@ -48,14 +51,14 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
     private String selectedMonth;
     private String selectedYear;
     private View root;
-    private DatabaseReference databaseReferenceAreas;
+    private DatabaseReference databaseReferenceEmployees;
     private DatabaseReference databaseReferenceIncomes;
-    private TextView areaName;
+    private TextView employeeName;
     private TextView jobsToday;
     private TextView jobsThisMonth;
     private RelativeLayout bills;
     private RelativeLayout info;
-    private Area area;
+    private Employee employee;
     private CalendarView calendar;
     private String currentDate;
     private String currentMonth;
@@ -72,15 +75,13 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
     private CardView delete;
     private Integer jobsTodayCount;
     private Integer jobsThisMonthCount;
-    private EditText editName;
-    private TextView editNameEnter;
 
-    public AreaDetailsFragment() {
+    public EmployeeInfoFragment() {
         // Required empty public constructor
     }
 
-    public AreaDetailsFragment(Area area) {
-        this.area = area;
+    public EmployeeInfoFragment(Employee employee) {
+        this.employee = employee;
 
     }
 
@@ -88,7 +89,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_area_details, container, false);
+        root = inflater.inflate(R.layout.fragment_employee_info, container, false);
         return root;
     }
 
@@ -98,23 +99,21 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
         AdminHomeActivity.level = 2;
 
 
-        areaName = root.findViewById(R.id.admin_area_details_title);
-        info = root.findViewById(R.id.admin_area_details_info);
-        delete = root.findViewById(R.id.admin_area_details_delete);
-        bills = root.findViewById(R.id.admin_area_details_bills);
-        expandableLayoutInfo = root.findViewById(R.id.admin_area_details_info_expandable_layout);
-        expandableLayoutBills = root.findViewById(R.id.admin_area_details_bills_expandable_layout);
-        calendar = root.findViewById(R.id.admin_area_details_calendar);
-        incomeDaily = root.findViewById(R.id.admin_area_details_income_daily);
-        incomeMonthly = root.findViewById(R.id.admin_area_details_income_monthly);
-        dP = root.findViewById(R.id.admin_area_details_image);
-        jobsToday = root.findViewById(R.id.admin_area_details_jobs_today);
-        jobsThisMonth = root.findViewById(R.id.admin_area_details_jobs_this_month);
-        editName = root.findViewById(R.id.admin_area_details_edit_name);
-        editNameEnter = root.findViewById(R.id.admin_area_details_edit_name_enter);
+        employeeName = root.findViewById(R.id.admin_employee_details_title);
+        info = root.findViewById(R.id.admin_employee_details_info);
+        delete = root.findViewById(R.id.admin_employee_details_delete);
+        bills = root.findViewById(R.id.admin_employee_details_bills);
+        expandableLayoutInfo = root.findViewById(R.id.admin_employee_details_info_expandable_layout);
+        expandableLayoutBills = root.findViewById(R.id.admin_employee_details_bills_expandable_layout);
+        calendar = root.findViewById(R.id.admin_employee_details_calendar);
+        incomeDaily = root.findViewById(R.id.admin_employee_details_income_daily);
+        incomeMonthly = root.findViewById(R.id.admin_employee_details_income_monthly);
+        dP = root.findViewById(R.id.admin_employee_details_image);
+        jobsToday = root.findViewById(R.id.admin_employee_details_jobs_today);
+        jobsThisMonth = root.findViewById(R.id.admin_employee_details_jobs_this_month);
 
         databaseReferenceIncomes = FirebaseDatabase.getInstance().getReference().child("Incomes");
-        databaseReferenceAreas = FirebaseDatabase.getInstance().getReference().child("Areas");
+        databaseReferenceEmployees = FirebaseDatabase.getInstance().getReference().child("Employees");
 
 
         currentDate = FormatData.getCurrentDeviceDate();
@@ -127,18 +126,18 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
         calendarListener();
 
-        editName.setText(area.getName());
 
-
-        editNameEnter.setOnClickListener(this);
         info.setOnClickListener(this);
         bills.setOnClickListener(this);
         delete.setOnClickListener(this);
 
 
-        areaName.setText(area.getName());
+        employeeName.setText(employee.getName());
+        if (employee.getdPUriString() != null)
+            Glide.with(ChangeOfStyle.getContext()).load(employee.getdPUriString()).into(dP);
         jobsThisMonth.setText(FormatData.setJobsCountThisMonth(jobsThisMonthCount));
         jobsToday.setText(FormatData.setJobsCountToday(jobsTodayCount));
+        // test();
 
 
     }
@@ -162,7 +161,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
                 Log.d("selected Date " + selectedDate + selectedMonth + selectedYear, "currentDate " + currentDate + currentMonth + currentYear);
 
 
-                databaseReferenceIncomes.child(selectedYear).child(selectedMonth).child(selectedDate).child(area.getId()).addValueEventListener(new ValueEventListener() {
+                databaseReferenceIncomes.child(selectedYear).child(selectedMonth).child(selectedDate).child(employee.getId()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
@@ -177,7 +176,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
                     }
                 });
-                databaseReferenceIncomes.child(selectedYear).child(selectedMonth).child(area.getId()).addValueEventListener(new ValueEventListener() {
+                databaseReferenceIncomes.child(selectedYear).child(selectedMonth).child(employee.getId()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
@@ -198,7 +197,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
     private void fireBaseListener() {
 
-        databaseReferenceJobsToday.child(area.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReferenceJobsToday.child(employee.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -215,7 +214,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
             }
         });
-        databaseReferenceJobsThisMonth.child(area.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReferenceJobsThisMonth.child(employee.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -233,7 +232,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
             }
         });
 
-        databaseReferenceIncomes.child(currentYear).child(currentMonth).child(currentDate).child(area.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReferenceIncomes.child(currentYear).child(currentMonth).child(currentDate).child(employee.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -248,7 +247,7 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
             }
         });
-        databaseReferenceIncomes.child(currentYear).child(currentMonth).child(area.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReferenceIncomes.child(currentYear).child(currentMonth).child(employee.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -265,41 +264,53 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
         });
     }
 
+    private void test() {
+        DatabaseReference databaseReferenceBills = FirebaseDatabase.getInstance().getReference().child("Bills");
 
+
+        listItems.add("cutting");
+        listItems.add("shaving");
+        listItems.add("dyeing");
+        listItemPrices.add(120);
+        listItemPrices.add(40);
+        listItemPrices.add(30);
+
+        String date = new SimpleDateFormat("dd").format(new Date().getTime());
+        String month = new SimpleDateFormat("MM").format(new Date().getTime());
+        String year = new SimpleDateFormat("yyyy").format(new Date().getTime());
+        String time = new SimpleDateFormat("hh:mm:ss").format(new Date().getTime());
+
+
+        String key = databaseReferenceBills.push().getKey();
+
+        databaseReferenceBills.child(year).child(month).child(date).child(key).setValue(new Bill(key, employee.getAreaId(), employee.getAreaName(), employee.getStoreId(), employee.getStoreName(), employee.getId(), employee.getName(), date, time, listItems, listItemPrices));
+
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.admin_area_details_bills:
+            case R.id.admin_employee_details_bills:
                 if (expandableLayoutBills.isExpanded()) {
                     expandableLayoutBills.collapse(true);
                 } else {
-                    getChildFragmentManager().beginTransaction().replace(R.id.admin_area_details_bills_fragment_container, new AreaDetailBillsFragment(area.getId()), "BILLS").commit();
+                    getChildFragmentManager().beginTransaction().replace(R.id.admin_employee_details_bills_fragment_container, new EmployeeDetailBillsFragment(employee.getId()), "BILLS").commit();
                     expandableLayoutBills.expand(true);
                 }
                 break;
 
-            case R.id.admin_area_details_info:
+            case R.id.admin_employee_details_info:
                 if (expandableLayoutInfo.isExpanded()) {
                     expandableLayoutInfo.collapse(true);
                 } else {
+                    getChildFragmentManager().beginTransaction().replace(R.id.admin_employee_details_info_fragment_container, new EmployeeDetailInfoFragment(employee), "INFO").commit();
                     expandableLayoutInfo.expand(true);
                 }
                 break;
 
-            case R.id.admin_area_details_delete:
-                deleteArea();
-                break;
-
-            case R.id.admin_area_details_edit_name_enter:
-                String enteredName = editName.getText().toString();
-                if (!(enteredName.length() < 1)) {
-                    databaseReferenceAreas.child(area.getId()).child("name").setValue(enteredName);
-                    areaName.setText(enteredName);
-                }
-                expandableLayoutInfo.collapse(true);
-
+            case R.id.admin_employee_details_delete:
+                deleteEmployee();
                 break;
 
             default:
@@ -308,12 +319,12 @@ public class AreaDetailsFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private void deleteArea() {
-        databaseReferenceAreas.child(area.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+    private void deleteEmployee() {
+        databaseReferenceEmployees.child(employee.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(ChangeOfStyle.getContext(),"Area Removed Successfully",Toast.LENGTH_SHORT).show();
-                Listeners.triggerOnClickDashBoardItemListener(R.string.areas);
+                Toast.makeText(ChangeOfStyle.getContext(), "Employee Removed Successfully", Toast.LENGTH_SHORT).show();
+                Listeners.triggerOnClickDashBoardItemListener(R.string.employees);
 
             }
         });

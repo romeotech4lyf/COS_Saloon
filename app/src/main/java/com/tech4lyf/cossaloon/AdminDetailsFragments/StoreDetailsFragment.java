@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.AdminDetailBillsFragment.StoreDetailBillsFragment;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
+import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Store;
@@ -71,6 +73,8 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
     private CardView delete;
     private Integer jobsTodayCount;
     private Integer jobsThisMonthCount;
+    private EditText editName;
+    private TextView editNameEnter;
 
     public StoreDetailsFragment() {
         // Required empty public constructor
@@ -86,13 +90,16 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_store_details, container, false);
+        AdminHomeActivity.objectType = Context.OBJECT_TYPE.STORE;
+        AdminHomeActivity.level = 2;
+
+
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AdminHomeActivity.level = 2;
 
 
         storeName = root.findViewById(R.id.admin_store_details_title);
@@ -107,6 +114,8 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
         dP = root.findViewById(R.id.admin_store_details_image);
         jobsToday = root.findViewById(R.id.admin_store_details_jobs_today);
         jobsThisMonth = root.findViewById(R.id.admin_store_details_jobs_this_month);
+        editName = root.findViewById(R.id.admin_store_details_edit_name);
+        editNameEnter = root.findViewById(R.id.admin_store_details_edit_name_enter);
 
         databaseReferenceIncomes = FirebaseDatabase.getInstance().getReference().child("Incomes");
         databaseReferenceStores = FirebaseDatabase.getInstance().getReference().child("Stores");
@@ -122,10 +131,13 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
 
         calendarListener();
 
+        editName.setText(store.getName());
+
 
         info.setOnClickListener(this);
         bills.setOnClickListener(this);
         delete.setOnClickListener(this);
+        editNameEnter.setOnClickListener(this);
 
 
         storeName.setText(store.getName());
@@ -136,6 +148,7 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
 
 
     }
+
 
     private void calendarListener() {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -280,6 +293,15 @@ public class StoreDetailsFragment extends Fragment implements View.OnClickListen
                 } else {
                     expandableLayoutInfo.expand(true);
                 }
+                break;
+
+            case R.id.admin_store_details_edit_name_enter:
+                String enteredName = editName.getText().toString();
+                if (!(enteredName.length() < 1)) {
+                    databaseReferenceStores.child(store.getId()).child("name").setValue(enteredName);
+                    storeName.setText(enteredName);
+                }
+                expandableLayoutInfo.collapse(true);
                 break;
 
             case R.id.admin_store_details_delete:

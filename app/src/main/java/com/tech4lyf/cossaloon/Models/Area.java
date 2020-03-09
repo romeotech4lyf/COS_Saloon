@@ -4,15 +4,24 @@ public class Area {
 
     private String id;
     private String name;
+    private String addedDate;
+
+    public Area(String id, String name, String addedDate) {
+        this.id = id;
+        this.name = name;
+        this.addedDate = addedDate;
+    }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
 
     public Area() {
 
     }
 
-
-    public Area(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
     }
 
     public String getId() {

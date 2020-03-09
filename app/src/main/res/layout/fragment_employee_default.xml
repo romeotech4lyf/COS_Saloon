@@ -5,19 +5,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:checkMark="@color/colorAccentLight"
+            android:checked="true"
+            android:ellipsize="end"
+            android:gravity="start|left|bottom"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:text="Select Services"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="20dp"
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="10dp"
     android:layout_toLeftOf="@id/dummy"
@@ -32,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/employee_default_put_bill_recycler_view"
@@ -52,7 +70,8 @@
             android:layout_gravity="center|bottom"
             android:gravity="center_horizontal|bottom"
             android:text="190"
-            android:textColor="@color/colorAccent"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorWhite"
             android:textSize="48dp"
             android:textStyle="bold" />
 
@@ -66,7 +85,8 @@
             android:gravity="center_horizontal|top"
             android:paddingBottom="5dp"
             android:text="TOTAL"
-            android:textColor="@color/colorSeventyFivePercentBlack"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorTransparentWhite"
             android:textSize="16dp" />
 
     </LinearLayout>
@@ -83,7 +103,7 @@
             android:elevation="50dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorGreen"
             app:cardCornerRadius="24dp"
             app:cardUseCompatPadding="true"
             >

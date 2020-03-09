@@ -88,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
         previousDate = sharedpreferences.getString("lastLoginDate", null);
         dateToday = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
 
-        if(!(getIntent().getBooleanExtra("isReturning",true))) {
 
 
             if (previousDate != null) {
@@ -101,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }
-        }
+
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

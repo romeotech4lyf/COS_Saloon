@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/colorOffWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".AdminDetailsFragments.AreaDetailsFragment">
+    tools:context=".AdminDetailsFragments.EmployeeDetailsFragment">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         android:background="@color/colorOffWhite">
 
 
         <!-- TODO: Update blank fragment layout -->
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/admin_area_details_holder_card"
+            android:id="@+id/admin_employee_details_holder_card"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="48dp"
@@ -30,6 +31,7 @@
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
@@ -44,23 +46,23 @@
 
 
                 <TextView
-                    android:id="@+id/admin_area_details_title"
+                    android:id="@+id/admin_employee_details_title"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
-                    android:text="Area Name"
+                    android:text="Employee Name"
                     android:textColor="@color/colorAccent"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
 
                 <TextView
-                    android:id="@+id/admin_area_details_jobs_today"
+                    android:id="@+id/admin_employee_details_jobs_today"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:layout_below="@id/admin_area_details_title"
+                    android:layout_below="@id/admin_employee_details_title"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_horizontal|top"
                     android:text="Today's Jobs : 4 "
@@ -68,13 +70,13 @@
                     android:textSize="10dp" />
 
                 <TextView
-                    android:id="@+id/admin_area_details_jobs_this_month"
+                    android:id="@+id/admin_employee_details_jobs_this_month"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:layout_below="@id/admin_area_details_title"
+                    android:layout_below="@id/admin_employee_details_title"
                     android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@id/admin_area_details_jobs_today"
-                    android:layout_toRightOf="@id/admin_area_details_jobs_today"
+                    android:layout_toEndOf="@id/admin_employee_details_jobs_today"
+                    android:layout_toRightOf="@id/admin_employee_details_jobs_today"
                     android:gravity="center_horizontal|top"
                     android:text="This Months's Jobs : 4 "
                     android:textColor="@color/colorBlack"
@@ -82,23 +84,24 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/admin_area_details_image"
+            android:id="@+id/admin_employee_details_image"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:elevation="30dp"
-            android:src="@mipmap/area"
-            />
+            android:src="@mipmap/admin_dp"
+            android:visibility="gone" />
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/admin_area_details_calendar_holding_card"
+            android:id="@+id/admin_employee_details_calendar_holding_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/admin_area_details_holder_card"
+            android:layout_below="@id/admin_employee_details_holder_card"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="100dp"
@@ -126,17 +129,17 @@
 
 
             <CalendarView
-                android:id="@+id/admin_area_details_calendar"
+                android:id="@+id/admin_employee_details_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
-                android:background="@color/colorWhite"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginBottom="20dp"
+                android:background="@color/colorWhite"
                 android:forceDarkAllowed="true" />
 
         </androidx.cardview.widget.CardView>
@@ -144,7 +147,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_below="@id/admin_area_details_holder_card"
+            android:layout_below="@id/admin_employee_details_holder_card"
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
@@ -157,7 +160,7 @@
             android:id="@+id/dashBoard_admin_income_cards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/admin_area_details_holder_card"
+            android:layout_below="@id/admin_employee_details_holder_card"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
@@ -193,16 +196,16 @@
                 app:cardUseCompatPadding="true">
 
                 <TextView
-                    android:id="@+id/admin_area_details_income_monthly"
+                    android:id="@+id/admin_employee_details_income_monthly"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textStyle="bold"
                     android:textColor="@color/colorAccent"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -241,16 +244,16 @@
 
 
                 <TextView
-                    android:id="@+id/admin_area_details_income_daily"
+                    android:id="@+id/admin_employee_details_income_daily"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
-                    android:textStyle="bold"
                     android:textColor="@color/colorWhite"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -270,14 +273,15 @@
         </RelativeLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/admin_employee_details_details_bills_holding_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/admin_area_details_calendar_holding_card"
-            android:id="@+id/admin_area_details_details_bills_holding_card"
+            android:layout_below="@id/admin_employee_details_calendar_holding_card"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="70dp"
             android:elevation="40dp"
             android:foreground="?selectableItemBackground"
             app:cardBackgroundColor="@color/colorWhite"
@@ -294,33 +298,33 @@
                     android:layout_height="wrap_content">
 
                     <RelativeLayout
-                        android:id="@+id/admin_area_details_info"
+                        android:id="@+id/admin_employee_details_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/admin_area_details_info_dummy_image"
+                            android:id="@+id/admin_employee_details_info_dummy_image"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="8dp"
-                            android:scaleType="fitCenter"
                             android:padding="10dp"
+                            android:scaleType="fitCenter"
                             android:src="@mipmap/info"
                             android:tint="@color/colorAccent" />
 
                         <TextView
-                            android:id="@+id/admin_area_details_info_dummy_text"
+                            android:id="@+id/admin_employee_details_info_dummy_text"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="2dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_toRightOf="@id/admin_area_details_info_dummy_image"
+                            android:layout_toRightOf="@id/admin_employee_details_info_dummy_image"
                             android:gravity="center"
-                            android:text="Area Details"
+                            android:text="Employee Details"
                             android:textColor="@color/colorAccent"
                             android:textSize="16dp" />
 
@@ -328,10 +332,10 @@
 
 
                     <net.cachapa.expandablelayout.ExpandableLayout
-                        android:id="@+id/admin_area_details_info_expandable_layout"
+                        android:id="@+id/admin_employee_details_info_expandable_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/admin_area_details_info"
+                        android:layout_below="@id/admin_employee_details_info"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginEnd="10dp"
@@ -339,50 +343,14 @@
                         app:el_expanded="false">
 
 
-                        <LinearLayout
-
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/admin_employee_details_info_fragment_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:weightSum="3"
-                            android:orientation="vertical">
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:forceDarkAllowed="true" />
 
-
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Edit Name"
-                                android:id="@+id/admin_area_details_edit_name"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:textSize="16dp"
-                                android:inputType="text"
-                                android:background="@color/colorOffWhite"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:textColor="@color/colorBlack"/>
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/admin_area_details_edit_name_enter"
-                                android:text="Enter"
-                                android:gravity="center"
-                                android:paddingTop="10dp"
-                                android:background="@color/colorAccent"
-                                android:paddingBottom="10dp"
-                                android:layout_weight="1"
-                                android:textSize="20dp"
-                                android:textStyle="bold"
-                                android:textColor="@color/colorWhite"/>
-
-
-
-
-                        </LinearLayout>
                     </net.cachapa.expandablelayout.ExpandableLayout>
 
 
@@ -399,12 +367,12 @@
                     android:layout_height="wrap_content">
 
                     <RelativeLayout
-                        android:id="@+id/admin_area_details_bills"
+                        android:id="@+id/admin_employee_details_bills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/admin_area_details_bills_dummy_image"
+                            android:id="@+id/admin_employee_details_bills_dummy_image"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_alignParentStart="true"
@@ -416,26 +384,27 @@
                             android:tint="@color/colorAccent" />
 
                         <TextView
-                            android:id="@+id/admin_area_details_bills_dummy_text"
+                            android:id="@+id/admin_employee_details_bills_dummy_text"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="2dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_toRightOf="@+id/admin_area_details_bills_dummy_image"
+                            android:layout_toRightOf="@+id/admin_employee_details_bills_dummy_image"
                             android:gravity="center"
                             android:text="Day's Bills"
                             android:textColor="@color/colorAccent"
+
                             android:textSize="16dp" />
                     </RelativeLayout>
 
 
                     <net.cachapa.expandablelayout.ExpandableLayout
-                        android:id="@+id/admin_area_details_bills_expandable_layout"
+                        android:id="@+id/admin_employee_details_bills_expandable_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/admin_area_details_bills"
+                        android:layout_below="@id/admin_employee_details_bills"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
@@ -445,7 +414,7 @@
 
 
                         <androidx.fragment.app.FragmentContainerView
-                            android:id="@+id/admin_area_details_bills_fragment_container"
+                            android:id="@+id/admin_employee_details_bills_fragment_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -460,45 +429,43 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/admin_area_details_delete"
-            android:layout_width="match_parent"
+            android:id="@+id/admin_employee_details_delete"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/admin_area_details_details_bills_holding_card"
+            android:layout_below="@id/admin_employee_details_details_bills_holding_card"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:elevation="100dp"
             android:foreground="?selectableItemBackground"
+            android:visibility="gone"
             app:cardBackgroundColor="#ff0000"
             app:cardCornerRadius="25dp"
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
 
-                android:id="@+id/admin_area_details_delete_"
+                android:id="@+id/admin_employee_details_delete_"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_height="wrap_content">
 
 
                 <TextView
-                    android:id="@+id/admin_area_details_delete_dummy_text"
+                    android:id="@+id/admin_employee_details_delete_dummy_text"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="2dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="REMOVE AREA"
-                    android:textStyle="bold"
+                    android:text="REMOVE EMPLOYEE"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

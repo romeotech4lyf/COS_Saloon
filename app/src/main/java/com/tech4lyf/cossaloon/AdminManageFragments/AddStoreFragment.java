@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
 import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.FormatData;
@@ -189,8 +188,10 @@ public class AddStoreFragment extends Fragment implements View.OnClickListener {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getContext(), "Store Added Successfully", Toast.LENGTH_SHORT).show();
-                            AddStoreFragment.this.getParentFragmentManager().beginTransaction().remove(AddStoreFragment.this).commit();
-
+                            if (!getParentFragmentManager().isDestroyed()) {
+                                AdminHomeActivity.level = 1;
+                                getParentFragmentManager().beginTransaction().remove(AddStoreFragment.this).commit();
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -209,9 +210,10 @@ public class AddStoreFragment extends Fragment implements View.OnClickListener {
 
 
             case R.id.admin_add_store_cancel:
-                AdminHomeActivity.level = 1;
-                getParentFragmentManager().beginTransaction().remove(AddStoreFragment.this).commit();
-
+                if (!getParentFragmentManager().isDestroyed()) {
+                    AdminHomeActivity.level = 1;
+                    getParentFragmentManager().beginTransaction().remove(AddStoreFragment.this).commit();
+                }
         }
     }
 

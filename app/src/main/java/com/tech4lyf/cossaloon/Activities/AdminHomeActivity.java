@@ -2,7 +2,6 @@ package com.tech4lyf.cossaloon.Activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +30,9 @@ import com.tech4lyf.cossaloon.AdminDashBoardFragments.StoresFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.AreaDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.EmployeeDetailsFragment;
 import com.tech4lyf.cossaloon.AdminDetailsFragments.StoreDetailsFragment;
+import com.tech4lyf.cossaloon.AdminManageFragments.AddAreaFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
+import com.tech4lyf.cossaloon.AdminManageFragments.AddServiceFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddStoreFragment;
 import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.FormatData;
@@ -74,7 +75,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
         switch (stringId) {
             case R.string.stores:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
+                if (!getSupportFragmentManager().isDestroyed())
+                    getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
                 floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
                 floatingActionButton.setVisibility(View.VISIBLE);
                 objectType = Context.OBJECT_TYPE.STORE;
@@ -82,7 +84,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 break;
 
             case R.string.services:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICE").commit();
+                if (!getSupportFragmentManager().isDestroyed())
+                    getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICE").commit();
                 floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
                 floatingActionButton.setVisibility(View.VISIBLE);
                 objectType = Context.OBJECT_TYPE.SERVICE;
@@ -90,14 +93,16 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 break;
 
             case R.string.employees:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
+                if (!getSupportFragmentManager().isDestroyed())
+                    getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
                 floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
                 floatingActionButton.setVisibility(View.VISIBLE);
                 objectType = Context.OBJECT_TYPE.EMPLOYEE;
                 break;
 
             case R.string.areas:
-                getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREA").commit();
+                if (!getSupportFragmentManager().isDestroyed())
+                    getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREA").commit();
                 floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
                 floatingActionButton.setVisibility(View.VISIBLE);
                 objectType = Context.OBJECT_TYPE.AREA;
@@ -119,7 +124,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         jobsToday = findViewById(R.id.dashBoard_day_jobs);
         fragmentManager = getSupportFragmentManager();
         objectType = Context.OBJECT_TYPE.NULL;
-        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
+        if (!fragmentManager.isDestroyed())
+            fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
         FirebaseApp.initializeApp(this);
         setSupportActionBar(toolbar);
         floatingActionButton.setImageResource(R.mipmap.logout);
@@ -211,7 +217,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             //android.os.Process.killProcess(android.os.Process.myPid());
         else if ((AdminHomeActivity.level == 0)) {
             destroyFragments();
-            fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
+            if (!fragmentManager.isDestroyed())
+                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
             floatingActionButton.setImageResource(R.mipmap.logout);
             objectType = Context.OBJECT_TYPE.NULL;
         } else if (AdminHomeActivity.level == 1) {
@@ -227,7 +234,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
     void destroyFragments() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            if (!getSupportFragmentManager().isDestroyed())
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
 
@@ -236,20 +244,22 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     public void onBackPressed(Context.OBJECT_TYPE objectType) {
         destroyFragments();
 
-
-
         switch (objectType) {
             case EMPLOYEE:
-                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEES").commit();
+                if (!fragmentManager.isDestroyed())
+                    fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEES").commit();
                 break;
             case STORE:
-                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
+                if (!fragmentManager.isDestroyed())
+                    fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
                 break;
             case AREA:
-                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREAS").commit();
+                if (!fragmentManager.isDestroyed())
+                    fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREAS").commit();
                 break;
             case SERVICE:
-                fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICES").commit();
+                if (!fragmentManager.isDestroyed())
+                    fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICES").commit();
                 break;
             default:
                 break;
@@ -261,7 +271,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @Override
     public void onClick(Store store) {
         objectType = Context.OBJECT_TYPE.STORE;
-        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
+        if (!fragmentManager.isDestroyed())
+            fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
         floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
@@ -271,7 +282,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     public void onClick(Employee employee) {
 
         objectType = Context.OBJECT_TYPE.EMPLOYEE;
-        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeeDetailsFragment(employee), "EMPLOYEE DETAILS").commit();
+        if (!fragmentManager.isDestroyed())
+            fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeeDetailsFragment(employee), "EMPLOYEE DETAILS").commit();
         floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
@@ -286,25 +298,29 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                     case 1:
                         switch (objectType) {
                             case EMPLOYEE:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                if (!getSupportFragmentManager().isDestroyed())
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
                                 break;
                             case AREA:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_employees_fragment_container, new AddEmployeeFragment()).commit();
+                                if (!getSupportFragmentManager().isDestroyed())
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_areas_fragment_container, new AddAreaFragment()).commit();
                                 break;
                             case STORE:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_stores_fragment_container, new AddStoreFragment()).commit();
+                                if (!getSupportFragmentManager().isDestroyed())
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_stores_fragment_container, new AddStoreFragment()).commit();
+                            case SERVICE:
+                                if (!getSupportFragmentManager().isDestroyed())
+                                    getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_services_fragment_container, new AddServiceFragment()).commit();
                                 break;
                             case NULL:
-                                startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class).putExtra("isReturning", true));
-                                this.finish();
+                                android.os.Process.killProcess(android.os.Process.myPid());
                             default:
                                 break;
                         }
                         break;
 
                     case 0:
-                        startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class).putExtra("isReturning", true));
-                        this.finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
                         break;
 
                     default:
@@ -319,11 +335,13 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
     }
 
+
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Area area) {
         objectType = Context.OBJECT_TYPE.AREA;
-        fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreaDetailsFragment(area), "AREA DETAILS").commit();
+        if (!fragmentManager.isDestroyed())
+            fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreaDetailsFragment(area), "AREA DETAILS").commit();
         floatingActionButton.setVisibility(View.INVISIBLE);
 
     }

@@ -42,9 +42,10 @@ public class RecyclerViewAdapterAreas extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Area area = areaList.get(position);
-        holder.title.setText(area.getName());
-        holder.subTitle.setText("");
-        //    holder.image.setImageResource(R.mipmap.areas);
+        holder.name.setText(area.getName());
+        holder.title.setVisibility(View.GONE);
+        holder.subTitle.setVisibility(View.GONE);
+        holder.image.setImageResource(R.mipmap.area);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,7 @@ public class RecyclerViewAdapterAreas extends RecyclerView.Adapter<RecyclerViewA
         RelativeLayout parent;
         TextView title;
         TextView subTitle;
+        TextView name;
         CircleImageView image;
 
 
@@ -74,6 +76,7 @@ public class RecyclerViewAdapterAreas extends RecyclerView.Adapter<RecyclerViewA
             parent = itemView.findViewById(R.id.parent_recycler_view);
             image = itemView.findViewById(R.id.admin_recyclerView_employee_image);
             title = itemView.findViewById(R.id.admin_recyclerView_store_name);
+            name = itemView.findViewById(R.id.admin_recyclerView_employee_name);
             subTitle = itemView.findViewById(R.id.admin_recyclerView_area_name);
 
 

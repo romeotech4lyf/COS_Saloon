@@ -11,18 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
 import com.tech4lyf.cossaloon.Context;
-import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
@@ -32,18 +28,17 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EmployeesFragment extends Fragment implements View.OnClickListener {
+public class EmployeesFragment extends Fragment {
 
     RecyclerViewAdapterEmployees recyclerViewAdapterEmployees;
     RecyclerView recyclerView;
     View view;
-    FloatingActionButton addEmployee;
-
-
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReferenceEmployees;
+    private ArrayList<Employee> employeeList = new ArrayList<>();
     public EmployeesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,12 +52,6 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
 
     }
 
-
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReferenceEmployees;
-    private ArrayList<Employee> employeeList = new ArrayList<>();
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,13 +64,10 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
 
         recyclerViewAdapterEmployees = new RecyclerViewAdapterEmployees(employeeList);
         recyclerView.setAdapter(recyclerViewAdapterEmployees);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
         fireBaseListener();
-
-
 
 
     }
@@ -95,8 +81,8 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
                 if (dataSnapshot.exists()) {
                     Employee employee = dataSnapshot.getValue(Employee.class);
                     if (employee != null) {
-                        synchronized (employeeList){
-                            if (!employeeList.contains(employee))  {
+                        synchronized (employeeList) {
+                            if (!employeeList.contains(employee)) {
                                 employeeList.add(employee);
                                 recyclerViewAdapterEmployees.setEmployeeList(employeeList);
                                 recyclerViewAdapterEmployees.notifyDataSetChanged();
@@ -119,7 +105,7 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
                 if (dataSnapshot.exists()) {
                     Employee employee = dataSnapshot.getValue(Employee.class);
                     if (employee != null) {
-                        synchronized (employeeList){
+                        synchronized (employeeList) {
                             employeeList.remove(employee);
                             recyclerViewAdapterEmployees.setEmployeeList(employeeList);
                             recyclerViewAdapterEmployees.notifyDataSetChanged();
@@ -147,12 +133,5 @@ public class EmployeesFragment extends Fragment implements View.OnClickListener 
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
 
-            default:
-                break;
-        }
-    }
 }

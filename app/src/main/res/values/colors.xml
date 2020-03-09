@@ -12,6 +12,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorTransparentWhite">#90FFFFFF</color>
     <color name="colorSeventyFivePercentBlack">#75000000</color>
+    <color name="colorGreen">#006400</color>
     <color name="colorFiftyPercentBlack">#50000000</color>
     <color name="colorTwentyFivePercentBlack">#25000000</color>
 </resources>

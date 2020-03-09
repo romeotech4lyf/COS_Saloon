@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -81,7 +82,9 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
     private Integer receivedTotalYearlyStore = 0;
     private Integer receivedTotalYearlyArea = 0;
     private Integer receivedTotalYearlyCombined = 0;
-    private Integer addToCount1,addToCount2,addToCount3,addToCount4,addToCount5,addToCount6,addToCount7,addToCount8 = 0;
+    private Integer addToCount1, addToCount2, addToCount3, addToCount4, addToCount5, addToCount6, addToCount7, addToCount8 = 0;
+    private TextView total;
+    private Integer totalPriceText = 0;
 
     public EmployeeDefaultFragment() {
         // Required empty public constructor
@@ -105,6 +108,9 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
         super.onViewCreated(view, savedInstanceState);
         recyclerView = root.findViewById(R.id.employee_default_put_bill_recycler_view);
         enterBill = root.findViewById(R.id.employee_dashBoard_default_enter_bill);
+        total = root.findViewById(R.id.employee_default_total);
+        total.setText("0");
+
 
         currentDate = FormatData.getCurrentDeviceDate();
         currentMonth = FormatData.getCurrentDeviceMonth();
@@ -162,7 +168,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                 = billTotalPrice8 = billTotalPrice9 = billTotalPrice10 = billTotalPrice11 = billTotalPrice12 = bill.getTotalPrice();
 
 
-        addToCount1 =addToCount2 = addToCount3 =addToCount4 =addToCount5=addToCount6=addToCount7=addToCount8 =1;
+        addToCount1 = addToCount2 = addToCount3 = addToCount4 = addToCount5 = addToCount6 = addToCount7 = addToCount8 = 1;
 
 
         databaseReferenceBills.child(currentYear).child(currentMonth).child(currentDate).child(key).setValue(bill)
@@ -216,7 +222,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsToday.child(employee.getAreaId()).setValue(receivedCount + addToCount3);
-                                    addToCount3=0;
+                                    addToCount3 = 0;
                                 }
 
                                 @Override
@@ -234,7 +240,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsToday.child("Combined").setValue(receivedCount + addToCount4);
-                                    addToCount4 =0;
+                                    addToCount4 = 0;
                                 }
 
                                 @Override
@@ -252,7 +258,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsThisMonth.child(employee.getId()).setValue(receivedCount + addToCount5);
-                                    addToCount5 =0;
+                                    addToCount5 = 0;
                                 }
 
                                 @Override
@@ -270,7 +276,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsThisMonth.child(employee.getStoreId()).setValue(receivedCount + addToCount6);
-                                    addToCount6=0;
+                                    addToCount6 = 0;
                                 }
 
                                 @Override
@@ -288,7 +294,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsThisMonth.child(employee.getAreaId()).setValue(receivedCount + addToCount7);
-                                    addToCount7 =0;
+                                    addToCount7 = 0;
                                 }
 
                                 @Override
@@ -306,7 +312,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                     } else
                                         receivedCount = 0;
                                     databaseReferenceJobsThisMonth.child("Combined").setValue(receivedCount + addToCount8);
-                                    addToCount8=0;
+                                    addToCount8 = 0;
                                 }
 
                                 @Override
@@ -350,7 +356,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
                                             receivedTotalDailyStore = dataSnapshot.getValue(Integer.class);
                                         } else
                                             receivedTotalDailyStore = 0;
-                                        Log.d(String.valueOf(billTotalPrice2),String.valueOf(billTotalPrice1));
+                                        Log.d(String.valueOf(billTotalPrice2), String.valueOf(billTotalPrice1));
 
                                         totalDailyStore = receivedTotalDailyStore + billTotalPrice2;
                                         billTotalPrice2 = 0;
@@ -661,14 +667,17 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
 
     }
 
-
     @Override
     public void onClick(Service service, Context.FLAG flag) {
 
         if (flag == Context.FLAG.ADD) {
+            totalPriceText += service.getPrice();
+            total.setText(String.valueOf(totalPriceText));
             serviceListItemNames.add(service.getName());
             serviceListItemPrices.add(service.getPrice());
         } else if (flag == Context.FLAG.DELETE) {
+            totalPriceText -= service.getPrice();
+            total.setText(String.valueOf(totalPriceText));
             serviceListItemNames.remove(service.getName());
             serviceListItemPrices.remove(service.getPrice());
         }

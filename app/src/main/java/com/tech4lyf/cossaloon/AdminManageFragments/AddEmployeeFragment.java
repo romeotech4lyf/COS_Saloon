@@ -299,7 +299,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getContext(), "Employee Added Successfully", Toast.LENGTH_SHORT).show();
-                            AddEmployeeFragment.this.getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
+                            getParentFragmentManager().beginTransaction().remove(AddEmployeeFragment.this).commit();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {

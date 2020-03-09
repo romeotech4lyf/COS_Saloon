@@ -90,7 +90,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:elevation="30dp"
-            android:src="@mipmap/admin_dp"
+            android:src="@mipmap/company"
             />
 
 
@@ -336,7 +336,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
-                        app:el_expanded="true">
+                        app:el_expanded="false">
 
 
                         <LinearLayout
@@ -368,7 +368,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/admin_services_service_enter_item"
+                                android:id="@+id/admin_store_details_edit_name_enter"
                                 android:text="Enter"
                                 android:gravity="center"
                                 android:paddingTop="10dp"
@@ -496,7 +496,8 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Remove Store"
+                    android:text="REMOVE STORE"
+                    android:textStyle="bold"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dp" />
 

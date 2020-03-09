@@ -18,23 +18,24 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
-import com.tech4lyf.cossaloon.FormatData;
-import com.tech4lyf.cossaloon.Models.Area;
+import com.tech4lyf.cossaloon.Models.Service;
 import com.tech4lyf.cossaloon.R;
 
-public class AddAreaFragment extends Fragment implements View.OnClickListener {
+public class AddServiceFragment extends Fragment implements View.OnClickListener {
 
 
     private View root;
     private String enteredName = null;
+    private String enteredPrice = null;
     private CardView add;
     private CardView cancel;
     private EditText enterName;
-    private DatabaseReference databaseReferenceAreas;
+    private EditText enterPrice;
+    private DatabaseReference databaseReferenceServices;
     private String key;
 
 
-    public AddAreaFragment() {
+    public AddServiceFragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +43,7 @@ public class AddAreaFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_add_area, container, false);
+        root = inflater.inflate(R.layout.fragment_add_service_frgment, container, false);
         return root;
 
     }
@@ -53,14 +54,15 @@ public class AddAreaFragment extends Fragment implements View.OnClickListener {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReferenceAreas = firebaseDatabase.getReference("Areas");
+        databaseReferenceServices = firebaseDatabase.getReference("Services");
 
 
         //
-        enterName = root.findViewById(R.id.admin_add_area_enter_name);
+        enterName = root.findViewById(R.id.admin_add_service_enter_name);
+        enterPrice = root.findViewById(R.id.admin_add_service_enter_price);
 
-        add = root.findViewById(R.id.admin_add_area_ok);
-        cancel = root.findViewById(R.id.admin_add_area_cancel);
+        add = root.findViewById(R.id.admin_add_service_ok);
+        cancel = root.findViewById(R.id.admin_add_service_cancel);
 
 
         AdminHomeActivity.level = 2;
@@ -78,6 +80,7 @@ public class AddAreaFragment extends Fragment implements View.OnClickListener {
 
     private void getInput() {
         enteredName = enterName.getText().toString();
+        enteredPrice = enterPrice.getText().toString();
 
 
     }
@@ -86,21 +89,21 @@ public class AddAreaFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.admin_add_area_ok:
+            case R.id.admin_add_service_ok:
                 getInput();
-                key = databaseReferenceAreas.push().getKey();
-                if (!(enteredName.length() < 1)) {
+                key = databaseReferenceServices.push().getKey();
+                if (!(enteredName.length() < 1) && !(enteredPrice.length() < 1)) {
 
-                    databaseReferenceAreas.child(key).
-                            setValue(new Area(key, enteredName, FormatData.getCurrentDeviceFullDate())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    databaseReferenceServices.child(key).
+                            setValue(new Service(key, enteredName, Integer.valueOf(enteredPrice))).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(getContext(), "Area Added Successfully", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getContext(), "Service Added Successfully", Toast.LENGTH_SHORT).show();
                             if (!getParentFragmentManager().isDestroyed()) {
                                 AdminHomeActivity.level = 1;
-                                getParentFragmentManager().beginTransaction().remove(AddAreaFragment.this).commit();
+                                getParentFragmentManager().beginTransaction().remove(AddServiceFragment.this).commit();
                             }
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -118,11 +121,12 @@ public class AddAreaFragment extends Fragment implements View.OnClickListener {
                 break;
 
 
-            case R.id.admin_add_area_cancel:
+            case R.id.admin_add_service_cancel:
                 if (!getParentFragmentManager().isDestroyed()) {
                     AdminHomeActivity.level = 1;
-                    getParentFragmentManager().beginTransaction().remove(AddAreaFragment.this).commit();
+                    getParentFragmentManager().beginTransaction().remove(AddServiceFragment.this).commit();
                 }
+
         }
     }
 

@@ -99,7 +99,7 @@
                 android:layout_marginBottom="42dp"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/employees_males"/>
+                android:src="@mipmap/employees_males_" />
 
 
             <TextView
