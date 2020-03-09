@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,7 +15,6 @@ import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.R;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,7 +32,7 @@ public class RecyclerViewAdapterEmployees extends RecyclerView.Adapter<RecyclerV
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_recycler_view_employees, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_employees, parent, false));
     }
 
     @Override
@@ -70,7 +68,6 @@ public class RecyclerViewAdapterEmployees extends RecyclerView.Adapter<RecyclerV
         RelativeLayout parent;
         TextView name;
         TextView storeName;
-        ImageView storeImage;
         TextView areaName;
         CircleImageView image;
 
@@ -78,12 +75,11 @@ public class RecyclerViewAdapterEmployees extends RecyclerView.Adapter<RecyclerV
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            parent = itemView.findViewById(R.id.parent_recycler_view);
-            image = itemView.findViewById(R.id.admin_recyclerView_employee_image);
-            name = itemView.findViewById(R.id.admin_recyclerView_employee_name);
-            storeName = itemView.findViewById(R.id.admin_recyclerView_store_name);
-            areaName= itemView.findViewById(R.id.admin_recyclerView_area_name);
-            storeImage = itemView.findViewById(R.id.admin_recyclerView_store_image);
+            parent = itemView.findViewById(R.id.list_item_employees_parent);
+            image = itemView.findViewById(R.id.list_item_employees_image);
+            name = itemView.findViewById(R.id.list_item_employees_name);
+            storeName = itemView.findViewById(R.id.list_item_employees_store_name);
+            areaName = itemView.findViewById(R.id.list_item_employees_area_name);
 
 
         }

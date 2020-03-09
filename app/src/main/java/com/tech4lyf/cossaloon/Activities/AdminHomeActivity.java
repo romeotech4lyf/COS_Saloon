@@ -261,6 +261,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             if (!fragmentManager.isDestroyed())
                 fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
             floatingActionButton.setImageResource(R.mipmap.logout);
+            floatingActionButton.setVisibility(View.GONE);
             objectType = Context.OBJECT_TYPE.NULL;
         } else if (AdminHomeActivity.level == 1) {
             if (objectType != null) {
@@ -347,6 +348,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                             case STORE:
                                 if (!getSupportFragmentManager().isDestroyed())
                                     getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_stores_fragment_container, new AddStoreFragment()).commit();
+                                break;
                             case SERVICE:
                                 if (!getSupportFragmentManager().isDestroyed())
                                     getSupportFragmentManager().beginTransaction().replace(R.id.admin_add_services_fragment_container, new AddServiceFragment()).commit();
@@ -367,6 +369,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
 
                 }
+                break;
 
             case R.id.dashBoard_profile_image:
                 startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), getDP);

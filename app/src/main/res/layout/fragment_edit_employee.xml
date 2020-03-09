@@ -182,7 +182,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:elevation="100dp"
-                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardBackgroundColor="@color/colorGreen"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 

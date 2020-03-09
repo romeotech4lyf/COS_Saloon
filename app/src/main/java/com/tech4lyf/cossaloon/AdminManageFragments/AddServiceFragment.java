@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tech4lyf.cossaloon.Activities.AdminHomeActivity;
+import com.tech4lyf.cossaloon.Context;
+import com.tech4lyf.cossaloon.Listeners;
 import com.tech4lyf.cossaloon.Models.Service;
 import com.tech4lyf.cossaloon.R;
 
@@ -66,6 +68,7 @@ public class AddServiceFragment extends Fragment implements View.OnClickListener
 
 
         AdminHomeActivity.level = 2;
+        AdminHomeActivity.objectType = Context.OBJECT_TYPE.SERVICE;
 
 
         //
@@ -99,10 +102,9 @@ public class AddServiceFragment extends Fragment implements View.OnClickListener
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getContext(), "Service Added Successfully", Toast.LENGTH_SHORT).show();
-                            if (!getParentFragmentManager().isDestroyed()) {
                                 AdminHomeActivity.level = 1;
-                                getParentFragmentManager().beginTransaction().remove(AddServiceFragment.this).commit();
-                            }
+                            Listeners.triggerOnClickDashBoardItemListener(R.string.services);
+
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {

@@ -189,7 +189,7 @@
                 android:layout_marginBottom="42dp"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/area"
+                android:src="@mipmap/pin"
                 />
 
 
@@ -287,12 +287,15 @@
                 app:cardUseCompatPadding="true">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
+
                     android:id="@+id/dashBoard_admin_income_monthly"
-                    android:layout_marginBottom="35dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
+                    android:textStyle="bold"
                     android:textColor="@color/colorAccent"
                     android:textSize="40dp" />
 
@@ -301,11 +304,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="THIS MONTH"
+                    android:text="MONTHLY"
                     android:textAlignment="center"
                     android:textColor="@color/colorSeventyFivePercentBlack"
                     android:textSize="10dp" />
@@ -329,10 +332,12 @@
                 <TextView
                     android:id="@+id/dashBoard_admin_income_daily"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="35dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="0"
+                    android:textStyle="bold"
                     android:textColor="@color/colorWhite"
                     android:textSize="40dp" />
 
@@ -341,13 +346,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="TODAY"
+                    android:text="DAILY"
                     android:textAlignment="center"
-                    android:textColor="@color/colorOffWhite"
+                    android:textColor="@color/colorWhite"
                     android:textSize="10dp" />
 
             </androidx.cardview.widget.CardView>

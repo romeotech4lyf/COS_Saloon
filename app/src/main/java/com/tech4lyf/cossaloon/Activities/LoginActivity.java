@@ -182,7 +182,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
 
-                        Toast.makeText(getApplicationContext(), "Wrong Password!", Toast.LENGTH_LONG).show();
                         dialog.cancel();
 
                     }
