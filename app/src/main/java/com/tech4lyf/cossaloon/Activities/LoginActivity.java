@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("phoneNumber", phoneNumber).commit();
                                 editor.putString("password", password).commit();
                                 editor.putString("isAdministrator", "true").commit();
-                                startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class).putExtra("key", administrator_.getKey()));
                                 LoginActivity.this.finish();
 
                             }

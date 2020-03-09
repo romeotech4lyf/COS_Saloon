@@ -47,7 +47,6 @@ public class EmployeeDetailInfoFragment extends Fragment implements View.OnClick
     CardView edit;
     FirebaseStorage storageDp;
     DatabaseReference databaseReferenceEmployees;
-    private StorageReference storageReferenceDp;
     private FirebaseStorage storage;
     private StorageReference storageReferenceDP;
     private StorageReference storageReferenceKYC;

@@ -2,17 +2,24 @@ package com.tech4lyf.cossaloon.Activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +27,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.tech4lyf.cossaloon.AdminDashBoardFragments.AreasFragment;
@@ -34,6 +44,7 @@ import com.tech4lyf.cossaloon.AdminManageFragments.AddAreaFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddEmployeeFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddServiceFragment;
 import com.tech4lyf.cossaloon.AdminManageFragments.AddStoreFragment;
+import com.tech4lyf.cossaloon.ChangeOfStyle;
 import com.tech4lyf.cossaloon.Context;
 import com.tech4lyf.cossaloon.FormatData;
 import com.tech4lyf.cossaloon.Listeners;
@@ -45,6 +56,8 @@ import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class AdminHomeActivity extends AppCompatActivity implements Listeners.OnClickDashBoardItemListener, Listeners.OnClickStoreListListener, Listeners.OnClickEmployeeListListener, Listeners.OnBackPressedListener, View.OnClickListener, Listeners.OnClickAreaListListener {
 
     private static final String[] permissions = new String[]{
@@ -54,11 +67,11 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     };
     public static int level = 0;
     public static Context.OBJECT_TYPE objectType = Context.OBJECT_TYPE.NULL;
+    private final int getDP = 1236;
     private TextView jobsToday;
     private TextView jobsThisMonth;
     private AppBarConfiguration mAppBarConfiguration;
     private RecyclerViewAdapterEmployees recyclerViewAdapterEmployees;
-
     private FragmentManager fragmentManager;
     private FloatingActionButton floatingActionButton;
     private String id;
@@ -66,8 +79,14 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     private Integer jobsThisMonthCount = 0;
     private DatabaseReference databaseReferenceJobsToday;
     private DatabaseReference databaseReferenceJobsThisMonth;
+    private DatabaseReference databaseReferenceAdministrators;
     private String currentDate;
     private String currentMonth;
+    private CircleImageView dasBoardDP;
+    private FirebaseStorage storage;
+    private StorageReference storageReferenceDP;
+    private Uri dPUri;
+    private String key;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -122,13 +141,35 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         floatingActionButton = findViewById(R.id.admin_add_fab);
         jobsThisMonth = findViewById(R.id.dashBoard_month_jobs);
         jobsToday = findViewById(R.id.dashBoard_day_jobs);
+        dasBoardDP = findViewById(R.id.dashBoard_profile_image);
         fragmentManager = getSupportFragmentManager();
+        key = getIntent().getStringExtra("key");
         objectType = Context.OBJECT_TYPE.NULL;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
         FirebaseApp.initializeApp(this);
+        storage = FirebaseStorage.getInstance();
+        storageReferenceDP = storage.getReference().child(key + "-dp");
         setSupportActionBar(toolbar);
         floatingActionButton.setImageResource(R.mipmap.logout);
+
+        databaseReferenceAdministrators = FirebaseDatabase.getInstance().getReference().child("Administrators");
+        databaseReferenceAdministrators.child(key).child("dPUriString").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String dP = dataSnapshot.getValue(String.class);
+                    if (dP != null) {
+                        Glide.with(ChangeOfStyle.getContext()).load(Uri.parse(dP)).into(dasBoardDP);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         currentDate = FormatData.getCurrentDeviceDate();
@@ -141,6 +182,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
 
         floatingActionButton.setOnClickListener(this);
+        dasBoardDP.setOnClickListener(this);
         Listeners.setOnClickDashBoardItemListener(this);
         Listeners.setOnClickEmployeeListListener(this);
         Listeners.setOnClickStoreListListener(this);
@@ -205,7 +247,6 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
     }
 
-
     @SuppressLint("RestrictedApi")
     @Override
     public void onBackPressed() {
@@ -231,14 +272,12 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
     }
 
-
     void destroyFragments() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (!getSupportFragmentManager().isDestroyed())
                 getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
-
 
     @Override
     public void onBackPressed(Context.OBJECT_TYPE objectType) {
@@ -329,6 +368,52 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
                 }
 
+            case R.id.dashBoard_profile_image:
+                startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), getDP);
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case getDP:
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        Uri uriImage = data.getData();
+                        storageReferenceDP.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                storageReferenceDP.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        if (uri != null) {
+                                            dPUri = uri;
+                                            databaseReferenceAdministrators.child(key).child("dPUriString").setValue(dPUri.toString());
+                                            Glide.with(ChangeOfStyle.getContext()).load(dPUri).into(dasBoardDP);
+                                        }
+
+                                    }
+                                });
+
+                                Toast.makeText(ChangeOfStyle.getContext(), "DP Uploaded", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ChangeOfStyle.getContext(), "DP Uploading Failed", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        });
+                    }
+                }
+                break;
             default:
                 break;
         }
