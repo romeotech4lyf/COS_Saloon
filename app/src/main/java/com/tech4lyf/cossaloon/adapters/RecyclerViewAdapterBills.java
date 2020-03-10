@@ -41,14 +41,16 @@ public class RecyclerViewAdapterBills extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Bill bill = billList.get(position);
-        holder.employeeName.setText(bill.getEmployeeName());
-        holder.areaName.setText(bill.getAreaName());
-        holder.storeName.setText(bill.getStoreName());
-        holder.itemName.setText(FormatData.setBillItemNames(bill.getListItems()));
-        holder.itemPrice.setText(FormatData.setBillItemPrices(bill.getListItemPrices()));
-        holder.date.setText(bill.getDate());
-        holder.time.setText(bill.getTime());
-        holder.total.setText(String.valueOf(bill.getTotalPrice()));
+        if (bill != null) {
+            holder.employeeName.setText(bill.getEmployeeName());
+            holder.areaName.setText(bill.getAreaName());
+            holder.storeName.setText(bill.getStoreName());
+            holder.itemName.setText(FormatData.setBillItemNames(bill.getListItems()));
+            holder.itemPrice.setText(FormatData.setBillItemPrices(bill.getListItemPrices()));
+            holder.date.setText(bill.getDate());
+            holder.time.setText(bill.getTime());
+            holder.total.setText(String.valueOf(bill.getTotalPrice()));
+        }
     }
 
     @Override

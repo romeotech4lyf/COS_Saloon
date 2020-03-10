@@ -7,29 +7,28 @@ import java.util.Date;
 public class FormatData {
 
     public static String setBillItemNames(final ArrayList<String> listItemNameList) {
+        if (listItemNameList != null) {
+            StringBuilder joined = new StringBuilder("\n");
+            for (String listItemName : listItemNameList) {
+                joined.append(listItemName).append("\n\n");
 
-        StringBuilder joined = new StringBuilder("\n");
-        for (String listItemName : listItemNameList) {
-            joined.append(listItemName).append("\n\n");
-
-        }
-        joined.deleteCharAt(joined.length() - 1);
-        return joined.toString();
-
-
+            }
+            joined.deleteCharAt(joined.length() - 1);
+            return joined.toString();
+        } else return null;
     }
 
     public static String setBillItemPrices(final ArrayList<Integer> listItemPriceList) {
+        if (listItemPriceList != null) {
 
-        StringBuilder joined = new StringBuilder("\n");
-        for (Integer listItemName : listItemPriceList) {
-            joined.append(listItemName).append("\n\n");
+            StringBuilder joined = new StringBuilder("\n");
+            for (Integer listItemName : listItemPriceList) {
+                joined.append(listItemName).append("\n\n");
 
-        }
-        joined.deleteCharAt(joined.length() - 1);
-        return joined.toString();
-
-
+            }
+            joined.deleteCharAt(joined.length() - 1);
+            return joined.toString();
+        } else return null;
     }
 
     public static Integer getTotal(ArrayList<Integer> items) {
@@ -75,12 +74,12 @@ public class FormatData {
         return new SimpleDateFormat("hh:mm:ss").format(new Date().getTime());
     }
 
-    public static  String setJobsCountToday(Integer today ){
-        return "Today's Jobs : "+today + " ";
+    public static String setJobsCountToday(Integer today) {
+        return "Today's Jobs : " + today + " ";
     }
 
-    public static String setJobsCountThisMonth(Integer thisMonth){
-       return  "This Month's Jobs : "+thisMonth+ " ";
+    public static String setJobsCountThisMonth(Integer thisMonth) {
+        return "This Month's Jobs : " + thisMonth + " ";
 
     }
 

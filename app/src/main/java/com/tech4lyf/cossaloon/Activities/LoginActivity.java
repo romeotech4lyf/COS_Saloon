@@ -58,8 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         //  this.finish();
 
 
-
-
         FirebaseApp.initializeApp(this);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -89,17 +87,16 @@ public class LoginActivity extends AppCompatActivity {
         dateToday = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
 
 
-
-            if (previousDate != null) {
-                if (previousDate.equals(dateToday) || sharedpreferences.getString("isAdministrator", "false").equals("true")) {
-                    savedPhoneNumber = sharedpreferences.getString("phoneNumber", null);
-                    savedPassword = sharedpreferences.getString("password", null);
-                    Log.d("date", dateToday);
-                    if (savedPhoneNumber != null && savedPassword != null)
-                        login(savedPhoneNumber, savedPassword);
-                }
-
+        if (previousDate != null) {
+            if (previousDate.equals(dateToday) || sharedpreferences.getString("isAdministrator", "false").equals("true")) {
+                savedPhoneNumber = sharedpreferences.getString("phoneNumber", null);
+                savedPassword = sharedpreferences.getString("password", null);
+                Log.d("date", dateToday);
+                if (savedPhoneNumber != null && savedPassword != null)
+                    login(savedPhoneNumber, savedPassword);
             }
+
+        }
 
 
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         }
-                     }
+                    }
                     tryEmployeeLogin(phoneNumber, password);
                 }
 

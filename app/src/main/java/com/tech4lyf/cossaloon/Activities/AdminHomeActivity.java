@@ -132,6 +132,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +153,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         storageReferenceDP = storage.getReference().child(key + "-dp");
         setSupportActionBar(toolbar);
         floatingActionButton.setImageResource(R.mipmap.logout);
+        floatingActionButton.setVisibility(View.GONE);
 
         databaseReferenceAdministrators = FirebaseDatabase.getInstance().getReference().child("Administrators");
         databaseReferenceAdministrators.child(key).child("dPUriString").addValueEventListener(new ValueEventListener() {
