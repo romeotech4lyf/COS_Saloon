@@ -86,6 +86,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
     private TextView total;
     private Integer totalPriceText = 0;
 
+
     public EmployeeDefaultFragment() {
         // Required empty public constructor
     }
@@ -143,7 +144,9 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.employee_dashBoard_default_enter_bill:
-                enterBill();
+                if (totalPriceText > 0) {
+                    enterBill();
+                }
                 break;
             default:
                 break;
@@ -151,7 +154,7 @@ public class EmployeeDefaultFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    void enterBill() {
+    private void enterBill() {
 
         currentDate = FormatData.getCurrentDeviceDate();
         currentMonth = FormatData.getCurrentDeviceMonth();

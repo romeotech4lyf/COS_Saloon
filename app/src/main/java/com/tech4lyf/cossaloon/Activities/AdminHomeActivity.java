@@ -3,6 +3,7 @@ package com.tech4lyf.cossaloon.Activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -52,7 +53,6 @@ import com.tech4lyf.cossaloon.Models.Area;
 import com.tech4lyf.cossaloon.Models.Employee;
 import com.tech4lyf.cossaloon.Models.Store;
 import com.tech4lyf.cossaloon.R;
-import com.tech4lyf.cossaloon.adapters.RecyclerViewAdapterEmployees;
 
 import java.util.ArrayList;
 
@@ -70,11 +70,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     private final int getDP = 1236;
     private TextView jobsToday;
     private TextView jobsThisMonth;
-    private AppBarConfiguration mAppBarConfiguration;
-    private RecyclerViewAdapterEmployees recyclerViewAdapterEmployees;
     private FragmentManager fragmentManager;
     private FloatingActionButton floatingActionButton;
-    private String id;
     private Integer jobsTodayCount = 0;
     private Integer jobsThisMonthCount = 0;
     private DatabaseReference databaseReferenceJobsToday;
@@ -83,6 +80,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     private String currentDate;
     private String currentMonth;
     private CircleImageView dasBoardDP;
+    private CardView cardView1;
+    private CardView cardView2;
     private FirebaseStorage storage;
     private StorageReference storageReferenceDP;
     private Uri dPUri;
@@ -91,6 +90,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(final int stringId) {
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
 
         switch (stringId) {
             case R.string.stores:
@@ -143,11 +144,15 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         jobsThisMonth = findViewById(R.id.dashBoard_month_jobs);
         jobsToday = findViewById(R.id.dashBoard_day_jobs);
         dasBoardDP = findViewById(R.id.dashBoard_profile_image);
+        cardView1 = findViewById(R.id.admin_dash_board_dummy_card_view_one);
+        cardView2 = findViewById(R.id.admin_dash_board_dummy_card_view_two);
         fragmentManager = getSupportFragmentManager();
         key = getIntent().getStringExtra("key");
         objectType = Context.OBJECT_TYPE.NULL;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         FirebaseApp.initializeApp(this);
         storage = FirebaseStorage.getInstance();
         storageReferenceDP = storage.getReference().child(key + "-dp");
@@ -257,7 +262,6 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
         if (AdminHomeActivity.level < 0)
             super.onBackPressed();
-            //android.os.Process.killProcess(android.os.Process.myPid());
         else if ((AdminHomeActivity.level == 0)) {
             destroyFragments();
             if (!fragmentManager.isDestroyed())
@@ -265,10 +269,14 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             floatingActionButton.setImageResource(R.mipmap.logout);
             floatingActionButton.setVisibility(View.GONE);
             objectType = Context.OBJECT_TYPE.NULL;
+            cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         } else if (AdminHomeActivity.level == 1) {
             if (objectType != null) {
                 floatingActionButton.setVisibility(View.VISIBLE);
                 Listeners.triggerOnBackPressedListener(objectType);
+                cardView1.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
+                cardView2.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
             }
         }
 
@@ -312,6 +320,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Store store) {
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         objectType = Context.OBJECT_TYPE.STORE;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
@@ -322,6 +332,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Employee employee) {
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
         objectType = Context.OBJECT_TYPE.EMPLOYEE;
         if (!fragmentManager.isDestroyed())
@@ -338,6 +350,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 switch (level) {
 
                     case 1:
+                        cardView1.setBackgroundColor(getResources().getColor(R.color.colorSeventyFivePercentBlack));
+                        cardView2.setBackgroundColor(Color.parseColor("#00000000"));
                         switch (objectType) {
                             case EMPLOYEE:
                                 if (!getSupportFragmentManager().isDestroyed())
@@ -429,6 +443,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Area area) {
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         objectType = Context.OBJECT_TYPE.AREA;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreaDetailsFragment(area), "AREA DETAILS").commit();

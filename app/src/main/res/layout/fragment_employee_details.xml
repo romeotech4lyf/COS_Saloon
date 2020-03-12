@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOffWhite"
+    android:background="@color/colorAccent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.EmployeeDetailsFragment">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorOffWhite">
-
+        android:layout_height="match_parent">
 
         <!-- TODO: Update blank fragment layout -->
 
@@ -51,7 +49,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Employee Name"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -148,7 +146,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -201,7 +199,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textStyle="bold"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="40dp" />
 
 
@@ -235,7 +233,7 @@
                 android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -308,7 +306,7 @@
                             android:scaleType="fitCenter"
                             android:padding="10dp"
                             android:src="@mipmap/info"
-                            android:tint="@color/colorAccent" />
+                            android:tint="@color/colorPrimary" />
 
                         <TextView
                             android:id="@+id/admin_employee_details_info_dummy_text"
@@ -321,7 +319,7 @@
                             android:layout_toRightOf="@id/admin_employee_details_info_dummy_image"
                             android:gravity="center"
                             android:text="Employee Details"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="16dp" />
 
                     </RelativeLayout>
@@ -377,7 +375,7 @@
                             android:padding="10dp"
                             android:scaleType="fitCenter"
                             android:src="@mipmap/bill"
-                            android:tint="@color/colorAccent" />
+                            android:tint="@color/colorPrimary" />
 
                         <TextView
                             android:id="@+id/admin_employee_details_bills_dummy_text"
@@ -390,7 +388,7 @@
                             android:layout_toRightOf="@+id/admin_employee_details_bills_dummy_image"
                             android:gravity="center"
                             android:text="Day's Bills"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorPrimary"
 
                             android:textSize="16dp" />
                     </RelativeLayout>
