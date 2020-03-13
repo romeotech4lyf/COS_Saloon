@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="50dp"
@@ -47,7 +47,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="ADD STORE"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorHighlight"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
                     android:paddingTop="10dp"
                     android:layout_marginBottom="2dp"
                     android:text="Area"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="16dp" />
 
 
@@ -82,7 +82,7 @@
                     android:gravity="start"
                     android:paddingTop="10dp"
                     android:text="Name"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="16dp" />
 
 

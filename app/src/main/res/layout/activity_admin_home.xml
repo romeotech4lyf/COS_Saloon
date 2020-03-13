@@ -16,7 +16,7 @@
             android:layout_height="240dp"
             android:background="@color/colorWhite"
             android:touchscreenBlocksFocus="false"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/colorOffWhite"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <RelativeLayout
@@ -29,23 +29,25 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/admin_dash_board_dummy_card_view_one"
                     android:layout_width="match_parent"
-                    android:layout_height="1200dp"
-                    android:layout_marginTop="170dp"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    app:cardCornerRadius="25dp" />
+                    android:layout_height="70dp"
+                    android:layout_alignParentBottom="true"
+                    app:cardBackgroundColor="@color/colorHighlight"
+                    app:cardCornerRadius="20dp" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/admin_dash_board_dummy_card_view_two"
                     android:layout_width="match_parent"
-                    android:layout_height="1200dp"
-                    android:layout_marginTop="190dp"
-                    app:cardBackgroundColor="@color/colorAccent" />
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="40dp"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@color/colorHighlight" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/colorPrimary"
+                    android:src="@color/colorOffWhite"
                     android:visibility="visible" />
 
                 <androidx.cardview.widget.CardView
@@ -73,7 +75,7 @@
                         android:elevation="60dp"
                         android:gravity="start"
                         android:text="10"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorHighlight"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -100,8 +102,7 @@
                         android:elevation="60dp"
                         android:gravity="center"
                         android:text="100"
-
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorHighlight"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -130,7 +131,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp"
                     android:elevation="50dp"
-                    android:src="@mipmap/employee_management"
+                    android:src="@mipmap/employees_male_female"
                     android:visibility="visible" />
 
 
@@ -145,7 +146,7 @@
                     android:gravity="center"
                     android:text="ADMINISTRATOR"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorHighlight"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -170,10 +171,10 @@
     android:layout_height="wrap_content"
     android:id="@+id/admin_add_fab"
     android:elevation="100dp"
-    android:src="@mipmap/logout"
+    android:backgroundTint="@color/colorGreen"
     android:layout_gravity="bottom|end|right"
     android:tint="@color/colorWhite"
-    android:backgroundTint="@color/colorAccent"
+    android:src="@mipmap/add"
     android:background="#ff0000"
     android:layout_marginEnd="25dp"
     android:layout_marginBottom="25dp"/>

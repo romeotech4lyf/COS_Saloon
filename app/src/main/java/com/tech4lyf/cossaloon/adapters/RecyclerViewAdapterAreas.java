@@ -44,7 +44,6 @@ public class RecyclerViewAdapterAreas extends RecyclerView.Adapter<RecyclerViewA
         final Area area = areaList.get(position);
         holder.name.setText(area.getName());
 
-        holder.image.setImageResource(R.mipmap.pin);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

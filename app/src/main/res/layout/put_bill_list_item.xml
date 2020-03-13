@@ -39,14 +39,14 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dummy"
-        android:checkMark="@color/colorAccentLight"
+        android:checkMark="@color/colorAccent"
         android:ellipsize="end"
         android:gravity="end|center_vertical|right"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="100"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold" />
 

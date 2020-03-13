@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOffWhite"
+    android:background="@color/colorAccent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.EmployeeDetailsFragment">
 
@@ -12,8 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:background="@color/colorOffWhite">
+        android:layout_marginBottom="50dp">
 
 
         <!-- TODO: Update blank fragment layout -->
@@ -151,7 +150,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="INCOME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
 

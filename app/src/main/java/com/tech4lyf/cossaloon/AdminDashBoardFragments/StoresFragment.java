@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
@@ -64,7 +64,7 @@ public class StoresFragment extends Fragment {
 
         recyclerViewAdapterStores = new RecyclerViewAdapterStores(storeList);
         recyclerView.setAdapter(recyclerViewAdapterStores);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
         fireBaseListener();

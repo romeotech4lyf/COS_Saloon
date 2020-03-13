@@ -16,7 +16,7 @@
             android:layout_height="260dp"
             android:background="@color/colorWhite"
             android:touchscreenBlocksFocus="false"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/colorAccent"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <RelativeLayout
@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/colorPrimary"
+                    android:src="@color/colorAccent"
                     android:visibility="visible" />
 
                 <androidx.cardview.widget.CardView
@@ -58,7 +58,7 @@
                         android:elevation="60dp"
                         android:gravity="start"
                         android:text="10"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                         android:gravity="center"
                         android:text="100"
 
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 

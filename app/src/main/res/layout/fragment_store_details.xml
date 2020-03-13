@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorSecondary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.StoreDetailsFragment">
 
@@ -20,8 +20,7 @@
             android:id="@+id/admin_store_details_holder_card"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
@@ -37,8 +36,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
+
                 android:gravity="center_vertical">
 
 
@@ -50,7 +48,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Store Name"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -90,6 +88,7 @@
             android:layout_marginTop="10dp"
             android:elevation="30dp"
             android:src="@mipmap/company"
+            android:visibility="gone"
             />
 
 
@@ -118,7 +117,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="INCOME"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorSecondary"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -200,7 +199,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="40dp" />
 
 
@@ -234,7 +233,7 @@
                 android:elevation="50dp"
                 android:foreground="?selectableItemBackground"
                 android:theme="@style/CardView.Light"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="@color/colorSecondary"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -307,7 +306,7 @@
                             android:scaleType="fitCenter"
                             android:padding="10dp"
                             android:src="@mipmap/info"
-                            android:tint="@color/colorPrimary" />
+                            android:tint="@color/colorSecondary" />
 
                         <TextView
                             android:id="@+id/admin_store_details_info_dummy_text"
@@ -320,7 +319,7 @@
                             android:layout_toRightOf="@id/admin_store_details_info_dummy_image"
                             android:gravity="center"
                             android:text="Store Details"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorSecondary"
                             android:textSize="16dp" />
 
                     </RelativeLayout>
@@ -371,7 +370,7 @@
                                 android:text="Enter"
                                 android:gravity="center"
                                 android:paddingTop="10dp"
-                                android:background="@color/colorPrimary"
+                                android:background="@color/colorSecondary"
                                 android:paddingBottom="10dp"
                                 android:layout_weight="1"
                                 android:textSize="20dp"
@@ -412,7 +411,7 @@
                             android:padding="10dp"
                             android:scaleType="fitCenter"
                             android:src="@mipmap/bill"
-                            android:tint="@color/colorPrimary" />
+                            android:tint="@color/colorSecondary" />
 
                         <TextView
                             android:id="@+id/admin_store_details_bills_dummy_text"
@@ -425,7 +424,7 @@
                             android:layout_toRightOf="@+id/admin_store_details_bills_dummy_image"
                             android:gravity="center"
                             android:text="Day's Bills"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorSecondary"
                             android:textSize="16dp" />
                     </RelativeLayout>
 

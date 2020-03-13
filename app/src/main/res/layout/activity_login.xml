@@ -17,14 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="1200dp"
         android:layout_marginTop="250dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="20dp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="1200dp"
         android:layout_marginTop="290dp"
-        app:cardBackgroundColor="@color/colorPrimary" />
+        app:cardBackgroundColor="@color/colorAccent" />
 
     <TextView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:gravity="bottom|start"
         android:text="Hi there!"
         android:textAlignment="gravity"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorHighlight"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
         android:gravity="top|start"
         android:text="Please Sign in below"
         android:textAlignment="gravity"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorSecondary"
         android:textSize="16dp" />
 
     <androidx.cardview.widget.CardView
@@ -141,7 +141,7 @@
         android:layout_marginBottom="18dp"
         android:elevation="80dp"
         android:theme="@style/CardView.Light"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/colorHighlight"
         app:cardCornerRadius="30dp"
         app:cardUseCompatPadding="true">
 

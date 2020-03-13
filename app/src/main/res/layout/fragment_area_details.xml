@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdminDetailsFragments.AreaDetailsFragment">
 
@@ -22,6 +22,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
@@ -34,7 +35,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="60dp"
+
                 android:gravity="center_vertical">
 
 
@@ -46,7 +47,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Area Name"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -79,13 +80,14 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/admin_area_details_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
-            android:elevation="20dp"
-            android:src="@mipmap/pin"
+            android:elevation="30dp"
+            android:src="@mipmap/area"
+            android:visibility="gone"
             />
 
 
@@ -357,7 +359,7 @@
                                 android:background="@color/colorOffWhite"
                                 android:paddingTop="10dp"
                                 android:paddingBottom="10dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:textColor="@color/colorPrimary" />
 
 
                             <TextView

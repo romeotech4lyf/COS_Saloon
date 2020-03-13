@@ -44,7 +44,6 @@ public class RecyclerViewAdapterStores extends RecyclerView.Adapter<RecyclerView
         final Store store = storeList.get(position);
         holder.storeName.setText(store.getName());
         holder.areaName.setText(store.getAreaName());
-        holder.image.setImageResource(R.mipmap.company);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

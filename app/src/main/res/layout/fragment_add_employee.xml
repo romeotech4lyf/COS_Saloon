@@ -45,7 +45,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="ADD EMPLOYEE"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorHighlight"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -58,7 +58,7 @@
                 android:paddingTop="10dp"
                 android:layout_marginBottom="2dp"
                 android:text="Area"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
 
@@ -79,7 +79,7 @@
                 android:layout_marginBottom="2dp"
                 android:paddingTop="10dp"
                 android:text="Store"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
 
@@ -97,7 +97,7 @@
                 android:gravity="start"
                 android:paddingTop="10dp"
                 android:text="Name"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
 
@@ -125,7 +125,7 @@
                 android:gravity="start"
                 android:paddingTop="10dp"
                 android:text="Phone Number"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
 
@@ -153,7 +153,7 @@
                 android:gravity="start"
                 android:paddingTop="10dp"
                 android:text="Password"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
 
@@ -188,7 +188,7 @@
                     android:gravity="center"
                     android:paddingTop="5dp"
                     android:text="DP"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="16dp" />
 
                 <TextView
@@ -200,7 +200,7 @@
                     android:gravity="center"
                     android:paddingTop="5dp"
                     android:text="KYC"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="16dp" />
             </LinearLayout>
 
@@ -270,7 +270,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:elevation="100dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 
@@ -294,7 +294,7 @@
                     android:layout_weight="1"
 
                     android:elevation="100dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 

@@ -82,7 +82,7 @@
                 android:layout_toStartOf="@id/dummy"
                 android:layout_toLeftOf="@id/dummy"
                 android:elevation="50dp"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="@color/colorAccent"
                 android:layout_alignBottom="@id/admin_employee_details_info_holding_linear_layout"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
@@ -110,7 +110,7 @@
                 android:layout_toRightOf="@id/dummy"
                 android:elevation="50dp"
                 android:visibility="invisible"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="@color/colorAccent"
                 app:cardCornerRadius="8dp"
                 app:cardUseCompatPadding="true">
 
@@ -150,7 +150,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center_vertical|start|left"
                         android:text="Employee name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -198,7 +198,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center_vertical|start|left"
                         android:text="Store name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -246,7 +246,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center_vertical|start|left"
                         android:text="Area Name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -294,7 +294,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center_vertical|start|left"
                         android:text="22-1-2020"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -341,7 +341,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center_vertical|start|left"
                         android:text="9191919191"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -377,7 +377,7 @@
             android:layout_marginTop="285dp"
             android:layout_marginEnd="20dp"
             android:elevation="100dp"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorHighlight"
             app:cardCornerRadius="15dp"
             app:cardUseCompatPadding="true">
 
@@ -400,7 +400,7 @@
         android:layout_marginStart="20dp"
         android:gravity="center"
         android:text="KYC"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -446,7 +446,7 @@
         android:layout_marginTop="545dp"
         android:layout_marginEnd="20dp"
         android:elevation="100dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="15dp"
         app:cardUseCompatPadding="true">
         <TextView

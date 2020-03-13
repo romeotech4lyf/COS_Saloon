@@ -3,7 +3,6 @@ package com.tech4lyf.cossaloon.Activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -90,8 +89,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(final int stringId) {
-        cardView1.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
-        cardView2.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
+
 
         switch (stringId) {
             case R.string.stores:
@@ -100,33 +98,42 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
                 floatingActionButton.setVisibility(View.VISIBLE);
                 objectType = Context.OBJECT_TYPE.STORE;
+                cardView1.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+                cardView2.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
 
                 break;
 
             case R.string.services:
-                if (!getSupportFragmentManager().isDestroyed())
+                if (!getSupportFragmentManager().isDestroyed()) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICE").commit();
-                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
-                floatingActionButton.setVisibility(View.VISIBLE);
-                objectType = Context.OBJECT_TYPE.SERVICE;
-
+                    floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    objectType = Context.OBJECT_TYPE.SERVICE;
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 break;
 
             case R.string.employees:
-                if (!getSupportFragmentManager().isDestroyed())
+                if (!getSupportFragmentManager().isDestroyed()) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEE").commit();
-                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
-                floatingActionButton.setVisibility(View.VISIBLE);
-                objectType = Context.OBJECT_TYPE.EMPLOYEE;
+                    floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    objectType = Context.OBJECT_TYPE.EMPLOYEE;
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                }
                 break;
 
             case R.string.areas:
-                if (!getSupportFragmentManager().isDestroyed())
+                if (!getSupportFragmentManager().isDestroyed()) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREA").commit();
-                floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
-                floatingActionButton.setVisibility(View.VISIBLE);
-                objectType = Context.OBJECT_TYPE.AREA;
-
+                    floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    objectType = Context.OBJECT_TYPE.AREA;
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                }
             default:
                 break;
         }
@@ -151,8 +158,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
         objectType = Context.OBJECT_TYPE.NULL;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new DefaultFragment(), "DEFAULT").commit();
-        cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
         FirebaseApp.initializeApp(this);
         storage = FirebaseStorage.getInstance();
         storageReferenceDP = storage.getReference().child(key + "-dp");
@@ -269,14 +276,13 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
             floatingActionButton.setImageResource(R.mipmap.logout);
             floatingActionButton.setVisibility(View.GONE);
             objectType = Context.OBJECT_TYPE.NULL;
-            cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            cardView1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+            cardView2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
         } else if (AdminHomeActivity.level == 1) {
             if (objectType != null) {
                 floatingActionButton.setVisibility(View.VISIBLE);
                 Listeners.triggerOnBackPressedListener(objectType);
-                cardView1.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
-                cardView2.setBackgroundColor(getResources().getColor(R.color.colorOffWhite));
+
             }
         }
 
@@ -296,20 +302,33 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
 
         switch (objectType) {
             case EMPLOYEE:
-                if (!fragmentManager.isDestroyed())
+                if (!fragmentManager.isDestroyed()) {
                     fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new EmployeesFragment(), "EMPLOYEES").commit();
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                }
                 break;
             case STORE:
-                if (!fragmentManager.isDestroyed())
+                if (!fragmentManager.isDestroyed()) {
                     fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoresFragment(), "STORES").commit();
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+                }
                 break;
             case AREA:
-                if (!fragmentManager.isDestroyed())
+
+                if (!fragmentManager.isDestroyed()) {
                     fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreasFragment(), "AREAS").commit();
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                }
                 break;
             case SERVICE:
-                if (!fragmentManager.isDestroyed())
+                if (!fragmentManager.isDestroyed()) {
+                    cardView1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                    cardView2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                     fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new ServicesFragment(), "SERVICES").commit();
+                }
                 break;
             default:
                 break;
@@ -320,8 +339,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Store store) {
-        cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
         objectType = Context.OBJECT_TYPE.STORE;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new StoreDetailsFragment(store), "STORE DETAILS").commit();
@@ -350,8 +369,7 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
                 switch (level) {
 
                     case 1:
-                        cardView1.setBackgroundColor(getResources().getColor(R.color.colorSeventyFivePercentBlack));
-                        cardView2.setBackgroundColor(Color.parseColor("#00000000"));
+
                         switch (objectType) {
                             case EMPLOYEE:
                                 if (!getSupportFragmentManager().isDestroyed())
@@ -443,8 +461,8 @@ public class AdminHomeActivity extends AppCompatActivity implements Listeners.On
     @SuppressLint("RestrictedApi")
     @Override
     public void onClick(Area area) {
-        cardView1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        cardView2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        cardView1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        cardView2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         objectType = Context.OBJECT_TYPE.AREA;
         if (!fragmentManager.isDestroyed())
             fragmentManager.beginTransaction().replace(R.id.dashBoard_admin_fragment_container, new AreaDetailsFragment(area), "AREA DETAILS").commit();

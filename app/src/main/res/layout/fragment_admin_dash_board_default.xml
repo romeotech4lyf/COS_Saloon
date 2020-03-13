@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorHighlight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -47,7 +47,7 @@
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorSecondary"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -55,9 +55,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="42dp"
-                android:padding="16dp"
+                android:paddingTop="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/company" />
+                android:src="@drawable/ic_business_black_24dp" />
 
 
             <TextView
@@ -70,7 +70,7 @@
                 android:maxLines="1"
                 android:text="@string/stores"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorAccent"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -97,9 +97,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="42dp"
-                android:padding="16dp"
+                android:paddingTop="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/employees_males_" />
+                android:src="@drawable/ic_people_black_24dp" />
 
 
             <TextView
@@ -112,7 +112,7 @@
                 android:maxLines="1"
                 android:text="@string/employees"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
-            app:cardBackgroundColor="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorHighlight"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -141,9 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="42dp"
-                android:padding="16dp"
+                android:paddingTop="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/customer" />
+                android:src="@drawable/ic_spa_black_24dp" />
 
 
             <TextView
@@ -156,7 +156,7 @@
                 android:maxLines="1"
                 android:text="@string/services"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
 
                 android:textStyle="bold" />
@@ -177,7 +177,7 @@
             android:foreground="?selectableItemBackground"
             android:theme="@style/CardView.Light"
             android:visibility="visible"
-            app:cardBackgroundColor="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
@@ -187,9 +187,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="42dp"
-                android:padding="16dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/pin"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_location_on_black_24dp"
                 />
 
 
@@ -203,7 +203,7 @@
                 android:maxLines="1"
                 android:text="AREAS"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -235,20 +235,33 @@
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
-
-            <CalendarView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:id="@+id/dashBoard_admin_calendar"
-                android:layout_gravity="center"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginBottom="20dp"
-                android:forceDarkAllowed="true" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <CalendarView
+                    android:id="@+id/dashBoard_admin_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="20dp"
+                    android:forceDarkAllowed="true" />
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/dashBoard_admin_horizontal_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone"
+
+                    />
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <RelativeLayout
@@ -296,7 +309,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textStyle="bold"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorHighlight"
                     android:textSize="40dp" />
 
 
@@ -324,7 +337,7 @@
                 android:layout_weight="1"
                 android:elevation="20dp"
                 android:foreground="?selectableItemBackground"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="@color/colorHighlight"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -368,7 +381,7 @@
 
             android:elevation="20dp"
             android:foreground="?selectableItemBackground"
-            app:cardBackgroundColor="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorHighlight"
             app:cardCornerRadius="20dp"
             app:cardUseCompatPadding="true">
 

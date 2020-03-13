@@ -51,7 +51,7 @@
             android:layout_toRightOf="@id/dummy"
             android:gravity="center"
             android:text="\n120\n\n40\n\n30\n"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorHighlight"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:layout_toStartOf="@id/dummy"
             android:layout_toLeftOf="@id/dummy"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorHighlight"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:scaleType="centerCrop"
@@ -80,7 +80,7 @@
             android:layout_below="@id/recycler_view_bill_item_price"
             android:layout_toEndOf="@id/dummy"
             android:layout_toRightOf="@id/dummy"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorHighlight"
             android:gravity="center"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
@@ -99,7 +99,7 @@
             android:gravity="center"
             android:paddingTop="3dp"
             android:text="Employee name"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorHighlight"
             android:textSize="16dp"
             android:paddingBottom="3dp"
             android:textStyle="bold" />
@@ -148,7 +148,7 @@
             android:layout_toRightOf="@id/dummy"
 
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorHighlight"
             android:ellipsize="end"
             android:gravity="center"
             android:paddingTop="5dp"
@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/recycler_view_bill_area_name"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorHighlight"
             android:gravity="center"
 
             android:paddingTop="5dp"

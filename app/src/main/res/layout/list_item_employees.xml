@@ -36,8 +36,9 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:elevation="25dp"
+        android:elevation="15dp"
         android:src="@mipmap/company"
+        android:padding="4dp"
         android:visibility="visible" />
 
 
@@ -74,7 +75,7 @@
         android:maxLines="1"
         android:text="Store Name"
         android:textAlignment="center"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorSecondary"
         android:textSize="10dp" />
 
     <TextView
@@ -92,7 +93,7 @@
         android:maxLines="1"
         android:text="Area Name"
         android:textAlignment="center"
-        android:textColor="@color/colorSeventyFivePercentBlack"
+        android:textColor="@color/colorPrimary"
         android:textSize="10dp" />
 
 
